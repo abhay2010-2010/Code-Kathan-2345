@@ -1,0 +1,15 @@
+{
+  "name": "code-kathan-2345",
+  "version": "1.0.0",
+  "description": "## Introduction A brief introduction of your project goes here. You may want to cover the purpose of your project, its core functionality, and what problems it solves.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd backend/ && npm i && cd .. && cd frontend/ && npm i && cd ..",
+    "start_be": "cd backend/ && npm run start && cd .. ",
+    "start_fe": "cd frontend/ && npm start && cd .."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
