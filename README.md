@@ -8,12 +8,12 @@ A brief introduction of your project goes here. You may want to cover the purpos
 Frontend
 
 ## Deplolyed App
-Frontend: https://deployed-site.whatever
-Backend: https://deployed-site.whatever
+Frontend: https://code-kathan.vercel.app <br>
+Backend: https://code-kathan-api.vercel.app
 
 
 ## Directory Structure
-my-app/
+code-kathan-2345
 ├─ backend/
 ├─ frontend/
 │  ├─ ...
