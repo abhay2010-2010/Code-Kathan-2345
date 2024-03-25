@@ -1,3 +1,10 @@
 {
-  "posts": []
+  "posts": [],
+  "users": [
+    {
+      "email": "admin@mail.com",
+      "password": "$2a$10$37FMpxI0ERR.WlGK2SgpKei2iOb4ri7LDcBwYwxRiIHVeTva2Rpqm",
+      "id": 1
+    }
+  ]
 }
