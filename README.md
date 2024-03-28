@@ -1,6 +1,6 @@
 # Project Title
 
-BIG_NEWS
+KATHAN_NEWS
 
 ## Introduction
 
