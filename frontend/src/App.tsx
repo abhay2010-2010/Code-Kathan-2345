@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import { baseUrl } from "./utils/baseUrl";
 import { Allroutes } from "./routes/Allroutes";
