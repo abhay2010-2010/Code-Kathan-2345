@@ -1,7 +1,7 @@
 import "./App.css";
-import { baseUrl } from "./utils/baseUrl";
-import { Allroutes } from "./routes/Allroutes";
 import { Navbar } from "./components/navbar/Navbar";
+import { Allroutes } from "./routes/Allroutes";
+import { baseUrl } from "./utils/baseUrl";
 
 function App() {
   console.log(baseUrl);
