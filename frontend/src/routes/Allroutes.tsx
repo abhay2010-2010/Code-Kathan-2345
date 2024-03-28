@@ -59,21 +59,21 @@ export const layout: LayoutRoute[] = [
     id: 10,
     name: "Login",
     path: "/login",
-    isVisible: true,
+    isVisible: false,
     element: <Login />,
   },
   {
     id: 11,
     name: "Signup",
     path: "/signup",
-    isVisible: true,
+    isVisible: false,
     element: <Signup />,
   },
   {
     id: 12,
     name: "Admin",
     path: "/admin",
-    isVisible: true,
+    isVisible: false,
     element: (
       <ProtectedRoutes>
         <Admin />
