@@ -80,7 +80,7 @@ export const Navbar = () => {
                             })}
                           >
                             <Divider />
-                            <Box py={1} px={2} my={1} pl={4}>
+                            <Box py={1} px={2} my={1} pl={4} onClick={onClose}>
                               <Text as="p">{item.name}</Text>
                             </Box>
                           </NavLink>
