@@ -11,9 +11,6 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
-  Input,
-  InputGroup,
-  InputRightElement,
   Stack,
   Text,
   useColorMode,
@@ -25,45 +22,64 @@ import { IoMdClose } from "react-icons/io";
 import { NavLink, useNavigate } from "react-router-dom";
 import { layout } from "../../routes/Allroutes";
 import { Logo } from "../logo/Logo";
+import { Search } from "../search/Search";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
+
   return (
     <Box>
-      <Flex align="center">
+      <Flex align="center" height={"4.5rem"}>
         {isOpen ? (
           <>
+            <input type="text" />
             <Box ml={"7rem"}></Box>
-            <Drawer placement={"left"} onClose={onClose} isOpen={isOpen}>
+            <Drawer
+              placement={"left"}
+              onClose={onClose}
+              isOpen={isOpen}
+              autoFocus={false}
+            >
               <DrawerOverlay />
               <DrawerContent>
                 <DrawerHeader borderBottomWidth="1px" px={4}>
                   <IoMdClose size={"2.5rem"} onClick={onClose} />
                 </DrawerHeader>
                 <DrawerBody p={0}>
-                  <Center px={4} py={4}>
-                    <InputGroup>
-                      <InputRightElement pointerEvents="none">
-                        <CiSearch size={"2rem"} />
-                      </InputRightElement>
-                      <Input type="tel" placeholder="Search" />
-                    </InputGroup>
-                  </Center>
-                  <Center px={4} pb={4}>
-                    <ButtonGroup display={{ base: "flex", md: "none" }}>
-                      <Button onClick={() => navigate("./signup")}>
-                        Register
-                      </Button>
-                      <Button onClick={() => navigate("./login")}>
-                        Sign In
-                      </Button>
-                      <Button onClick={toggleColorMode}>
-                        {colorMode == "dark" ? <SunIcon /> : <MoonIcon />}
-                      </Button>
-                    </ButtonGroup>
-                  </Center>
+                  <Box py={4}>
+                    <Center px={4}>
+                      <Search />
+                    </Center>
+                    <Center
+                      px={4}
+                      pt={4}
+                      display={{ base: "flex", md: "none" }}
+                    >
+                      <ButtonGroup>
+                        <Button
+                          onClick={() => {
+                            navigate("./signup");
+                            onClose();
+                          }}
+                        >
+                          Register
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            navigate("./login");
+                            onClose();
+                          }}
+                        >
+                          Sign In
+                        </Button>
+                        <Button onClick={toggleColorMode}>
+                          {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
+                        </Button>
+                      </ButtonGroup>
+                    </Center>
+                  </Box>
                   {layout.map((item) => {
                     return (
                       <Stack key={item.id}>
@@ -74,7 +90,7 @@ export const Navbar = () => {
                               fontWeight: isActive ? "bold" : "",
                               borderLeft: isActive
                                 ? "9px solid gray"
-                                : colorMode == "dark"
+                                : colorMode === "dark"
                                   ? "9px solid rgb(45,55,72)"
                                   : "9px solid white",
                             })}
@@ -97,21 +113,25 @@ export const Navbar = () => {
             <Box>
               <GiHamburgerMenu size={"2.5rem"} onClick={onOpen} />
             </Box>
-            <Box ml={"2rem"}>
+            <Box ml={"2rem"} display={{ base: "none", md: "unset" }}>
               <CiSearch size={"2.5rem"} onClick={onOpen} />
             </Box>
           </>
         )}
-        <Box ml={"auto"} mr="auto">
+        <Box
+          position={"absolute"}
+          left={"50%"}
+          sx={{ transform: "translateX(-30%)" }}
+        >
           <NavLink to="/">
             <Logo />
           </NavLink>
         </Box>
-        <ButtonGroup display={{ base: "none", md: "unset" }}>
+        <ButtonGroup ml={"auto"} display={{ base: "none", md: "unset" }}>
           <Button onClick={() => navigate("./signup")}>Register</Button>
           <Button onClick={() => navigate("./login")}>Sign In</Button>
           <Button onClick={toggleColorMode}>
-            {colorMode == "dark" ? <SunIcon /> : <MoonIcon />}
+            {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
           </Button>
         </ButtonGroup>
       </Flex>
@@ -127,7 +147,7 @@ export const Navbar = () => {
                   fontWeight: isActive ? "bold" : "",
                   borderBottom: isActive
                     ? "4px solid gray"
-                    : colorMode == "dark"
+                    : colorMode === "dark"
                       ? "4px solid rgb(26,32,44)"
                       : "4px solid white",
                 })}
