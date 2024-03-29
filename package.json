@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd backend/ && npm i && cd .. && cd frontend/ && npm i && cd ..",
     "start_be": "cd backend/ && npm run start && cd .. ",
-    "start_fe": "cd frontend/ && npm start && cd .."
+    "start_fe": "cd frontend/ && npm run dev && cd .."
   },
   "keywords": [],
   "author": "",

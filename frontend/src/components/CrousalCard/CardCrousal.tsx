@@ -1,5 +1,4 @@
 import { Card, Divider, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import React from "react";
 
 const CardCrousal = () => {
   return (
