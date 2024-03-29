@@ -143,12 +143,7 @@ export default function Footer() {
                                 {item.isVisible && (
                                     <NavLink
                                         to={item.path}
-                                    // style={({ isActive }) => ({
-                                    //     fontWeight: isActive ? "bold" : "",
-                                    //     borderLeft: isActive
-                                    //         ? "9px solid gray"
-                                    //         : (colorMode === "dark" ? "9px solid rgb(45,55,72)" : "9px solid white"),
-                                    // })}
+                                   
                                     >
                                         <Divider />
                                         <Box py={1} px={2} my={1} pl={4} onClick={onClose}>
