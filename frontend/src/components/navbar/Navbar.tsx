@@ -64,7 +64,7 @@ export const Navbar = () => {
                             onClose();
                           }}
                         >
-                          Register
+                          <Text>Register</Text>
                         </Button>
                         <Button
                           onClick={() => {
@@ -72,7 +72,7 @@ export const Navbar = () => {
                             onClose();
                           }}
                         >
-                          Sign In
+                          <Text>Sign In</Text>
                         </Button>
                         <Button onClick={toggleColorMode}>
                           {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
@@ -97,7 +97,9 @@ export const Navbar = () => {
                           >
                             <Divider />
                             <Box py={1} px={2} my={1} pl={4} onClick={onClose}>
-                              <Text as="p">{item.name}</Text>
+                              <Text as="p" fontSize={18}>
+                                {item.name}
+                              </Text>
                             </Box>
                           </NavLink>
                         )}
@@ -153,7 +155,9 @@ export const Navbar = () => {
                 })}
               >
                 <Box py={1} px={2} mt={2}>
-                  <Text as="p">{item.name}</Text>
+                  <Text as="p" fontSize={16}>
+                    {item.name}
+                  </Text>
                 </Box>
               </NavLink>
             ),
