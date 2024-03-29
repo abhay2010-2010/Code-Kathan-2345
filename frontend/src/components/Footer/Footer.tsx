@@ -125,14 +125,7 @@ export default function Footer() {
                <Logo/>
                
                 <Stack direction={'row'} spacing={6}>
-                    {/* <Box as="a" href={'#'}>
-            Home
-          </Box>
-        
-          
-          <Box as="a" href={'#'}>
-            Contact
-          </Box> */}
+           
                     {layout.map((item) => {
                         return (
                             <Stack key={item.id} >
