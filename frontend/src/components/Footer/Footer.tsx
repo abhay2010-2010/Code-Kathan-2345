@@ -128,9 +128,7 @@ export default function Footer() {
                     {/* <Box as="a" href={'#'}>
             Home
           </Box>
-          <Box as="a" href={'#'}>
-            About
-          </Box>
+        
           
           <Box as="a" href={'#'}>
             Contact
