@@ -17,10 +17,10 @@ const IMAGE =
 
 export default function Card2b() {
   return (
-    <Center py={12} >
+    <Center >
     <Box
       role={'group'}
-      p={6}
+      
       maxW={'430px'}
       w={'full'}
       bg={useColorModeValue('white', 'gray.800')}
@@ -37,7 +37,7 @@ export default function Card2b() {
       >
         <Image
           rounded={'lg'}
-          height={180}
+          height={"60%"}
           width={"100%"}
           objectFit={'cover'}
           src={IMAGE}
@@ -45,17 +45,17 @@ export default function Card2b() {
           
         />
       </Box>
-      <Stack  align={'start'}  textAlign={"start"} mt={-25}>
+      <Stack  align={'start'}  textAlign={"start"} >
         <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500} textDecoration={"underline"} >
           Crypto King' Sam Bankman-Fried faces lengthy jail term
         </Heading>
-        <Stack direction={'row'} align={'starta'} mt={-35}>
+        <Stack direction={'row'} align={'starta'} >
           <Text color={'gray.500'} fontSize={'sm'}>
             The former billionaire is about to find out his punishment for massive fraud and money laundering.
           </Text>
           
         </Stack>
-        <Text mt={-20} >
+        <Text>
             5 hours ago | <span style={{ color: 'darkblack' ,fontWeight:"bold"}  } >LIVE </span>| World
           </Text>
       </Stack>
