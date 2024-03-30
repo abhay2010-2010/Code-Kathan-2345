@@ -43,7 +43,7 @@ export const Navbar = () => {
               autoFocus={false}
             >
               <DrawerOverlay />
-              <DrawerContent>
+              <DrawerContent >
                 <DrawerHeader borderBottomWidth="1px" px={4}>
                   <IoMdClose size={"2.5rem"} onClick={onClose} />
                 </DrawerHeader>
