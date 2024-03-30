@@ -1,4 +1,3 @@
-import React from 'react'
 import { Card, Button, CardBody, CardFooter, Stack, Heading ,Image,Text} from '@chakra-ui/react'
 function Card5() {
   return (
