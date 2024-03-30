@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   Flex,
   Heading,
@@ -10,10 +9,10 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+
 
 export const Card3a = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  
   let obj = {
     title: "Client Report",
     description: "View a summary of all your clients over the last month.",
@@ -23,27 +22,18 @@ export const Card3a = () => {
     video: "",
   };
 
-  return isLoaded ? (
-    <>
-      <Box padding="6" boxShadow="lg" bg="white">
-        <Skeleton height="30px" width="100px" />
-        <SkeletonText
-          mt="4"
-          noOfLines={4}
+  return  (
+    <Card gap={2} p={3}>
+     <Skeleton width={"fit-content"}> <Heading size="md" fontWeight="500" fontSize="18px">
+        {obj.title}
+      </Heading></Skeleton>
+      <SkeletonText
+          mt={2}
+          noOfLines={3}
           spacing="4"
           skeletonHeight="2"
-          height="30px"
-        />
-      </Box>
-      <Box textAlign="center">
-        <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
-      </Box>
-    </>
-  ) : (
-    <Card gap={2} p={3}>
-      <Heading size="md" fontWeight="500" fontSize="18px">
-        {obj.title}
-      </Heading>
+          
+        >
       <Stack>
         <Box>
           <Text fontWeight="400" fontSize="14px">
@@ -56,9 +46,7 @@ export const Card3a = () => {
           </Text>
         </Flex>
       </Stack>
-      <Box textAlign="center">
-        <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
-      </Box>
+      </SkeletonText>
     </Card>
   );
 };

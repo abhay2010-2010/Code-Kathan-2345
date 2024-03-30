@@ -30,7 +30,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Box>
+    <Box position={"sticky"} top={'0'} zIndex={5} bg={colorMode === "dark" ? "#1a202c" : "white"}>
       <Flex align="center" height={"4.5rem"}>
         {isOpen ? (
           <>
