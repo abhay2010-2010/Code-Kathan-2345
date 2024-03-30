@@ -14,9 +14,7 @@ function App() {
       <Navbar />
       <Allroutes />
       <Footer/>
-      <Card5/>
-      <Card2a/>
-      <Card2b/>
+
     </div>
   );
 }
