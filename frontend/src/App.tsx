@@ -1,4 +1,5 @@
 import "./App.css";
+import Card5 from "./components/Card5/Card5";
 import Footer from "./components/Footer/Footer";
 import { Navbar } from "./components/navbar/Navbar";
 import { Allroutes } from "./routes/Allroutes";
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Allroutes />
       <Footer/>
+      
     </div>
   );
 }
