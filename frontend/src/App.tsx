@@ -7,12 +7,7 @@ function App() {
   return (
     <div className="App">
       <Allroutes />
-
-
-      <Footer/>
-
-      
-    </div>
+        </div>
   );
 }
 
