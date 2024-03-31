@@ -10,18 +10,20 @@ import {
 
 import React from "react";
 
-const InnovationCard = ({ isLoaded }: { isLoaded: boolean }) => {
+const InnovationCard2 = ({ isLoaded }: { isLoaded: boolean }) => {
   console.log(isLoaded);
   return (
     <Card>
-        {" "}
-        <Link fontSize={"20"} fontWeight={"800"}>
-          <Skeleton isLoaded={!isLoaded}>
-            
-            <Image src="https://ichef.bbci.co.uk/news/1024/cpsprodpb/A4B7/production/_132976124_terry2.jpg.webp" />{" "}
-          </Skeleton>
-          <SkeletonText isLoaded={!isLoaded}>      Why are electric car fires so hard to deal with?  </SkeletonText>
-        </Link>{" "}
+      {" "}
+      <Link fontSize={"20"} fontWeight={"800"}>
+        <Skeleton isLoaded={!isLoaded}>
+          {" "}
+          <Image src="https://ichef.bbci.co.uk/news/480/cpsprodpb/1791/production/_133033060_gettyimages-1454799548.jpg.webp" />{" "}
+        </Skeleton>
+        <SkeletonText isLoaded={!isLoaded} width={"fit-content"}>
+          Why are electric car fires so hard to deal with?{" "}
+        </SkeletonText>
+      </Link>{" "}
       <SkeletonText isLoaded={!isLoaded}>
         {" "}
         <Text>
@@ -39,4 +41,4 @@ const InnovationCard = ({ isLoaded }: { isLoaded: boolean }) => {
   );
 };
 
-export default InnovationCard;
+export default InnovationCard2;
