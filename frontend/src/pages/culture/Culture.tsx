@@ -10,6 +10,8 @@ import Card5 from "../../components/Card5/Card5";
 import Carousel from "../../components/CrousalCard/Crousal";
 import InnovationCard from "../../components/InnovationCard/InnovationCard";
 import InnovationCard2 from "../../components/InnovationCard/InnovationCard2";
+import { Navbar } from "../../components/navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 export const Culture = () => {
   const [isLoaded, setIsloading] = useState(false);
@@ -19,6 +21,7 @@ export const Culture = () => {
 
   return (
     <>
+    <Navbar />
       <Box w={"84%"} marginX="auto">
         <Heading>Culture</Heading>
         <br />
@@ -116,6 +119,7 @@ export const Culture = () => {
         </Grid>
      </Box>
      <Carousel />
+     <Footer />
     </>
   );
 };
