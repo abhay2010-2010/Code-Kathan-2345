@@ -75,7 +75,7 @@ export const Card3b = ({ data }: Props) => {
         </Text>
         <Flex>
           <Text fontWeight="400" fontSize="12px" display="flex" gap={2}>
-            5 hrs ago | {data.source}
+            {data.time} hrs ago | {data.source}
           </Text>
         </Flex>
       </Stack>
