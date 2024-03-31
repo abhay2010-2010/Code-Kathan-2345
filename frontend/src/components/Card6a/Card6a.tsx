@@ -1,12 +1,15 @@
 import { Card, Heading, Image, Stack } from '@chakra-ui/react'
+import { Post } from '../../utils/types';
 
-
-function Card6a() {
+interface Props {
+    data?: Post;
+  }
+function Card6a({data}:Props) {
     return (
         <Card p={1}>
 
             <Image
-                src='https://ichef.bbci.co.uk/news/480/cpsprodpb/182DF/production/_132993099_tj_gullinflight.jpg.webp'
+                src={data?.image1}
                 alt='Green double couch with wooden legs'
 
             />

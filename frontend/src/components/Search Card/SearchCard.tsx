@@ -1,28 +1,34 @@
-import { Heading, Image, Text, Flex, Box, Skeleton, SkeletonText } from '@chakra-ui/react'
+import { Box, Flex, Heading, Image, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
 import { useState } from 'react';
-function SearchCard() {
-    const [isLoaded] = useState(false);
+import { Post } from '../../utils/types';
 
+interface Props {
+    data?: Post;
+}
+function SearchCard({ data }: Props) {
+    const [isLoaded] = useState(false);
+    !data &&
+        (data = {
+            id: 27,
+            title: "IMF Approves $8 Billion Egypt Loan as Global Bailout Takes Shape",
+            Description: "The International Monetary Fund approved a $5 billion augmentation to its loan program for Egypt, part of a wave of global aid pledged to bolster a ...",
+            source: "Bloomberg",
+            time: 2,
+            articleLink: "https://www.bloomberg.com/news/articles/2024-03-29/imf-approves-8-billion-egypt-loan-as-global-bailout-takes-shape",
+            image1: "https://ichef.bbci.co.uk/news/480/cpsprodpb/11C12/production/_133022727_p0hm1njp.jpg.webp",
+            image2: "https://i.zedtranslate.com/newsimage/CC8iK0NnNW1WamRVY25VMGMxWlJkMVV3VFJERUF4aW1CU2dLTWdhZFZwSXFKZ2c",
+            category: "world",
+            clicks: 212
+        });
     return (
         <div>
 
-            <Box mt={10} display={{base:"block",md:"flex",}} alignItems={"center"} justifyContent={"space-around"}>
+            <Box mt={10} display={{ base: "block", md: "flex", }} alignItems={"center"} justifyContent={"space-around"}>
 
-                {/* <Box>
-                    <SkeletonText
-                        mt={2}
-                        noOfLines={1}
-                        spacing="4"
-                        skeletonHeight="2"
-                        isLoaded={!isLoaded}
-                    >
-                        <Text w={"100px"} fontWeight="400" fontSize="14px" display="flex" gap={2} mt={4}>2 Hrs ago
-                        </Text>
-                    </SkeletonText>
-                </Box> */}
-                <Box w={{base:"90%",md:"40%"}}>
+                <Box w={{ base: "90%", md: "40%" }}>
                     <Skeleton width={"fit-content"} isLoaded={!isLoaded}>
-                        <Heading size='md' textDecoration={"underline"} mt={10}>Ey Exc : Nuradiberse Talemnt benifit everyon
+                        <Heading size='md' textDecoration={"underline"} mt={10}>
+                            {data.title}
                         </Heading>
                     </Skeleton>
 
@@ -34,8 +40,7 @@ function SearchCard() {
                         isLoaded={!isLoaded}
                     >
                         <Text mt={4}>
-                            Caffè latte is a coffee beverage of Italian origin made with espresso
-                            and steamed milk.hjakxkgdc.klihsoifcuohihnsdfcfvv.fijkjljijid.
+                            {data.Description}
                         </Text>
                         <Flex>
                             <Text fontWeight="400" fontSize="14px" display="flex" mt={4} >
@@ -56,12 +61,12 @@ function SearchCard() {
                     </SkeletonText>
                 </Box>
 
-                <Box w={{base:"65%" ,md:"25%"}} >
+                <Box w={{ base: "65%", md: "25%" }} >
                     <Skeleton width={"fit-content"} isLoaded={!isLoaded}>
                         <Image
                             objectFit='cover'
 
-                            src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
+                            src={data.image1}
                             alt='Caffe Latte'
                         />
                     </Skeleton>
