@@ -1,22 +1,25 @@
+'use client'
 import {
-  Box,
   Button,
+  Checkbox,
   Flex,
+  Text,
   FormControl,
-   Heading,
-  Img,
+  FormLabel,
+  Heading,
   Input,
-} from "@chakra-ui/react";
-import { useState } from "react";
+  Stack,
+  Image,
+  Box,
+} from '@chakra-ui/react'
+import { useState } from 'react';
 
 interface InputState {
-  name: string;
-  email: string;
+   email: string;
   password: string;
 }
-
-export const Login: React.FC = () => {
-  const init: InputState = { name: "", email: "", password: "" };
+export  function Login() {
+  const init: InputState = {  email: "", password: "" };
   const [input, setInput] = useState<InputState>(init);
   const [error, setError] = useState<{ [key: string]: string }>({});
 
@@ -27,10 +30,9 @@ export const Login: React.FC = () => {
 
   const handleSubmit = () => {
     console.log(input);
+    setInput(init);
     const validationError: { [key: string]: string } = {};
-    if (!input.name.trim()) {
-      validationError.name = "Name is required";
-    }
+    
     if (!input.email.trim()) {
       validationError.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) {
@@ -48,90 +50,48 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <>
-      <Box
-        height="680px"
-        w="85%"
-        m="auto"
-        mt={30}
-        borderRadius={10}
-      >
-        <Flex>
-          <Box m={30} mt="100px">
-            <Img
-              width="650px"
-              borderRadius={10}
-              src="https://www.atoallinks.com/wp-content/uploads/2023/06/5030900_2636676-1200x675.jpg"
-            />
-          </Box>
-          <Box height="520px" width="35%" ml={20} mt={7} bg="lightblue" borderRadius={20}>
-            <Heading
-              textAlign="center"
-              fontWeight="600"
-              fontFamily="monospace"
-              mt="85px"
-            >
-              Login
-            </Heading>
-            <FormControl>
-              <Input
-                type="text"
-                name="name"
-                value={input.name}
-                onChange={handleChange}
-                placeholder="Enter name"
-                ml={10}
-                mt={10}
-                border="2px"
-                w="80%"
-              />
-              <Box bg="black" color="white" w="300px" ml={10}>
-                {error.name && <span>{error.name}</span>}
-              </Box>
-              <Input
-                type="email"
-                name="email"
-                value={input.email}
-                onChange={handleChange}
-                placeholder="Enter email"
-                ml={10}
-                mt={5}
-                border="2px"
-                w="80%"
-              />
-              <Box bg="black" color="white" w="300px" ml={10}>
-                {error.email && <span>{error.email}</span>}
-              </Box>
-              <Input
-                type="password"
-                name="password"
-                value={input.password}
-                onChange={handleChange}
-                placeholder="Enter password"
-                ml={10}
-                mt={5}
-                border="2px"
-                w="80%"
-              />
-              <Box bg="black" color="white" w="300px" ml={10}>
-                {error.password && <span>{error.password}</span>}
-              </Box>
-              <Button
-                size="lg"
-                height="40px"
-                width="200px"
-                onClick={handleSubmit}
-                mt={5}
-                ml="130px"
-                bg="black"
-                color="white"
-              >
-                Login
-              </Button>
-            </FormControl>
-          </Box>
-        </Flex>
-      </Box>
-    </>
-  );
-};
+    <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+      <Flex p={8} flex={1} align={'center'} justify={'center'}>
+        <Stack spacing={4} w={'full'} maxW={'md'}>
+          <Heading fontSize={'2xl'}>Log in to your account</Heading>
+          <FormControl id="email">
+            <FormLabel>Email address</FormLabel>
+            <Input type="email" name='email' onChange={handleChange} value={input.email}/>
+            {error.email && <Box color="red">{error.email}</Box>}
+          </FormControl>
+          <FormControl id="password">
+            <FormLabel>Password</FormLabel>
+            <Input type="password" name='password'  onChange={handleChange} value={input.password}/>
+            {error.password && <Box color="red">{error.password}</Box>}
+          </FormControl>
+          <Stack spacing={6}>
+            <Stack
+              direction={{ base: 'column', sm: 'row' }}
+              align={'start'}
+              justify={'space-between'}>
+              <Checkbox>Remember me</Checkbox>
+              <Text color={'blue.500'}>Forgot password?</Text>
+            </Stack>
+            <Button colorScheme={'gray'}  variant={'solid'} onClick={handleSubmit}>
+             Log in
+            </Button>
+          </Stack>
+        </Stack>
+      </Flex>
+      <Flex flex={1}>
+        <Image
+          alt={'Login Image'}
+          objectFit={'cover'}
+          width="600px"
+          h= " 450px"
+          mt="100px"
+          border={30}
+          src={
+
+            'https://www.atoallinks.com/wp-content/uploads/2023/06/5030900_2636676-1200x675.jpg'
+          }
+        />
+      </Flex>
+    </Stack>
+  )
+}

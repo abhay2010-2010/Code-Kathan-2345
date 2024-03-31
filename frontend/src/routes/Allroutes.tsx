@@ -54,7 +54,13 @@ export const layout: LayoutRoute[] = [
     element: <Travel />,
   },
   { id: 8, name: "Earth", path: "/earth", isVisible: true, element: <Earth /> },
-  { id: 9, name: "Video", path: "/video", isVisible: true, element: <Video /> },
+  {
+    id: 9,
+    name: "Video",
+    path: "/video",
+    isVisible: false,
+    element: <Video />,
+  },
   {
     id: 10,
     name: "Login",
