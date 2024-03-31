@@ -24,6 +24,7 @@ import { Post } from "../../utils/types";
 
 export const Home = () => {
   let data: Post[] = postData.posts;
+  console.log(data);
   const [isVisible, setIsVisible] = useState(false);
 
   const scrollToTop = () => {
