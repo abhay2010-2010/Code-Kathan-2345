@@ -1,15 +1,13 @@
-import { Post } from "../../utils/types";
-import postData from "../../../../backend/db.json";
 import { Box, Divider, Grid, Heading, SimpleGrid } from "@chakra-ui/react";
-import { Card1a } from "../../components/card_1a/Card_1a";
+import postData from "../../../../backend/db.json";
 import Card2a from "../../components/Card2a/Card2a";
+import { Card1a } from "../../components/card_1a/Card_1a";
+import { Post } from "../../utils/types";
 
 import { Card1b } from "../../components/Card1b/Card1b";
-import Card1 from "../../components/Card_1/Card1";
-import CardCrousal from "../../components/CrousalCard/CardCrousal";
-import Carousel from "../../components/CrousalCard/Crousal";
-import Card5 from "../../components/Card5/Card5";
 import Card5b from "../../components/Card5b/Card5b";
+import Card1 from "../../components/Card_1/Card1";
+import Carousel from "../../components/CrousalCard/Crousal";
 
 export const Travel = () => {
   let data: Post[] = postData.posts.slice(0, 40);
