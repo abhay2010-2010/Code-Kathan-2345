@@ -8,8 +8,14 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaPlay } from "react-icons/fa";
+import { Post } from "../../utils/types";
 
-const CardCrousal = ({ isLoaded }: { isLoaded: boolean }) => {
+interface Props {
+  data?: Post;
+  isLoaded: boolean;
+}
+
+const CardCrousal = ({ data, isLoaded }: Props) => {
   return (
     <Card
       maxW="sm"
@@ -17,12 +23,17 @@ const CardCrousal = ({ isLoaded }: { isLoaded: boolean }) => {
       backgroundColor={"#141618"}
       _hover={{ textDecoration: "underline" }}
       color={"white"}
+      as={"a"}
+      href={data?.articleLink}
+      target="_blank"
     >
       <Skeleton isLoaded={isLoaded}>
         <Image
-          objectFit="cover"
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          alt="Green double couch with wooden legs"
+          objectFit="contain"
+          src={data?.image2}
+          alt={data?.title}
+          height={"160px"}
+
         />
         <FaPlay
           style={{
@@ -40,8 +51,8 @@ const CardCrousal = ({ isLoaded }: { isLoaded: boolean }) => {
           mt={"2"}
           isLoaded={isLoaded}
         >
-          <Text size="md" fontWeight={"500"} fontSize={"24px"}>
-            Living room Sofa
+          <Text size="md" fontWeight={"500"} fontSize={"24px"} noOfLines={1}>
+            {data?.title}
           </Text>
         </Skeleton>
         <SkeletonText
@@ -51,10 +62,7 @@ const CardCrousal = ({ isLoaded }: { isLoaded: boolean }) => {
           skeletonHeight="2"
           isLoaded={isLoaded}
         >
-          <Text>
-            This sofa is perfect for modern tropical spaces, baroque inspired
-            spaces, earthy toned spaces.
-          </Text>
+          <Text noOfLines={3}>{data?.Description}</Text>
         </SkeletonText>
         <SkeletonText
           mt={2}
@@ -63,7 +71,9 @@ const CardCrousal = ({ isLoaded }: { isLoaded: boolean }) => {
           skeletonHeight="3"
           isLoaded={isLoaded}
         >
-          <Text>12 hrs ago | Culture & Experiences</Text>
+          <Text>
+            {data?.time} hrs ago | {data?.category}
+          </Text>
         </SkeletonText>
       </Stack>
       <Divider />

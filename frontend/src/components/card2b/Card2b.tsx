@@ -41,7 +41,7 @@ export default function Card2b({ data }: Props) {
           flex={1}
         />
         <Stack textAlign={"start"} flex={1}>
-          <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500} mt={4}>
+          <Heading fontSize={"2xl"} fontWeight={600} mt={4}>
             {data.title}
           </Heading>
           <Stack direction={"row"} align={"start"}>

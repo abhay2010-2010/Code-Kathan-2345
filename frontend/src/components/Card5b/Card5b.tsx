@@ -1,19 +1,21 @@
 import {
+  Box,
   Card,
   CardBody,
-  Stack,
+  Flex,
   Heading,
   Image,
-  Text,
-  Flex,
   Skeleton,
   SkeletonText,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
 import { Post } from "../../utils/types";
 interface Props {
   data?: Post;
 }
 function Card5b({ data }: Props) {
+  const loading = false;
   !data &&
     (data = {
       id: 1,
@@ -31,26 +33,37 @@ function Card5b({ data }: Props) {
       clicks: 283,
     });
   return (
-    <div>
+    <Box>
       <Card
         direction={{ base: "column", md: "row", sm: "column" }}
         overflow="hidden"
         variant="outline"
         mb={10}
+        as="a"
+        href={data.articleLink}
+        target="_blank"
+        _hover={{
+          filter: "brightness(130%)",
+          textDecoration: "underline",
+        }}
       >
         <Stack>
           <CardBody>
-            <Skeleton width={"fit-content"}>
-              <Heading size="md" textDecoration={"underline"} mt={20}>
-                Ey Exc : Nuradiberse Talemnt benifit everyon
+            <Skeleton width={"fit-content"} isLoaded={!loading}>
+              <Heading size="md" mt={20}>
+                {data.title}
               </Heading>
             </Skeleton>
 
-            <SkeletonText mt={2} noOfLines={4} spacing="4" skeletonHeight="2">
+            <SkeletonText
+              mt={2}
+              noOfLines={4}
+              spacing="4"
+              skeletonHeight="2"
+              isLoaded={!loading}
+            >
               <Text py="2" mt={3}>
-                Caffè latte is a coffee beverage of Italian origin made with
-                espresso and steamed
-                milk.hjakxkgdc.klihsoifcuohihnsdfcfvv.fijkjljijid.
+                {data.Description}
               </Text>
               <Flex>
                 <Text
@@ -60,27 +73,25 @@ function Card5b({ data }: Props) {
                   gap={2}
                   mt={4}
                 >
-                  5 hrs ago |{" "}
-                  <Text fontWeight="600" color={"black"}>
-                    NEWS
-                  </Text>{" "}
-                  Business
+                  {data.time} hrs ago
+                  <Text fontWeight="600">| {data.source} |</Text>
+                  {data.category.toLocaleUpperCase()}
                 </Text>
               </Flex>
             </SkeletonText>
           </CardBody>
         </Stack>
-        <Skeleton width={"fit-content"}>
+        <Skeleton width={"fit-content"} isLoaded={!loading}>
           <Image
-            objectFit="cover"
+            objectFit="contain"
             w={"100%"}
-            h={"400px"}
-            src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+            height={"400px"}
+            src={data.image2}
             alt="Caffe Latte"
           />
         </Skeleton>
       </Card>
-    </div>
+    </Box>
   );
 }
 
