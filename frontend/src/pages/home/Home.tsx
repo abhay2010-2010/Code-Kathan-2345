@@ -573,10 +573,12 @@ export const Home = () => {
           zIndex={3}
         >
           <Button
-            size={"lg"}
+            w="50px"
+            h="50px"
             variant="outline"
             bg={"black"}
-            borderRadius={"100px"}
+            borderRadius={"50%"}
+            _hover={{ bg: "black", w: "55px", h: "55px" }}
           >
             <ArrowUpIcon fontSize={"lg"} color={"white"} />
           </Button>
