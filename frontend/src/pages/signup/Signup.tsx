@@ -13,6 +13,8 @@ import {
   Box,
 } from '@chakra-ui/react'
 import { useState } from 'react';
+import { Navbar } from '../../components/navbar/Navbar';
+import Footer from '../../components/Footer/Footer';
 
 interface InputState {
   name:string;
@@ -53,6 +55,8 @@ export  function Signup() {
   };
 
   return (
+    <>
+    <Navbar/>
     <Stack minH={'80vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={4} w={'full'} maxW={'md'}>
@@ -101,5 +105,7 @@ export  function Signup() {
         />
       </Flex>
     </Stack>
+    <Footer/>
+    </>
   )
 }

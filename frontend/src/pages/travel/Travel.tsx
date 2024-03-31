@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Button, Divider, Grid, Heading, SimpleGrid } from "@chakra-ui/react";
 import postData from "../../../../backend/db.json";
 import Card2a from "../../components/Card2a/Card2a";
 import { Card1a } from "../../components/card_1a/Card_1a";
@@ -8,10 +8,37 @@ import { Card1b } from "../../components/Card1b/Card1b";
 import Card5b from "../../components/Card5b/Card5b";
 import Card1 from "../../components/Card_1/Card1";
 import Carousel from "../../components/CrousalCard/Crousal";
+import { Navbar } from "../../components/navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import { useEffect, useState } from "react";
+import { ArrowUpIcon } from "@chakra-ui/icons";
 
 export const Travel = () => {
   let data: Post[] = postData.posts.slice(0, 40);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 100) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
   return (
+    <>
+    <Navbar/>
     <Box
       p="20px"
       pr={{ base: "20px", md: "60px" }}
@@ -187,9 +214,31 @@ export const Travel = () => {
         <Heading fontSize="24px" fontWeight="600">More on Travel</Heading> <br />
         <Card5b data={data[34]}/>
         <Card5b data={data[35]}/>
-        <Card5b data={data[36]}/>
+        <Card5b data={data[38]}/>
         <Card5b data={data[37]}/>
       </Box>
     </Box>
+    {isVisible && (
+        <Box
+          onClick={scrollToTop}
+          position="fixed"
+          bottom="20px"
+          right={["16px", "84px"]}
+          zIndex={3}
+        >
+          <Button
+            w="50px"
+            h="50px"
+            variant="outline"
+            bg={"black"}
+            borderRadius={"50%"}
+            _hover={{ bg: "black", w: "55px", h: "55px" }}
+          >
+            <ArrowUpIcon fontSize={"lg"} color={"white"} />
+          </Button>
+        </Box>
+      )}
+    <Footer/>
+    </>
   );
 };
