@@ -1,26 +1,26 @@
 import { Heading, Image, Text, Flex, Box, Skeleton, SkeletonText } from '@chakra-ui/react'
 import { useState } from 'react';
 function SearchCard() {
-const [isLoaded]=useState(false);
+    const [isLoaded] = useState(false);
 
     return (
         <div>
 
-            <Box mt={10} display={"flex"} alignItems={"center"} justifyContent={"space-around"}>
+            <Box mt={10} display={{base:"block",md:"flex",}} alignItems={"center"} justifyContent={"space-around"}>
 
-                <Box>
+                {/* <Box>
                     <SkeletonText
                         mt={2}
                         noOfLines={1}
                         spacing="4"
                         skeletonHeight="2"
-isLoaded={!isLoaded} 
+                        isLoaded={!isLoaded}
                     >
                         <Text w={"100px"} fontWeight="400" fontSize="14px" display="flex" gap={2} mt={4}>2 Hrs ago
                         </Text>
                     </SkeletonText>
-                </Box>
-                <Box w={"40%"}>
+                </Box> */}
+                <Box w={{base:"90%",md:"40%"}}>
                     <Skeleton width={"fit-content"} isLoaded={!isLoaded}>
                         <Heading size='md' textDecoration={"underline"} mt={10}>Ey Exc : Nuradiberse Talemnt benifit everyon
                         </Heading>
@@ -44,9 +44,19 @@ isLoaded={!isLoaded}
 
                         </Flex>
                     </SkeletonText>
+                    <SkeletonText
+                        mt={2}
+                        noOfLines={1}
+                        spacing="4"
+                        skeletonHeight="2"
+                        isLoaded={!isLoaded}
+                    >
+                        <Text w={"100px"} fontWeight="400" fontSize="14px" display="flex" gap={2} mt={4}>2 Hrs ago
+                        </Text>
+                    </SkeletonText>
                 </Box>
 
-                <Box w={"25%"} >
+                <Box w={{base:"65%" ,md:"25%"}} >
                     <Skeleton width={"fit-content"} isLoaded={!isLoaded}>
                         <Image
                             objectFit='cover'

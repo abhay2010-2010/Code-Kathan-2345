@@ -104,7 +104,7 @@ export default function Footer() {
           justify={{ base: "center", md: "space-between" }}
           align={{ base: "center", md: "center" }}
         >
-          <Text fontSize={14}>
+          <Text fontSize={12} w={"80%"}>
             © 2024 BBC. All rights reserved. The BBC is not responsible for the
             content of external sites. Read about our approach to external
             linking.

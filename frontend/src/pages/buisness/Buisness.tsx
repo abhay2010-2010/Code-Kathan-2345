@@ -46,7 +46,7 @@ export const Buisness = () => {
         <br />
         <Divider backgroundColor={"black"} height={"2px"} />
         <br />
-        <Box flexDirection={["column", "row","row"]} display={"flex"} gap={"2rem"}>
+        <Box flexDirection={["column", "row"]} display={"flex"} gap={"2rem"}>
           <Card5b />
           <Card1 data={data[0]} />
         </Box>
