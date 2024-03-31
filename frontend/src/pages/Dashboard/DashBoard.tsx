@@ -1,7 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
 import "./DashBoard.css";
-import { CiBoxList } from "react-icons/ci";
 
 const Dashboard = () => {
   return (
