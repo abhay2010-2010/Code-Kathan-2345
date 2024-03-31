@@ -1,11 +1,11 @@
-import { Box, Button, Divider } from "@chakra-ui/react";
+import { Box, Button, Divider, Text } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import CardCrousal from "./CardCrousal";
 function Carousel() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded] = useState(true);
   let sliderRef = useRef<any>(null);
   const next = () => {
     sliderRef.current.slickNext();
@@ -50,21 +50,27 @@ function Carousel() {
   };
   return (
     <Box justifyContent={"center"} m={0} p={2} backgroundColor={"#141618"}>
-      <Divider height={"2px"} backgroundColor={"white"} />
+      <Divider height={"2px"} backgroundColor={"white"} mt={5} />
+
       <Box
         style={{
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
           margin: "20px",
           gap: "20px",
         }}
       >
-        <Button className="button" onClick={previous}>
-          <GrPrevious />
-        </Button>
-        <Button className="button" onClick={next}>
-          <GrNext />
-        </Button>
+        <Text color={"white"} fontSize={"20px"}>
+          Watch
+        </Text>
+        <Box display={"flex"} gap={4}>
+          <Button className="button" onClick={previous}>
+            <GrPrevious />
+          </Button>
+          <Button className="button" onClick={next}>
+            <GrNext />
+          </Button>
+        </Box>
       </Box>
       <Box m={2}>
         <Slider
@@ -83,7 +89,7 @@ function Carousel() {
           <CardCrousal isLoaded={isLoaded} />
         </Slider>
       </Box>
-      <Button onClick={() => setIsLoaded((prev) => !prev)}>Click</Button>
+      
     </Box>
   );
 }

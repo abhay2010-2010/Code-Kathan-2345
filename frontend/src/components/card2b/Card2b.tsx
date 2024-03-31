@@ -9,6 +9,8 @@ import {
   Text,
   Stack,
   Image,
+  Skeleton,
+  SkeletonText,
 } from '@chakra-ui/react'
 
 
@@ -18,51 +20,67 @@ const IMAGE =
 export default function Card2b() {
   return (
     <Center >
-    <Box
-      role={'group'}
-      
-      maxW={'430px'}
-      w={'full'}
-      bg={useColorModeValue('white', 'gray.800')}
-      boxShadow={'2xl'}
-      rounded={'lg'}
-      pos={'relative'}
-      zIndex={1}
-      
-    >
       <Box
-     
-       
-        
-      >
-        <Image
-          rounded={'lg'}
-          height={"60%"}
-          width={"100%"}
-          objectFit={'cover'}
-          src={IMAGE}
-          alt="#"
-          
-        />
-      </Box>
-      <Stack  align={'start'}  textAlign={"start"} >
-        <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500} textDecoration={"underline"} >
-          Crypto King' Sam Bankman-Fried faces lengthy jail term
-        </Heading>
-        <Stack direction={'row'} align={'starta'} >
-          <Text color={'gray.500'} fontSize={'sm'}>
-            The former billionaire is about to find out his punishment for massive fraud and money laundering.
-          </Text>
-          
-        </Stack>
-        <Text>
-            5 hours ago | <span style={{ color: 'darkblack' ,fontWeight:"bold"}  } >LIVE </span>| World
-          </Text>
-      </Stack>
-    </Box>
-    {/* 5 hours ago | <span style={{ color: 'darkblack' } fontWeight={"bold"} } >LIVE</span> World */}
-  
+        role={'group'}
 
-  </Center>
+        maxW={'430px'}
+        w={'full'}
+        bg={useColorModeValue('white', 'gray.800')}
+
+
+        pos={'relative'}
+        zIndex={1}
+
+      >
+        <Box
+
+
+
+        >
+          <Skeleton width={"fit-content"}> <Image
+
+            height={"60%"}
+            width={"100%"}
+            objectFit={'cover'}
+            src={IMAGE}
+            alt="#"
+
+          />
+          </Skeleton>
+
+        </Box>
+        <Stack align={'start'} textAlign={"start"} >
+          <Skeleton
+            width={"fit-content"}>
+            <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500} textDecoration={"underline"} >
+              Crypto King' Sam Bankman-Fried faces lengthy jail term
+            </Heading>
+          </Skeleton>
+
+          <SkeletonText
+            mt={2}
+            noOfLines={4}
+            spacing="4"
+            skeletonHeight="2"
+
+          >
+            <Stack direction={'row'} align={'starta'} >
+              <Text color={'gray.500'} fontSize={'sm'}>
+                The former billionaire is about to find out his punishment for massive fraud and money laundering.
+              </Text>
+
+            </Stack>
+         
+          <Text>
+            5 hours ago | <span style={{ color: 'darkblack', fontWeight: "bold" }} >LIVE </span>| World
+          </Text>
+          </SkeletonText>
+        </Stack>
+
+      </Box>
+      {/* 5 hours ago | <span style={{ color: 'darkblack' } fontWeight={"bold"} } >LIVE</span> World */}
+
+
+    </Center >
   )
 }
