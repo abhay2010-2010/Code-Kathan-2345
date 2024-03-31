@@ -1,58 +1,3 @@
-// export default function Footer() {
-//   return (
-//     <footer className="footer">
-//     <div className="container">
-//         <div className="footer-content">
-//             <div className="footer-section about">
-//                 <img src="" alt="logo" className='logo' />
-//                 <p>A brief description of your company or website.</p>
-//                 <div className="social-links">
-//                     <a href="#"><i className="fab fa-facebook"></i></a>
-//                     <a href="#"><i className="fab fa-twitter"></i></a>
-//                     <a href="#"><i className="fab fa-instagram"></i></a>
-//                 </div>
-//             </div>
-//             <div className="footer-section links">
-
-//                     <a href="#">Home</a>
-//                     <a href="#">About</a>
-//                     <a href="#">Services</a>
-//                     <a href="#">Contact</a>
-
-//             </div>
-//             <div className="footer-section contact-form">
-//                 <h2>Contact Us</h2>
-//                 <form action="#">
-//                     <input type="email" name="email" className="text-input contact-input" placeholder="Your email address"/>
-//                     <textarea  name="message" className="text-input contact-input" placeholder="Your message"></textarea>
-//                     <button type="submit" className="btn btn-big contact-btn">
-//                         <i className="fas fa-envelope"></i>
-//                         Send
-//                     </button>
-//                 </form>
-//             </div>
-//         </div>
-//     </div>
-
-//     <div className='footer-bottom1'>
-//       <p>Terms of Use</p>
-//       <p>About the BBC</p>
-//       <p>Privacy Policy</p>
-//       <p>Cookies</p>
-//       <p>Accessibility Help</p>
-//       <p>Contact the BBC</p>
-//       <p>Advertise with us</p>
-//       <p>Do not share or sell my info</p>
-//     </div>
-//     <div className="footer-bottom">
-//         &copy; 2024 BBC. All rights reserved.  The BBC is not responsible for the content of external sites. Read about our approach to external linking.<span className='span'> Read about our approach to external linking.</span>
-//     </div>
-// </footer>
-
-//   );
-// }
-
-"use client";
 
 import {
   Box,
@@ -65,10 +10,10 @@ import {
   useDisclosure,
   VisuallyHidden,
 } from "@chakra-ui/react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { ReactNode } from "react";
-import { layout } from "../../routes/Allroutes";
+import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { layout } from "../../routes/Allroutes";
 import { Logo } from "../logo/Logo";
 import ManualClose from "./Modal";
 
@@ -105,6 +50,7 @@ const SocialButton = ({
 };
 
 export default function Footer() {
+
   const { onClose } = useDisclosure();
   return (
     <Box
@@ -183,3 +129,4 @@ export default function Footer() {
     </Box>
   );
 }
+
