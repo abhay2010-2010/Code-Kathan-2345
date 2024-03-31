@@ -8,6 +8,7 @@ import {
     ModalCloseButton,
     useDisclosure,
     Button,
+    textDecoration,
   } from '@chakra-ui/react'
 
  export default function ManualClose() {
@@ -20,9 +21,9 @@ import {
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Create your account</ModalHeader>
+            <ModalHeader>Choose Your language</ModalHeader>
             <ModalCloseButton />
-            <ModalBody pb={6}>
+            <ModalBody pb={6} _hover={{textDecoration:"underline"}}>
               <p>Hindi</p>
               <p>English</p>
               <p>Marathi</p>

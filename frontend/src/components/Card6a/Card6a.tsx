@@ -1,4 +1,4 @@
-import { Card, Image, Stack, Heading } from '@chakra-ui/react'
+import { Card, Heading, Image, Stack } from '@chakra-ui/react'
 
 
 function Card6a() {
