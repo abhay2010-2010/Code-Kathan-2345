@@ -1,67 +1,76 @@
 // Card1.tsx
 import {
-    Box,
-    Button,
-    Flex,
-    Heading,
-    Image,
-    Skeleton,
-    SkeletonText,
-    Stack,
-    Text,
-  } from "@chakra-ui/react";
-  import { useState } from "react";
-  
-  const Card1 = () => {
-    const [isLoaded, setIsLoaded] = useState(false);
-  
-    let myObj = {
-      title: "Driver recover bodies from Baltimore bridge",
-      description:
-        "Searches continue for four other people missing after two bodies are found in submerged truck",
-      image:
-        "https://ichef.bbci.co.uk/news/1536/cpsprodpb/7231/production/_133033292_gettyimages-2107856156.jpg",
-      
-         video: "",
-        time: "5hrs ago",
-    };
-  
-    return isLoaded ? (
-      <>
-        <Box padding="6" boxShadow="lg" bg="white" height="360px" width="330px" >
-          <Skeleton height="150px" width="300px" />
-          <SkeletonText  mt='4' noOfLines={3} spacing='1' skeletonHeight='4' width="300px" />
-          <Box textAlign="center">
-            <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
-          </Box>
-        </Box>
-      </>
-    ) : (
-  
-     
-       <Stack>
-        <Box width="300px" height="auto" className="pt-serif-regular">
-          <Image width="300px" src={myObj.image} alt="Image" />
-          <Heading mt={1} size="md" fontWeight="500" fontSize="19px">{myObj.title}</Heading>
-          <Text mt={2} fontWeight="400" fontSize="15px">
-              {myObj.description}
-            </Text>
-  
-            <Flex>
-            <Text fontWeight="400" fontSize="14px" display="flex" gap={2} mt={4}>
-              5 hrs ago | <Text fontWeight="600" color={"black"}>NEWS</Text> Business
-            </Text>
-            
-          </Flex>
-          <hr />
-          <Box textAlign="center">
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Skeleton,
+  SkeletonText,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import { Post } from "../../utils/types";
+
+interface Props {
+  data: Post;
+}
+
+const Card1 = ({ data }: Props) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return isLoaded ? (
+    <>
+      <Box padding="6" boxShadow="lg">
+        <Skeleton height="150px" width="300px" />
+        <SkeletonText
+          mt="4"
+          noOfLines={3}
+          spacing="1"
+          skeletonHeight="4"
+          width="300px"
+        />
+        <Box textAlign="center">
           <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
         </Box>
-        </Box>
-      </Stack>
-    
-    );
-  };
-  
-  export default Card1;
-  
+      </Box>
+    </>
+  ) : (
+    <Stack
+      height={"full"}
+      as="a"
+      href={data.artilcleLink}
+      target="_black"
+      _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
+    >
+      <VStack className="pt-serif-regular" align={"start"}>
+        <Skeleton width="full" isLoaded={!isLoaded}>
+          <Image
+            width="full"
+            src={data.image2}
+            alt="Image"
+            objectFit={"contain"}
+            objectPosition={"left"}
+          />
+        </Skeleton>
+        <Heading mt={1} noOfLines={1} size="md" fontWeight="700">
+          {data.title}
+        </Heading>
+        <Text mt={1} noOfLines={3} fontWeight="400" fontSize="15px">
+          {data.Description}
+        </Text>
+        <Flex>
+          <Text fontWeight="400" fontSize="14px" display="flex" gap={2} mt={4}>
+            {data.time} hrs ago{" "}
+            <Text fontWeight="600">| {data.source} |</Text>{" "}
+            {data.category.toLocaleUpperCase()}
+          </Text>
+        </Flex>
+      </VStack>
+    </Stack>
+  );
+};
+
+export default Card1;

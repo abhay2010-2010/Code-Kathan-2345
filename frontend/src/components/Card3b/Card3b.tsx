@@ -12,8 +12,13 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaPlay } from "react-icons/fa";
+import { Post } from "../../utils/types";
 
-export const Card3b = () => {
+interface Props {
+  data: Post;
+}
+
+export const Card3b = ({ data }: Props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   let obj = {
     title: "Client Report",
@@ -25,7 +30,7 @@ export const Card3b = () => {
   };
   return isLoaded ? (
     <>
-      <Box padding="6" boxShadow="lg" bg="white">
+      <Box>
         <Skeleton height="30px" width="100px" />
         <SkeletonText
           mt="4"
@@ -40,31 +45,34 @@ export const Card3b = () => {
       </Box>
     </>
   ) : (
-    <Card gap={1} p={3}>
+    <Flex
+      gap={1}
+      direction={"column"}
+      justify={"space-evenly"}
+      as="a"
+      href={data.artilcleLink}
+      target="_black"
+      _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
+    >
       <Flex gap={2} alignItems={"center"}>
         <FaPlay />
-        <Heading fontWeight="700" fontSize="18px">
+        <Heading fontWeight="700" size={"md"}>
           WATCH
         </Heading>
       </Flex>
-      <Heading size="md" fontWeight="500" fontSize="18px">
-        {obj.title}
+      <Heading size="md" fontWeight="700" noOfLines={2}>
+        {data.title}
       </Heading>
       <Stack>
-        <Box>
-          <Text fontWeight="400" fontSize="14px">
-            {obj.description}
-          </Text>
-        </Box>
+        <Text fontWeight="400" fontSize="15px" noOfLines={3}>
+          {data.Description}
+        </Text>
         <Flex>
           <Text fontWeight="400" fontSize="12px" display="flex" gap={2}>
-            5 hrs ago | <Img w="70px" src={obj.image} />{" "}
+            5 hrs ago | {data.source}
           </Text>
         </Flex>
       </Stack>
-      <Box textAlign="center">
-        <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
-      </Box>
-    </Card>
+    </Flex>
   );
 };
