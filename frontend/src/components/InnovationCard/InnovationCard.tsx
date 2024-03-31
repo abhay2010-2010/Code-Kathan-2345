@@ -1,14 +1,13 @@
 import {
   Card,
-  Divider,
   Image,
   Link,
   Skeleton,
   SkeletonText,
-  Text,
+  Text
 } from "@chakra-ui/react";
 
-import React from "react";
+
 
 const InnovationCard = ({ isLoaded }: { isLoaded: boolean }) => {
   console.log(isLoaded);
