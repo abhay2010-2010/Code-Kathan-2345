@@ -31,7 +31,7 @@ export const Buisness = () => {
         templateColumns={["repeat(1,1fr)", "repeat(3,1fr)", "repeat(5,1fr)"]}
         alignContent={"center"}
         marginX="auto"
-
+        gap={1}
       >
         <Box >
           <Card1 />
@@ -85,7 +85,7 @@ export const Buisness = () => {
       <Heading fontSize={"20px"} mt={5} mb={5} >Executive</Heading>
       <Card5 />
       <Divider backgroundColor={"black"} height={"2px"} mt={5} />
-      <Heading  fontSize={"20px"} mt={5} mb={5} >More news and features</Heading>
+      <Heading fontSize={"20px"} mt={5} mb={5} >More news and features</Heading>
       <Grid
 
 
@@ -126,8 +126,8 @@ export const Buisness = () => {
     <Carousel />
 
     <Box p={10}>
-    <Divider backgroundColor={"black"} height={"2px"} />
-      <Heading  fontSize={"20px"} mt={5} mb={5} >More in Buisness</Heading>
+      <Divider backgroundColor={"black"} height={"2px"} />
+      <Heading fontSize={"20px"} mt={5} mb={5} >More in Buisness</Heading>
       <SearchCard />
       <SearchCard />
       <SearchCard />

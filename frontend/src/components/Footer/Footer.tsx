@@ -110,13 +110,13 @@ export default function Footer() {
                     align={{ base: 'center', md: 'center' }}>
                     <Text fontSize={14}>© 2024 BBC. All rights reserved.  The BBC is not responsible for the content of external sites. Read about our approach to external linking.<span className='span'> Read about our approach to external linking.</span></Text>
                     <Stack direction={'row'} spacing={6}>
-                        <SocialButton label={'Twitter'} href={'#'}>
+                        <SocialButton label={'Twitter'} href={'twitter.com/kathannews'} >
                             <FaTwitter />
                         </SocialButton>
-                        <SocialButton label={'YouTube'} href={'#'}>
+                        <SocialButton label={'YouTube'} href={'youtube.com/kathannews'}>
                             <FaYoutube />
                         </SocialButton>
-                        <SocialButton label={'Instagram'} href={'#'}>
+                        <SocialButton label={'Instagram'} href={'instagram.com/kathannews'}>
                             <FaInstagram />
                         </SocialButton>
                     </Stack>
