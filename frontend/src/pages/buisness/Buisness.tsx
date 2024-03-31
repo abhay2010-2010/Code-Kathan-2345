@@ -1,5 +1,6 @@
-import { Box, Divider, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Grid, Heading, Text } from "@chakra-ui/react";
 import postData from "../../../../backend/db.json";
+import { Card3a } from "../../components/Card3a/Card3a";
 import Card5 from "../../components/Card5/Card5";
 import Card5b from "../../components/Card5b/Card5b";
 import Card1 from "../../components/Card_1/Card1";
@@ -8,19 +9,48 @@ import SearchCard from "../../components/Search Card/SearchCard";
 import TwoCards from "../../components/TwoCards/TwoCards";
 import Card2b from "../../components/card2b/Card2b";
 import { Post } from "../../utils/types";
-import { Card3a } from "../../components/Card3a/Card3a";
+import Footer from "../../components/Footer/Footer";
+import { Navbar } from "../../components/navbar/Navbar";
+import { useEffect, useState } from "react";
+import { ArrowUpIcon } from "@chakra-ui/icons";
 
 export const Buisness = () => {
   let data: Post[] = postData.posts.slice(0, 100);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 100) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   return (
     <>
+      <Navbar />
       <Box p={5}>
         <Heading>Buisness</Heading>
         <br />
         <Divider backgroundColor={"black"} height={"2px"} />
         <br />
-        <Box flexDirection={["column", "row","row"]} display={"flex"} gap={"2rem"}>
+        <Box
+          flexDirection={["column", "row", "row"]}
+          display={"flex"}
+          gap={"2rem"}
+        >
           <Card5b />
           <Card1 data={data[0]} />
         </Box>
@@ -32,25 +62,26 @@ export const Buisness = () => {
           marginX="auto"
         >
           <Box>
-            <Card1 data={data[1]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[3]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[4]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[5]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[6]} />
+            <Card1 />
           </Box>
         </Grid>
+
         <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20}>
-          <Card3a data={data[7]} />
-          <Card3a data={data[8]} />
-          <Card3a data={data[9]} />
+          <Card3a />
+          <Card3a />
+          <Card3a />
         </Grid>
       </Box>
 
@@ -96,28 +127,28 @@ export const Buisness = () => {
           mt={10}
         >
           <Box>
-            <Card1 data={data[13]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[14]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[15]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[16]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[17]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[18]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[19]} />
+            <Card1 />
           </Box>
           <Box>
-            <Card1 data={data[20]} />
+            <Card1 />
           </Box>
         </Grid>
       </Box>
@@ -139,6 +170,28 @@ export const Buisness = () => {
         <SearchCard />
         <SearchCard />
       </Box>
+
+      {isVisible && (
+        <Box
+          onClick={scrollToTop}
+          position="fixed"
+          bottom="20px"
+          right={["16px", "84px"]}
+          zIndex={3}
+        >
+          <Button
+            w="50px"
+            h="50px"
+            variant="outline"
+            bg={"black"}
+            borderRadius={"50%"}
+            _hover={{ bg: "black", w: "55px", h: "55px" }}
+          >
+            <ArrowUpIcon fontSize={"lg"} color={"white"} />
+          </Button>
+        </Box>
+      )}
+      <Footer />
     </>
   );
 };

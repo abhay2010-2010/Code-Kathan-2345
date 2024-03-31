@@ -1,0 +1,45 @@
+.mainTitle {
+  padding: 20px 10px 5px 0;
+  font-size: 18px;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.mainTitle h1 {
+  margin: 0 20px;
+}
+
+#data {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+#data > div {
+  height: 150px;
+  width: 300px;
+  padding: 10px 0;
+  border: 3px solid;
+  border-radius: 10px;
+  background-color: rgb(228, 107, 107);
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#data > div:hover {
+  background-color: rgb(239, 236, 236);
+  color: black;
+  scale: 1.02;
+}
+
+#totalOrders,
+#totalProducts,
+#totalCustomers,
+#totalRevenue {
+  font-size: 40px;
+  margin-top: 0px;
+}
