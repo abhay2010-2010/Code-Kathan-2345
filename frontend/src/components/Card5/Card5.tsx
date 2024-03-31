@@ -11,11 +11,13 @@ import {
   Skeleton,
 } from "@chakra-ui/react";
 import { Post } from "../../utils/types";
+
 interface Props {
   data?: Post;
 }
 
 function Card5({ data }: Props) {
+  
   !data &&
     (data = {
       id: 1,
