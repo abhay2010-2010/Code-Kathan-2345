@@ -11,11 +11,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Post } from "../../utils/types";
-
 interface Props {
   data?: Post;
 }
-function Card5({ data }: Props) {
+function Card5b({ data }: Props) {
   const loading = false;
   !data &&
     (data = {
@@ -48,15 +47,6 @@ function Card5({ data }: Props) {
           textDecoration: "underline",
         }}
       >
-        <Skeleton width={"fit-content"} isLoaded={!loading}>
-          <Image
-            objectFit="contain"
-            w={"100%"}
-            height={"400px"}
-            src={data.image2}
-            alt="Caffe Latte"
-          />
-        </Skeleton>
         <Stack>
           <CardBody>
             <Skeleton width={"fit-content"} isLoaded={!loading}>
@@ -91,9 +81,18 @@ function Card5({ data }: Props) {
             </SkeletonText>
           </CardBody>
         </Stack>
+        <Skeleton width={"fit-content"} isLoaded={!loading}>
+          <Image
+            objectFit="contain"
+            w={"100%"}
+            height={"400px"}
+            src={data.image2}
+            alt="Caffe Latte"
+          />
+        </Skeleton>
       </Card>
     </Box>
   );
 }
 
-export default Card5;
+export default Card5b;
