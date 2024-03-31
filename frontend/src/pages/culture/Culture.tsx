@@ -1,21 +1,15 @@
 import {
   Box,
   Button,
-  Card,
   Divider,
   Grid,
-  GridItem,
-  Heading,
-  Skeleton,
+  Heading
 } from "@chakra-ui/react";
-import { Card3a } from "../../components/Card3a/Card3a";
-import { Card3b } from "../../components/Card3b/Card3b";
-import CardCrousal from "../../components/CrousalCard/CardCrousal";
-import InnovationCard from "../../components/InnovationCard/InnovationCard";
-import Carousel from "../../components/CrousalCard/Crousal";
 import { useState } from "react";
-import InnovationCard2 from "../../components/InnovationCard/InnovationCard2";
 import Card5 from "../../components/Card5/Card5";
+import Carousel from "../../components/CrousalCard/Crousal";
+import InnovationCard from "../../components/InnovationCard/InnovationCard";
+import InnovationCard2 from "../../components/InnovationCard/InnovationCard2";
 
 export const Culture = () => {
   const [isLoaded, setIsloading] = useState(false);
