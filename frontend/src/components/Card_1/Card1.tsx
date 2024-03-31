@@ -60,7 +60,7 @@ const Card1 = ({ data }: Props) => {
       target="_blank"
       _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
     >
-      <VStack className="pt-serif-regular" align={"start"}>
+      <VStack className="pt-serif-regular" align={"start"} height={"full"}>
         <Skeleton width="full" isLoaded={!isLoaded}>
           <Image
             width="full"
@@ -76,8 +76,8 @@ const Card1 = ({ data }: Props) => {
         <Text mt={1} noOfLines={3} fontWeight="400" fontSize="15px">
           {data.Description}
         </Text>
-        <Flex>
-          <Text fontWeight="400" fontSize="14px" display="flex" gap={2} mt={4}>
+        <Flex mt={"auto"}>
+          <Text fontWeight="400" fontSize="12px" display="flex" gap={2} mt={4}>
             {data.time} hrs ago <Text fontWeight="600">| {data.source} |</Text>{" "}
             {data.category.toLocaleUpperCase()}
           </Text>
