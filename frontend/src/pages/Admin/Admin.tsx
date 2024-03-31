@@ -1,3 +1,9 @@
+import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
+
 export const Admin = () => {
-  return <div>Admin</div>;
+  return (
+    <>
+      <SidebarWithHeader />
+    </>
+  );
 };

@@ -12,6 +12,7 @@ import { Card3a } from "../../components/Card3a/Card3a";
 
 export const Buisness = () => {
   let data: Post[] = postData.posts.slice(0, 100);
+  let crousalData: Post[] = postData.posts.slice(109, 118);
 
   return (
     <>
@@ -54,7 +55,7 @@ export const Buisness = () => {
         </Grid>
       </Box>
 
-      <Carousel />
+      <Carousel crousalData={crousalData} />
 
       <Box p={5} mt={8}>
         <br />
@@ -122,7 +123,7 @@ export const Buisness = () => {
         </Grid>
       </Box>
 
-      <Carousel />
+      <Carousel crousalData={crousalData} />
 
       <Box p={10}>
         <Divider backgroundColor={"black"} height={"2px"} />

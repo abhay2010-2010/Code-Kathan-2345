@@ -14,6 +14,11 @@ import { Signup } from "../pages/signup/Signup";
 import { Admin } from "../pages/Admin/Admin";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { SearchPage } from "../pages/searchPage/SearchPage";
+import Dashboard from "../pages/Dashboard/DashBoard";
+import Trending from "../pages/Trending/Trending";
+import Category from "../pages/Category/Category";
+import Article from "../pages/Article/Article";
+import Settings from "../pages/Settings/Settings";
 
 export const layout: LayoutRoute[] = [
   { id: 1, name: "Home", path: "/", isVisible: true, element: <Home /> },
@@ -79,7 +84,7 @@ export const layout: LayoutRoute[] = [
     id: 12,
     name: "Admin",
     path: "/admin",
-    isVisible: false,
+    isVisible: true,
     element: (
       <ProtectedRoutes>
         <Admin />
@@ -92,6 +97,61 @@ export const layout: LayoutRoute[] = [
     path: "search/:id",
     isVisible: false,
     element: <SearchPage />,
+  },
+  {
+    id: 16,
+    name: "DashBoard",
+    path: "/admin/dashboard",
+    isVisible: false,
+    element: (
+      <ProtectedRoutes>
+        <Dashboard />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    id: 17,
+    name: "Trending",
+    path: "/admin/trending",
+    isVisible: false,
+    element: (
+      <ProtectedRoutes>
+        <Trending />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    id: 17,
+    name: "Category",
+    path: "/admin/category",
+    isVisible: false,
+    element: (
+      <ProtectedRoutes>
+        <Category />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    id: 17,
+    name: "Article",
+    path: "/admin/article",
+    isVisible: false,
+    element: (
+      <ProtectedRoutes>
+        <Article />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    id: 17,
+    name: "Setting",
+    path: "/admin/settings",
+    isVisible: false,
+    element: (
+      <ProtectedRoutes>
+        <Settings />
+      </ProtectedRoutes>
+    ),
   },
   {
     id: 15,
