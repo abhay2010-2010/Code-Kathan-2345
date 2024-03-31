@@ -8,7 +8,8 @@ import { Post } from "../../utils/types";
 import Card2b from "../../components/card2b/Card2b";
 
 export const Home = () => {
-  let data: Post[] = postData.posts.slice(1, 11);
+  let data: Post[] = postData.posts.slice(0,20);
+
   return (
     <Grid px={[2, 4, 6, 8]} gap={4}>
       <Grid
@@ -29,7 +30,7 @@ export const Home = () => {
           rowStart={{ base: 1, sm: 1 }}
           colStart={{ lg: 2 }}
         >
-          <Card2a data={data[2]} isDefault={true}/>
+          <Card2a data={data[2]} isDefault={true} />
         </GridItem>
         <Grid templateRows={"repeat(4,1fr)"} gap={2}>
           <Box>

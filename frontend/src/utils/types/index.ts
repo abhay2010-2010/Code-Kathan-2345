@@ -4,10 +4,9 @@ export type Post = {
   Description: string;
   source: string;
   time: number;
-  artilcleLink: string;
+  articleLink: string;
   image1: string;
   image2: string;
   category: string;
   clicks: number;
 };
-
