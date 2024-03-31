@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import CardCrousal from "./CardCrousal";
 function Carousel() {
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded] = useState(true);
   let sliderRef = useRef<any>(null);
   const next = () => {
     sliderRef.current.slickNext();
