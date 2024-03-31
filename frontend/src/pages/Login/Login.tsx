@@ -50,10 +50,10 @@ export  function Login() {
   };
 
   return (
-    <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+    <Stack minH={'80vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={4} w={'full'} maxW={'md'}>
-          <Heading fontSize={'2xl'}>Log in to your account</Heading>
+          <Heading fontSize={'4xl'} mb={10} textAlign="center" >Login</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
             <Input type="email" name='email' onChange={handleChange} value={input.email}/>

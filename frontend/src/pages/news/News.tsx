@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Grid, Heading, Text } from "@chakra-ui/react";
 import postData from "../../../../backend/db.json";
 import Card5 from "../../components/Card5/Card5";
 import Card5b from "../../components/Card5b/Card5b";
@@ -9,18 +9,45 @@ import TwoCards from "../../components/TwoCards/TwoCards";
 import Card2b from "../../components/card2b/Card2b";
 import { Post } from "../../utils/types";
 import { Card3a } from "../../components/Card3a/Card3a";
+import Footer from "../../components/Footer/Footer";
+import { ArrowUpIcon } from "@chakra-ui/icons";
+import { Navbar } from "../../components/navbar/Navbar";
+import { useEffect, useState } from "react";
 
 export const News = () => {
   let data: Post[] = postData.posts
     .filter((post) => post.category === "world")
     .slice(1, 30);
 
-  let crousalData: Post[] = data.slice(10, 19);
+  let crousalData: Post[] = data.slice(10, 30);
 
   data.sort((a, b) => b.clicks - a.clicks);
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 100) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
   return (
     <>
+      <Navbar />
       <Box p={5}>
         <Heading color={"#cd2626"} fontSize={"4rem"} lineHeight={1}>
           NEWS
@@ -29,7 +56,7 @@ export const News = () => {
         <Divider backgroundColor={"black"} height={"2px"} />
         <br />
         <Box flexDirection={["column", "row"]} display={"flex"} gap={"2rem"}>
-          <Card5b />
+          <Card5b data={data[29]} />
           <Card1 data={data[0]} />
         </Box>
 
@@ -68,7 +95,7 @@ export const News = () => {
         </Grid>
       </Box>
 
-      <Carousel crousalData={crousalData} />
+      <Carousel data={crousalData.slice(11, 20)} />
 
       <Box p={5} mt={8}>
         <br />
@@ -137,7 +164,7 @@ export const News = () => {
         </Grid>
       </Box>
 
-      <Carousel crousalData={crousalData} />
+      <Carousel data={crousalData.slice(0, 10)} />
 
       <Box p={10}>
         <Divider backgroundColor={"black"} height={"2px"} />
@@ -154,6 +181,27 @@ export const News = () => {
         <SearchCard />
         <SearchCard />
       </Box>
+      {isVisible && (
+        <Box
+          onClick={scrollToTop}
+          position="fixed"
+          bottom="20px"
+          right={["16px", "84px"]}
+          zIndex={3}
+        >
+          <Button
+            w="50px"
+            h="50px"
+            variant="outline"
+            bg={"black"}
+            borderRadius={"50%"}
+            _hover={{ bg: "black", w: "55px", h: "55px" }}
+          >
+            <ArrowUpIcon fontSize={"lg"} color={"white"} />
+          </Button>
+        </Box>
+      )}
+      <Footer />
     </>
   );
 };

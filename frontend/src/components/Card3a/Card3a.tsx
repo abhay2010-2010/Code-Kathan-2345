@@ -67,8 +67,8 @@ export const Card3a = ({ data }: Props) => {
         {data.Description}
       </Text>
       <Flex>
-        <Text display="flex" gap={2}>
-          5 hrs ago | {data.source}
+        <Text display="flex" gap={2} fontSize="12px">
+          {data.time} hrs ago | {data.source}
         </Text>
       </Flex>
     </Flex>

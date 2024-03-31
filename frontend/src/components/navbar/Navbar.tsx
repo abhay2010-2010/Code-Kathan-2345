@@ -39,6 +39,7 @@ export const Navbar = () => {
       right={"0px"}
       zIndex={2}
       mb={4}
+      px={[2, 4, 6, 8]}
     >
       <Flex align="center" height={"4.5rem"}>
         {isOpen ? (
@@ -52,7 +53,7 @@ export const Navbar = () => {
               autoFocus={false}
             >
               <DrawerOverlay />
-              <DrawerContent>
+              <DrawerContent >
                 <DrawerHeader borderBottomWidth="1px" px={4}>
                   <IoMdClose
                     cursor={"pointer"}
