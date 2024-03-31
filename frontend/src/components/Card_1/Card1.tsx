@@ -1,7 +1,6 @@
 // Card1.tsx
 import {
   Box,
-  Button,
   Flex,
   Heading,
   Image,
@@ -13,7 +12,6 @@ import {
 import { useState } from "react";
 
 const Card1 = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
 
   let myObj = {
     title: "Driver recover bodies from Baltimore bridge",
