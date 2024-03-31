@@ -14,6 +14,7 @@ import {
   Stack,
   Text,
   useColorMode,
+  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
@@ -30,7 +31,15 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Box position={"sticky"} top={'0'} zIndex={5} bg={colorMode === "dark" ? "#1a202c" : "white"}>
+    <Box
+      bg={useColorModeValue("gray.50", "gray.900")}
+      position={"sticky"}
+      top={"0px"}
+      left={"0px"}
+      right={"0px"}
+      zIndex={2}
+      mb={4}
+    >
       <Flex align="center" height={"4.5rem"}>
         {isOpen ? (
           <>
@@ -43,9 +52,13 @@ export const Navbar = () => {
               autoFocus={false}
             >
               <DrawerOverlay />
-              <DrawerContent >
+              <DrawerContent>
                 <DrawerHeader borderBottomWidth="1px" px={4}>
-                  <IoMdClose size={"2.5rem"} onClick={onClose} />
+                  <IoMdClose
+                    cursor={"pointer"}
+                    size={"2.5rem"}
+                    onClick={onClose}
+                  />
                 </DrawerHeader>
                 <DrawerBody p={0}>
                   <Box py={4}>
@@ -89,14 +102,25 @@ export const Navbar = () => {
                             style={({ isActive }) => ({
                               fontWeight: isActive ? "bold" : "",
                               borderLeft: isActive
-                                ? "9px solid gray"
-                                : colorMode === "dark"
-                                  ? "9px solid rgb(45,55,72)"
-                                  : "9px solid white",
+                                ? useColorModeValue(
+                                    "9px solid black",
+                                    "9px solid white",
+                                  )
+                                : useColorModeValue(
+                                    "9px solid white",
+                                    "9px solid rgb(45,55,72)",
+                                  ),
                             })}
                           >
                             <Divider />
-                            <Box py={1} px={2} my={1} pl={4} onClick={onClose}>
+                            <Box
+                              py={1}
+                              px={2}
+                              my={1}
+                              pl={4}
+                              onClick={onClose}
+                              _hover={{ fontWeight: "900" }}
+                            >
                               <Text as="p" fontSize={18}>
                                 {item.name}
                               </Text>
@@ -112,10 +136,14 @@ export const Navbar = () => {
           </>
         ) : (
           <>
-            <Box>
+            <Box cursor={"pointer"}>
               <GiHamburgerMenu size={"2.5rem"} onClick={onOpen} />
             </Box>
-            <Box ml={"2rem"} display={{ base: "none", md: "unset" }}>
+            <Box
+              cursor={"pointer"}
+              ml={"2rem"}
+              display={{ base: "none", md: "unset" }}
+            >
               <CiSearch size={"2.5rem"} onClick={onOpen} />
             </Box>
           </>
@@ -123,7 +151,7 @@ export const Navbar = () => {
         <Box
           position={"absolute"}
           left={"50%"}
-          sx={{ transform: "translateX(-30%)" }}
+          sx={{ transform: "translateX(-50%)" }}
         >
           <NavLink to="/">
             <Logo />
@@ -148,14 +176,15 @@ export const Navbar = () => {
                 style={({ isActive }) => ({
                   fontWeight: isActive ? "bold" : "",
                   borderBottom: isActive
-                    ? "4px solid gray"
-                    : colorMode === "dark"
-                      ? "4px solid rgb(26,32,44)"
-                      : "4px solid white",
+                    ? useColorModeValue("4px solid black", "4px solid white")
+                    : useColorModeValue(
+                        "4px solid white",
+                        "4px solid rgb(26,32,44)",
+                      ),
                 })}
               >
                 <Box py={1} px={2} mt={2}>
-                  <Text as="p" fontSize={16}>
+                  <Text as="p" fontSize={16} _hover={{ fontWeight: "900" }}>
                     {item.name}
                   </Text>
                 </Box>
