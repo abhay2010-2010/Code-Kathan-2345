@@ -7,8 +7,7 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Button,
-    textDecoration,
+    Button
   } from '@chakra-ui/react'
 
  export default function ManualClose() {
