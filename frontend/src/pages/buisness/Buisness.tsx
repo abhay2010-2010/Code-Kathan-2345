@@ -77,7 +77,7 @@ export const Buisness = () => {
         </Box>
       </Grid>
 
-      <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20} >
+      <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20} mt={20} >
         <Card3a />
         <Card3a />
         <Card3a />

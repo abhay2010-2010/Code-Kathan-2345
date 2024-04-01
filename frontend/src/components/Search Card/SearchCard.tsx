@@ -27,7 +27,17 @@ function SearchCard({ data }: Props) {
 
                 <Box w={{ base: "90%", md: "40%" }}>
                     <Skeleton width={"fit-content"} isLoaded={!isLoaded}>
-                        <Heading size='md' textDecoration={"underline"} mt={10}>
+                        <Heading size='md' 
+                       
+                        mt={10}
+                        as="a"
+                        href={data.articleLink}
+                        target="_blank"
+                        _hover={{
+                            filter: "brightness(130%)",
+                            textDecoration: "underline",
+                        }}
+                        >
                             {data.title}
                         </Heading>
                     </Skeleton>

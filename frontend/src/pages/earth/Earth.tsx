@@ -47,12 +47,12 @@ export const Earth = () => {
       <Box
         display="flex"
         flexDirection={{ base: "row", md: "column" }}
-        w={{ base: "100%", md: "70%" }}
+        w={{ base: "100%", md: "40%" }}
       >
 
         <Card6a data={data[42]}/>
-        <Card6a />
-        <Card6a />
+        <Card6a data={data[43]}/>
+        <Card6a data={data[44]}/>
 
       </Box>
     </Box>

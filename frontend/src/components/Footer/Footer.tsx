@@ -114,13 +114,17 @@ export default function Footer() {
             </span>
           </Text>
           <Stack direction={"row"} spacing={6}>
-            <SocialButton label={"Twitter"} href={"#"}>
+            <SocialButton label={"Twitter"}
+
+              href="https://twitter.com/"
+
+            >
               <FaTwitter />
             </SocialButton>
-            <SocialButton label={"YouTube"} href={"#"}>
+            <SocialButton label={"YouTube"} href="https://youtube.com">
               <FaYoutube />
             </SocialButton>
-            <SocialButton label={"Instagram"} href={"#"}>
+            <SocialButton label={"Instagram"} href="https://instagram.com">
               <FaInstagram />
             </SocialButton>
           </Stack>
