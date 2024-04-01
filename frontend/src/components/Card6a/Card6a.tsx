@@ -32,8 +32,7 @@ function Card6a({data}:Props) {
             <Stack textAlign={"start"} mt='3' marginBottom={10}>
                 <Heading size='md' _hover={{ textDecoration: "underline" }}  as="a"
       href={data.articleLink}
-      target="_blank"
-      _ho>
+      target="_blank">
                   {data.title}
                 </Heading>
             </Stack >
