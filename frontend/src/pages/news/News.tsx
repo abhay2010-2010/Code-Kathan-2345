@@ -1,26 +1,63 @@
-import { Box, Divider, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Grid, Heading, Text } from "@chakra-ui/react";
+import postData from "../../../../backend/db.json";
+import Card5 from "../../components/Card5/Card5";
 import Card5b from "../../components/Card5b/Card5b";
 import Card1 from "../../components/Card_1/Card1";
-import { Card3a } from "../../components/Card3a/Card3a";
 import Carousel from "../../components/CrousalCard/Crousal";
-import Card2b from "../../components/card2b/Card2b";
-import TwoCards from "../../components/TwoCards/TwoCards";
-import Card5 from "../../components/Card5/Card5";
 import SearchCard from "../../components/Search Card/SearchCard";
+import TwoCards from "../../components/TwoCards/TwoCards";
+import Card2b from "../../components/card2b/Card2b";
+import { Post } from "../../utils/types";
+import { Card3a } from "../../components/Card3a/Card3a";
+import Footer from "../../components/Footer/Footer";
+import { ArrowUpIcon } from "@chakra-ui/icons";
+import { Navbar } from "../../components/navbar/Navbar";
+import { useEffect, useState } from "react";
 
 export const News = () => {
+  let data: Post[] = postData.posts
+    .filter((post) => post.category === "world")
+    .slice(1, 30);
+
+  let crousalData: Post[] = data.slice(10, 30);
+
+  data.sort((a, b) => b.clicks - a.clicks);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 100) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
   return (
     <>
+      <Navbar />
       <Box p={5}>
-        <Heading color={"#b92322"} fontSize={"3rem"}>
+        <Heading color={"#cd2626"} fontSize={"4rem"} lineHeight={1}>
           NEWS
         </Heading>
         <br />
         <Divider backgroundColor={"black"} height={"2px"} />
         <br />
         <Box flexDirection={["column", "row"]} display={"flex"} gap={"2rem"}>
-          <Card5b />
-          <Card1 />
+          <Card5b data={data[29]} />
+          <Card1 data={data[0]} />
         </Box>
 
         <Grid
@@ -28,44 +65,49 @@ export const News = () => {
           templateColumns={["repeat(1,1fr)", "repeat(3,1fr)", "repeat(5,1fr)"]}
           alignContent={"center"}
           marginX="auto"
+          gap={2}
         >
           <Box>
-            <Card1 />
+            <Card1 data={data[1]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[3]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[4]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[5]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[6]} />
           </Box>
         </Grid>
-
-        <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20}>
-          <Card3a />
-          <Card3a />
-          <Card3a />
+        <Grid
+          templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }}
+          mb={20}
+          mt={5}
+          gap={2}
+        >
+          <Card3a data={data[7]} />
+          <Card3a data={data[8]} />
+          <Card3a data={data[9]} />
         </Grid>
       </Box>
 
-      <Carousel />
+      <Carousel data={crousalData.slice(11, 20)} />
 
       <Box p={5} mt={8}>
         <br />
         <Divider backgroundColor={"black"} height={"2px"} />
-        <Text fontSize={"20px"}>Features and analysis</Text>
+        <Text fontSize={"20px"}>Finance and Economy</Text>
         <br />
         <TwoCards />
         <Divider backgroundColor={"black"} height={"2px"} mb={5} />
-        <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }}>
-          <Card2b />
-          <Card2b />
-          <Card2b />
+        <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} gap={2}>
+          <Card2b data={data[10]} />
+          <Card2b data={data[11]} />
+          <Card2b data={data[12]} />
         </Grid>
       </Box>
 
@@ -93,40 +135,41 @@ export const News = () => {
           alignContent={"center"}
           marginX="auto"
           mt={10}
+          gap={2}
         >
           <Box>
-            <Card1 />
+            <Card1 data={data[13]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[14]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[15]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[16]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[17]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[18]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[19]} />
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[20]} />
           </Box>
         </Grid>
       </Box>
 
-      <Carousel />
+      <Carousel data={crousalData.slice(0, 10)} />
 
       <Box p={10}>
         <Divider backgroundColor={"black"} height={"2px"} />
         <Heading fontSize={"20px"} mt={5} mb={5}>
-          Also in news
+          More in Buisness
         </Heading>
         <SearchCard />
         <SearchCard />
@@ -138,6 +181,27 @@ export const News = () => {
         <SearchCard />
         <SearchCard />
       </Box>
+      {isVisible && (
+        <Box
+          onClick={scrollToTop}
+          position="fixed"
+          bottom="20px"
+          right={["16px", "84px"]}
+          zIndex={3}
+        >
+          <Button
+            w="50px"
+            h="50px"
+            variant="outline"
+            bg={"black"}
+            borderRadius={"50%"}
+            _hover={{ bg: "black", w: "55px", h: "55px" }}
+          >
+            <ArrowUpIcon fontSize={"lg"} color={"white"} />
+          </Button>
+        </Box>
+      )}
+      <Footer />
     </>
   );
 };

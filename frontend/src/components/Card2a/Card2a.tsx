@@ -1,59 +1,81 @@
-"use client";
-
 import {
   Box,
+  Flex,
   Center,
-  useColorModeValue,
   Heading,
-  Text,
-  Stack,
   Image,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
+import { Post } from "../../utils/types";
 
 const IMAGE =
-  "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
+  "https://ichef.bbci.co.uk/news/800/cpsprodpb/FDED/production/_133050056_2023-11-01t134749z_176733597_rc2n34al49of_rtrmadp_3_israel-palestinians-lebanon-village-1.jpg.webp";
 
-export default function Card2a() {
+interface Props {
+  data?: Post;
+  isDefault?: boolean;
+}
+
+export default function Card2a({ data, isDefault }: Props) {
+  !data &&
+    (data = {
+      id: 1,
+      title: "daniel Kahneman, Nobel Prize-winning psychologist, 1934-2024",
+      Description:
+        'Three people have been released, but the situation "is not over yet", police in the city of Ede say.',
+      source: "BBC.com",
+      time: 4,
+      articleLink: "https://www.bbc.com/news/world-europe-68698022",
+      image1:
+        "https://news.google.com/api/attachments/CC8iK0NnNWhiUzF6VjBrelprMTJUalJIVFJDZkF4ampCU2dLTWdZVk1KUnBHUWs=-w280-h168-p-df-rw",
+      image2:
+        "https://i.zedtranslate.com/newsimage/CC8iK0NnNWhiUzF6VjBrelprMTJUalJIVFJDZkF4ampCU2dLTWdZVk1KUnBHUWs",
+      category: "world",
+      clicks: 283,
+    });
   return (
-    <Center py={12} width={"full"}>
-      <Box
-        role={"group"}
-        p={6}
-        maxW={"330px"}
-        w={"full"}
-        bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
-        rounded={"lg"}
-        pos={"relative"}
-        zIndex={1}
-        width={300}
-      >
+    <Center
+      as="a"
+      href={data.articleLink}
+      target="_black"
+      _hover={{ filter: "brightness(120%)", textDecoration: "underline" }}
+    >
+      <Box role={"group"} w={"full"}>
         <Box>
           <Image
-            rounded={"lg"}
-            height={180}
+            height={"100%"}
             width={"100%"}
             objectFit={"cover"}
-            src={IMAGE}
+            src={isDefault ? IMAGE : data.image2}
             alt="#"
           />
         </Box>
-        <Stack align={"start"} textAlign={"start"} mt={-25}>
-          <Heading
-            fontSize={"2xl"}
-            fontFamily={"body"}
-            fontWeight={500}
-            textDecoration={"underline"}
-          >
-            <span style={{ color: "red" }}>LIVE</span> 'Crypto King' Sam
-            Bankman-Fried faces lengthy jail term
+        <Stack
+          align={"start"}
+          textAlign={"start"}
+          gap={4}
+          mt={{ base: 0, lg: 4 }}
+        >
+          <Heading fontSize={"3xl"} fontWeight={700}>
+            {data.title}
           </Heading>
-          <Stack direction={"row"} align={"starta"} mt={-35}>
-            <Text color={"gray.500"} fontSize={"sm"}>
-              The former billionaire is about to find out his punishment for
-              massive fraud and money laundering.
-            </Text>
+          <Stack direction={"row"} align={"start"}>
+            <Text fontSize={"15px"}>{data.Description}</Text>
           </Stack>
+          <Flex>
+            <Text
+              fontWeight="400"
+              fontSize="14px"
+              display="flex"
+              gap={2}
+              mt={4}
+            >
+              {data.time} hrs ago{" "}
+              <Text fontWeight="600">| {data.source} |</Text>{" "}
+              {data.category.toLocaleUpperCase()}
+            </Text>
+          </Flex>
         </Stack>
       </Box>
     </Center>
