@@ -1,0 +1,9 @@
+#charts {
+  width: 70%;
+  margin: auto;
+}
+
+#charts > div {
+  margin-top: 5px;
+  background-color: aqua;
+}
