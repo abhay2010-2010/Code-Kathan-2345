@@ -20,16 +20,26 @@ import {
 import { CiSearch } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { layout } from "../../routes/Allroutes";
 import { Logo } from "../logo/Logo";
 import { Search } from "../search/Search";
+import { useEffect } from "react";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-
+  const { pathname } = useLocation();
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    scrollToTop();
+  }, [pathname]);
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
@@ -53,7 +63,7 @@ export const Navbar = () => {
               autoFocus={false}
             >
               <DrawerOverlay />
-              <DrawerContent >
+              <DrawerContent>
                 <DrawerHeader borderBottomWidth="1px" px={4}>
                   <IoMdClose
                     cursor={"pointer"}
@@ -119,8 +129,17 @@ export const Navbar = () => {
                               px={2}
                               my={1}
                               pl={4}
-                              onClick={onClose}
-                              _hover={{ fontWeight: "900" }}
+                              onClick={() => {
+                                onClose();
+                                scrollToTop();
+                              }}
+                              _hover={{
+                                fontWeight: "bold",
+                                background: useColorModeValue(
+                                  "gray.200",
+                                  "gray.700",
+                                ),
+                              }}
                             >
                               <Text as="p" fontSize={18}>
                                 {item.name}
@@ -153,6 +172,7 @@ export const Navbar = () => {
           position={"absolute"}
           left={"50%"}
           sx={{ transform: "translateX(-50%)" }}
+          onClick={scrollToTop}
         >
           <NavLink to="/">
             <Logo />
@@ -179,13 +199,22 @@ export const Navbar = () => {
                   borderBottom: isActive
                     ? useColorModeValue("4px solid black", "4px solid white")
                     : useColorModeValue(
-                        "4px solid white",
-                        "4px solid rgb(26,32,44)",
+                        "4px solid rgb(247,250,252)",
+                        "4px rgb(23,25,35)",
                       ),
                 })}
               >
-                <Box py={1} px={2} mt={2}>
-                  <Text as="p" fontSize={16} _hover={{ fontWeight: "900" }}>
+                <Box
+                  py={1}
+                  px={2}
+                  mt={2}
+                  _hover={{
+                    background: useColorModeValue("gray.200", "gray.700"),
+                    fontWeight: "bold",
+                  }}
+                  onClick={scrollToTop}
+                >
+                  <Text as="p" fontSize={16}>
                     {item.name}
                   </Text>
                 </Box>
