@@ -46,11 +46,15 @@ export const Buisness = () => {
         <br />
         <Divider backgroundColor={"black"} height={"2px"} />
         <br />
+
+        <Box flexDirection={["column", "row"]} display={"flex"} gap={"2rem"}>
+
         <Box
           flexDirection={["column", "row", "row"]}
           display={"flex"}
           gap={"2rem"}
         >
+
           <Card5b />
           <Card1 data={data[0]} />
         </Box>
@@ -78,12 +82,19 @@ export const Buisness = () => {
           </Box>
         </Grid>
 
+      <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20} mt={20} >
+        <Card3a />
+        <Card3a />
+        <Card3a />
+      </Grid>
+    </Box>
         <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20}>
           <Card3a />
           <Card3a />
           <Card3a />
         </Grid>
       </Box>
+
 
       <Carousel />
 
