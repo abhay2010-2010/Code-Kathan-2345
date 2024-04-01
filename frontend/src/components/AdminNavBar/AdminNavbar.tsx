@@ -1,39 +1,42 @@
 "use client";
 
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
-  IconButton,
   Avatar,
   Box,
+  BoxProps,
+  Button,
   CloseButton,
-  Flex,
-  HStack,
-  VStack,
-  Icon,
-  useColorModeValue,
-  Text,
   Drawer,
   DrawerContent,
-  useDisclosure,
-  BoxProps,
+  Flex,
   FlexProps,
+  HStack,
+  Icon,
+  IconButton,
   Menu,
   MenuButton,
   MenuDivider,
   MenuItem,
   MenuList,
+  Text,
+  VStack,
+  useColorMode,
+  useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
-import {
-  FiTrendingUp,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-} from "react-icons/fi";
-import { MdOutlineDashboard } from "react-icons/md";
-import { CiBoxList } from "react-icons/ci";
-import { GrArticle } from "react-icons/gr";
 import { IconType } from "react-icons";
+import { CiBoxList } from "react-icons/ci";
+import {
+  FiChevronDown,
+  FiMenu,
+  FiSettings,
+  FiTrendingUp,
+} from "react-icons/fi";
+import { GrArticle } from "react-icons/gr";
+import { MdOutlineDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { Logo } from "../logo/Logo";
 
 interface LinkItemProps {
   name: string;
@@ -76,7 +79,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
+          <NavLink to="/admin/dashboard">
+            <Logo />
+          </NavLink>
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
@@ -96,7 +101,13 @@ const NavItem = ({
   ...rest
 }: NavItemProps & { to: string }) => {
   return (
-    <NavLink to={to} style={{ textDecoration: "none" }}>
+    <NavLink
+      to={to}
+      style={({ isActive }) => ({
+        fontWeight: isActive ? "bold" : "",
+        color: isActive ? "cyan" : "",
+      })}
+    >
       <Flex
         align="center"
         p="4"
@@ -126,6 +137,7 @@ const NavItem = ({
   );
 };
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -152,16 +164,18 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         fontFamily="monospace"
         fontWeight="bold"
       >
-        Logo
+        <NavLink to="/admin/dashboard">
+          <Logo />
+        </NavLink>
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-        />
+        <Button
+          onClick={toggleColorMode}
+          display={{ base: "none", md: "flex" }}
+        >
+          {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
+        </Button>
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
@@ -201,6 +215,12 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               <MenuItem>Billing</MenuItem>
               <MenuDivider />
               <MenuItem>Sign out</MenuItem>
+              <Button
+                onClick={toggleColorMode}
+                display={{ base: "flex", md: "none" }}
+              >
+                {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
+              </Button>
             </MenuList>
           </Menu>
         </Flex>
