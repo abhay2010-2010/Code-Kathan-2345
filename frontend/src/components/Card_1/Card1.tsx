@@ -26,13 +26,18 @@ const Card1 = ({ data }: Props) => {
     authState: { user },
   } = useAuth();
 
-  const handleClick = () => {
-    const history = user?.history || [];
-    history.push(data);
-    const patchObj: IUserPatch = { ...user, history };
-    patchUser(patchObj);
+  const handleClick = async () => {
+    if (user) {
+      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      const id = user.id;
+      history = [...history, data];
+      const patchObj: IUserPatch = { id, history };
+      console.log(patchObj);
+      await patchUser(patchObj);
+      window.open(data.articleLink, "_blank");
+    }
   };
-  
+
   const [isLoaded, setIsLoaded] = useState(false);
   !data &&
     (data = {

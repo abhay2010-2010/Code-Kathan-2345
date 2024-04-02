@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { baseUrl } from "../baseUrl";
 import {
   IAuth,
@@ -10,7 +10,6 @@ import {
   authContextInitial,
   initalState,
 } from "./types";
-import { produce } from "immer";
 type Props = {
   children: React.ReactNode;
 };

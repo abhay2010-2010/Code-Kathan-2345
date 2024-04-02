@@ -22,6 +22,7 @@ import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
 import { IArticle } from "../../utils/dataContext/types";
 
+
 export const Profile = () => {
   const {
     patchUser,
