@@ -45,7 +45,7 @@ export default function Category() {
           py={10}
           fontWeight={"bold"}
         >
-          What is our company doing?
+          Category
         </chakra.h1>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
           <StatsCard title={"We serve"} stat={"50,000 people"} />

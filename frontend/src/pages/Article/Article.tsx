@@ -1,257 +1,141 @@
-import { Box, Button, Center } from "@chakra-ui/react";
+import React, { useState } from "react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Box,
+  Input,
+  Textarea,
+} from "@chakra-ui/react";
 import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
-import "./Artcle.css";
-import postData from "../../../../backend/db.json";
 
-const Article = () => {
+interface Article {
+  title: string;
+  Description: string;
+  source: string;
+  category: string;
+  articleLink: string;
+}
+
+interface TableProps {
+  data: Article[];
+}
+
+const data = [
+  {
+    title: "daniel Kahneman, Nobel Prize-winning psychologist, 1934-2024",
+    Description:
+      'Three people have been released, but the situation "is not over yet", police in the city of Ede say.',
+    source: "BBC.com",
+    time: 4,
+    articleLink: "https://www.bbc.com/news/world-europe-68698022",
+    image1:
+      "https://news.google.com/api/attachments/CC8iK0NnNWhiUzF6VjBrelprMTJUalJIVFJDZkF4ampCU2dLTWdZVk1KUnBHUWs=-w280-h168-p-df-rw",
+    image2:
+      "https://i.zedtranslate.com/newsimage/CC8iK0NnNWhiUzF6VjBrelprMTJUalJIVFJDZkF4ampCU2dLTWdZVk1KUnBHUWs",
+    category: "world",
+  },
+  // Add more data items as needed
+];
+
+const Article: React.FC<TableProps> = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedItem, setSelectedItem] = useState<Article | null>(null);
+
+  const handleDelete = (index: number) => {
+    // Implement delete logic here
+    console.log("Deleting item at index:", index);
+  };
+
+  const handleUpdate = (item: Article) => {
+    setSelectedItem(item);
+    onOpen();
+  };
+
+  const handleCloseModal = () => {
+    setSelectedItem(null);
+    onClose();
+  };
+
   return (
-    <div>
+    <>
       <SidebarWithHeader />
-      <Box h={"100vh"} ml={{ base: 0, md: 60 }} p="4">
-        <CRUDComponent />
+      <Box h={"100vh"} ml={{ base: 0, md: 60 }} p="4" textAlign={"center"}>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Title</Th>
+              <Th>Description</Th>
+              <Th>Source</Th>
+              <Th>Category</Th>
+              <Th colSpan={2}>Actions</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data.map((item, index) => (
+              <Tr key={index}>
+                <Td>{item.title}</Td>
+                <Td>{item.Description}</Td>
+                <Td>{item.source}</Td>
+                <Td>{item.category}</Td>
+                <Td>
+                  <Button colorScheme="blue" onClick={() => handleUpdate(item)}>
+                    Update
+                  </Button>
+                </Td>
+                <Td>
+                  <Button
+                    colorScheme="red"
+                    ml={2}
+                    onClick={() => handleDelete(index)}
+                  >
+                    Delete
+                  </Button>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+
+        {/* Modal for Update */}
+        <Modal isOpen={isOpen} onClose={handleCloseModal}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Update Item</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              {/* Add form fields for updating item */}
+              {/* For example: */}
+              <Input type="text" defaultValue={selectedItem?.title} />
+              <Textarea defaultValue={selectedItem?.Description} />
+              <Input type="text" defaultValue={selectedItem?.source} />
+              <Input type="text" defaultValue={selectedItem?.category} />
+              <Input type="text" defaultValue={selectedItem?.articleLink} />
+              {/* Add other form fields as needed */}
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3}>
+                Update
+              </Button>
+              <Button onClick={handleCloseModal}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Box>
-    </div>
+    </>
   );
 };
 
 export default Article;
-
-import React, { useState } from "react";
-
-interface Article {
-  id: number;
-  title: string;
-  description: string;
-  source: string;
-  time: number;
-  articleLink: string;
-  image1: string;
-  image2: string;
-  category: string;
-  clicks: number;
-}
-
-const CreateArticleForm: React.FC<{
-  onCreate: (article: Article) => void;
-}> = ({ onCreate }) => {
-  const [formData, setFormData] = useState<Article>({
-    id: 0,
-    title: "",
-    description: "",
-    source: "",
-    time: 0,
-    articleLink: "",
-    image1: "",
-    image2: "",
-    category: "",
-    clicks: 0,
-  });
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onCreate(formData);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Description:
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Source:
-        <input
-          type="text"
-          name="source"
-          value={formData.source}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Time:
-        <input
-          type="number"
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Article Link:
-        <input
-          type="text"
-          name="articleLink"
-          value={formData.articleLink}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Image 1:
-        <input
-          type="text"
-          name="image1"
-          value={formData.image1}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Image 2:
-        <input
-          type="text"
-          name="image2"
-          value={formData.image2}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Category:
-        <input
-          type="text"
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Clicks:
-        <input
-          type="number"
-          name="clicks"
-          value={formData.clicks}
-          onChange={handleChange}
-        />
-      </label>
-      <Center>
-        <Button type="submit" colorScheme="blue">
-          Create Article
-        </Button>
-      </Center>
-    </form>
-  );
-};
-
-const ItemsPerPage = 10;
-const MaxPageButtons = 5;
-
-const CRUDComponent: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(postData.posts.length / ItemsPerPage);
-
-  const startIndex = (currentPage - 1) * ItemsPerPage;
-  const endIndex = startIndex + ItemsPerPage;
-  const currentArticles = postData.posts.slice(startIndex, endIndex);
-
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const renderPaginationButtons = () => {
-    const pageButtons = [];
-    let startPage = Math.max(1, currentPage - Math.floor(MaxPageButtons / 2));
-    let endPage = Math.min(totalPages, startPage + MaxPageButtons - 1);
-
-    if (endPage - startPage + 1 < MaxPageButtons) {
-      startPage = Math.max(1, endPage - MaxPageButtons + 1);
-    }
-
-    if (startPage > 1) {
-      pageButtons.push(
-        <Button key={1} onClick={() => handlePageChange(1)}>
-          1
-        </Button>,
-      );
-      if (startPage > 2) {
-        pageButtons.push(<span key="ellipsis1">...</span>);
-      }
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pageButtons.push(
-        <Button
-          key={i}
-          onClick={() => handlePageChange(i)}
-          className={i === currentPage ? "active" : ""}
-        >
-          {i}
-        </Button>,
-      );
-    }
-
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        pageButtons.push(<span key="ellipsis2">...</span>);
-      }
-      pageButtons.push(
-        <Button key={totalPages} onClick={() => handlePageChange(totalPages)}>
-          {totalPages}
-        </Button>,
-      );
-    }
-
-    return pageButtons;
-  };
-
-  const [articles, setArticles] = useState<Article[]>([]);
-
-  const createArticle = (article: Article) => {
-    setArticles([...articles, article]);
-  };
-
-  const deleteArticle = (id: number) => {
-    setArticles(articles.filter((article) => article.id !== id));
-  };
-
-  return (
-    <div>
-      <h1>Articles</h1>
-      <CreateArticleForm onCreate={createArticle} />
-      <ul>
-        {currentArticles.map((article) => (
-          <li key={article.id}>
-            <h2>{article.title}</h2>
-            <p>{article.Description}</p>
-            <Button onClick={() => deleteArticle(article.id)}>Delete</Button>
-          </li>
-        ))}
-      </ul>
-      <Center gap={1}>
-        <Button
-          onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </Button>
-        {renderPaginationButtons()}
-        <Button
-          onClick={() =>
-            handlePageChange(Math.min(totalPages, currentPage + 1))
-          }
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </Button>
-      </Center>
-    </div>
-  );
-};
