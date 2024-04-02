@@ -19,6 +19,7 @@ import Trending from "../pages/Trending/Trending";
 import Category from "../pages/Category/Category";
 import Article from "../pages/Article/Article";
 import Settings from "../pages/Settings/Settings";
+import { Profile } from "../pages/profile/profile";
 
 export const layout: LayoutRoute[] = [
   { id: 1, name: "Home", path: "/", isVisible: true, element: <Home /> },
@@ -155,6 +156,17 @@ export const layout: LayoutRoute[] = [
   },
   {
     id: 15,
+    name: "Profile",
+    path: "/profile",
+    isVisible: false,
+    element: (
+      <ProtectedRoutes>
+        <Profile />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    id: 16,
     name: "Default",
     path: "*",
     isVisible: false,

@@ -139,27 +139,32 @@ export const AuthProvider = ({ children }: Props) => {
 
   const patchUser = (credentials: IUserPatch) => {
     setAuthState((prev) => {
-      return produce(prev, (draft) => {
-        draft.loginLoading = true;
-        draft.loginError = false;
-      });
+      return {
+        ...prev,
+        loginLoading: true,
+        loginError: false,
+      };
     });
+    // console.log(credentials);
     return new Promise<string>((resolve, reject) => {
       axios
-        .put(baseUrl + `/users/${credentials.id}`, credentials)
+        .patch(baseUrl + `/users/${credentials.id}`, credentials)
         .then((res) => {
           setAuthState((prev) => {
-            return produce(prev, (draft) => {
-              draft.loginLoading = false;
-              draft.loginError = false;
-              draft.user = res.data.user;
-            });
+            return {
+              ...prev,
+              loginLoading: false,
+              loginError: false,
+              user: res.data,
+            };
           });
           localStorage.setItem("user", JSON.stringify(res.data));
+          // console.log(res.data);
           resolve("Success");
         })
-        .catch(() => {
+        .catch((error) => {
           setAuthState((prev) => ({ ...prev, loginLoading: false }));
+          console.log(error);
           reject("Failed");
         });
     });

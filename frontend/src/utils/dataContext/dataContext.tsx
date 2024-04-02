@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   IAddArticle,
   IArticle,
@@ -25,7 +25,7 @@ export const DataContextProvider = ({ children }: Props) => {
     let params = window.location.href;
     params = params.slice(params.indexOf("?"));
     let url = baseUrl + "/posts" + params;
-    console.log(url);
+    console.log(url)
     return new Promise<string>((resolve, reject) => {
       setDataLoading(true);
       axios
@@ -45,6 +45,10 @@ export const DataContextProvider = ({ children }: Props) => {
         });
     });
   };
+
+  // useEffect(() => {
+  //   console.log(posts);
+  // }, []);
 
   const patchPost = (obj: IPatchArticle) => {
     let { id } = obj;
