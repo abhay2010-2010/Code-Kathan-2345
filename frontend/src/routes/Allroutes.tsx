@@ -93,14 +93,14 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 14,
+    id: 13,
     name: "Home",
     path: "search/:id",
     isVisible: false,
     element: <SearchPage />,
   },
   {
-    id: 16,
+    id: 14,
     name: "DashBoard",
     path: "/admin/dashboard",
     isVisible: false,
@@ -111,7 +111,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 17,
+    id: 15,
     name: "Trending",
     path: "/admin/trending",
     isVisible: false,
@@ -122,7 +122,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 17,
+    id: 16,
     name: "Category",
     path: "/admin/category",
     isVisible: false,
@@ -144,7 +144,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 17,
+    id: 18,
     name: "Setting",
     path: "/admin/settings",
     isVisible: false,
@@ -155,7 +155,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 15,
+    id: 19,
     name: "Profile",
     path: "/profile",
     isVisible: false,
@@ -166,7 +166,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 16,
+    id: 20,
     name: "Default",
     path: "*",
     isVisible: false,
