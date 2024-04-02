@@ -12,13 +12,32 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Post } from "../../utils/types";
+import { useAuth } from "../../utils/authContext/authContext";
+import { IUserPatch } from "../../utils/authContext/types";
+import { IArticle } from "../../utils/dataContext/types";
 
 interface Props {
-  data?: Post;
+  data: IArticle;
 }
 
 const Card1 = ({ data }: Props) => {
+  const {
+    patchUser,
+    authState: { user },
+  } = useAuth();
+
+  const handleClick = async () => {
+    if (user) {
+      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      const id = user.id;
+      history = [...history, data];
+      const patchObj: IUserPatch = { id, history };
+      console.log(patchObj);
+      await patchUser(patchObj);
+      window.open(data.articleLink, "_blank");
+    }
+  };
+
   const [isLoaded, setIsLoaded] = useState(false);
   !data &&
     (data = {
@@ -36,6 +55,7 @@ const Card1 = ({ data }: Props) => {
       category: "world",
       clicks: 283,
     });
+
   return isLoaded ? (
     <>
       <Box padding="6" boxShadow="lg">
@@ -59,6 +79,7 @@ const Card1 = ({ data }: Props) => {
       href={data.articleLink}
       target="_blank"
       _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
+      onClick={handleClick}
     >
       <VStack className="pt-serif-regular" align={"start"} height={"full"}>
         <Skeleton width="full" isLoaded={!isLoaded}>

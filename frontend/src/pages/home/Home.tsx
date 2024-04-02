@@ -107,15 +107,15 @@ export const Home = () => {
             gap={6}
           >
             <Stack>
-              <Card3a />
+              <Card3a data={data[8]} />
               <Divider />
             </Stack>
             <Stack>
-              <Card3a />
+              <Card3a data={data[9]} />
               <Divider />
             </Stack>
             <Stack>
-              <Card3a />
+              <Card3a data={data[10]} />
               <Divider />
             </Stack>
             <Stack>

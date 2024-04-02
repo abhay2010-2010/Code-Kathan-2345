@@ -1,3 +1,5 @@
+import { IArticle } from "../dataContext/types";
+
 export interface IUser {
   email: string;
   name: string;
@@ -5,6 +7,8 @@ export interface IUser {
   id?: number;
   Phone: number;
   password?: string;
+  image?: string;
+  history?: IArticle[];
   address: {
     address_line: string;
     city: string;
@@ -18,9 +22,11 @@ export interface IUserPatch {
   email?: string;
   name?: string;
   role?: string;
-  id: number;
+  id?: number;
   Phone?: number;
   password?: string;
+  image?: string;
+  history?: IArticle[];
   address?: {
     address_line?: string;
     city?: string;
@@ -54,10 +60,10 @@ export interface IAuthContext {
   authState: IAuth;
   users: IUser[];
   totalUsers: number | undefined;
-  loginUser: (credential: ICredentials) => Promise<string> | undefined;
-  signupUser: (credential: ICredentials) => Promise<string> | undefined;
-  logoutUser: (credential: ICredentials) => Promise<string> | undefined;
-  patchUser: (credential: IUserPatch) => Promise<string> | undefined;
+  loginUser: (credential: ICredentials) => Promise<string>;
+  signupUser: (credential: ICredentials) => Promise<string>;
+  logoutUser: (credential: ICredentials) => Promise<string>;
+  patchUser: (credential: IUserPatch) => Promise<string>;
   getUsers: () => Promise<string>;
 }
 
