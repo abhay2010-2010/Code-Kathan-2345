@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Image, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Post } from '../../utils/types';
 
