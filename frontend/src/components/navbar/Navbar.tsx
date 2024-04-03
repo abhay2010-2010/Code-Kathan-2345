@@ -64,7 +64,6 @@ export const Navbar = () => {
       <Flex align="center" height={"4.5rem"} px={[2, 4, 6, 8]}>
         {isOpen ? (
           <>
-            <input type="text" />
             <Box ml={"7rem"}></Box>
             <Drawer
               placement={"left"}

@@ -20,6 +20,7 @@ import Category from "../pages/Category/Category";
 import Article from "../pages/Article/Article";
 import Settings from "../pages/Settings/Settings";
 import { Profile } from "../pages/profile/profile";
+import SearchbarPage from "../pages/SearchBarPage/SearchbarPage";
 import { AnimatePresence } from "framer-motion";
 
 export const layout: LayoutRoute[] = [
@@ -45,6 +46,14 @@ export const layout: LayoutRoute[] = [
     path: "/innovation",
     isVisible: true,
     element: <Innovation />,
+  },
+  {
+    id:14,
+    name:"SearchBarPage",
+    path:"/searchbarpage",
+    isVisible:false,
+    element:<SearchbarPage/>
+
   },
   {
     id: 6,
