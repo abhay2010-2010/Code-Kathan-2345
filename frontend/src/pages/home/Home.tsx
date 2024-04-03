@@ -21,12 +21,13 @@ import Footer from "../../components/Footer/Footer";
 import Card2b from "../../components/card2b/Card2b";
 import { Navbar } from "../../components/navbar/Navbar";
 import { Post } from "../../utils/types";
+import { useLocation } from "react-router-dom";
 
 export const Home = () => {
   let data: Post[] = postData.posts;
   
   const [isVisible, setIsVisible] = useState(false);
-
+  const { pathname } = useLocation();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -45,7 +46,7 @@ export const Home = () => {
     window.addEventListener("scroll", toggleVisibility);
 
     return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
+  }, [pathname]);
   return (
     <>
       <Navbar />
@@ -107,15 +108,15 @@ export const Home = () => {
             gap={6}
           >
             <Stack>
-              <Card3a />
+              <Card3a data={data[8]} />
               <Divider />
             </Stack>
             <Stack>
-              <Card3a />
+              <Card3a data={data[9]} />
               <Divider />
             </Stack>
             <Stack>
-              <Card3a />
+              <Card3a data={data[10]} />
               <Divider />
             </Stack>
             <Stack>
@@ -331,9 +332,7 @@ export const Home = () => {
               data={data.filter((item) => item.category === "travel")[3]}
             />
           </Grid>
-          <Box width={`100vw`} ml={["-2", "-4", "-6", "-8"]}>
-            <Carousel />
-          </Box>
+          <Carousel />
         </Stack>
 
         <Stack borderTop={"1px solid"} py={2} gap={4}>

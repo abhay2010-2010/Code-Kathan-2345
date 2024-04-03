@@ -1,4 +1,3 @@
-
 import {
   Box,
   chakra,
@@ -10,13 +9,14 @@ import {
   useDisclosure,
   VisuallyHidden,
 } from "@chakra-ui/react";
+
 import { ReactNode } from "react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { layout } from "../../routes/Allroutes";
 import { Logo } from "../logo/Logo";
 import ManualClose from "./Modal";
-
+import { v4 as uuidv4 } from "uuid";
 const SocialButton = ({
   children,
   label,
@@ -50,7 +50,6 @@ const SocialButton = ({
 };
 
 export default function Footer() {
-
   const { onClose } = useDisclosure();
   return (
     <Box
@@ -71,7 +70,7 @@ export default function Footer() {
         <Stack direction={"row"} spacing={6} flexWrap={"wrap"}>
           {layout.map((item) => {
             return (
-              <Stack key={item.id}>
+              <Stack key={uuidv4()}>
                 {item.isVisible && (
                   <NavLink to={item.path}>
                     <Divider />
@@ -104,7 +103,7 @@ export default function Footer() {
           justify={{ base: "center", md: "space-between" }}
           align={{ base: "center", md: "center" }}
         >
-          <Text fontSize={14}>
+          <Text fontSize={12} w={"80%"}>
             © 2024 BBC. All rights reserved. The BBC is not responsible for the
             content of external sites. Read about our approach to external
             linking.
@@ -114,13 +113,13 @@ export default function Footer() {
             </span>
           </Text>
           <Stack direction={"row"} spacing={6}>
-            <SocialButton label={"Twitter"} href={"#"}>
+            <SocialButton label={"Twitter"} href="https://twitter.com/">
               <FaTwitter />
             </SocialButton>
-            <SocialButton label={"YouTube"} href={"#"}>
+            <SocialButton label={"YouTube"} href="https://youtube.com">
               <FaYoutube />
             </SocialButton>
-            <SocialButton label={"Instagram"} href={"#"}>
+            <SocialButton label={"Instagram"} href="https://instagram.com">
               <FaInstagram />
             </SocialButton>
           </Stack>
@@ -129,4 +128,3 @@ export default function Footer() {
     </Box>
   );
 }
-

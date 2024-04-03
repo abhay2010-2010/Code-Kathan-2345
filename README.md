@@ -143,9 +143,18 @@ Provide instructions and examples on how to use your project.
 
 ```bash
 # Example
+
 ```
 
-Include screenshots as necessary.
+#### Light Mode
+
+[![light theme](./frontend/src//assets/img1.png)](<[link_url](https://code-kathan.vercel.app/)>)
+
+#### Dark Mode
+
+[![dark theme](./frontend/src//assets/img2.png)](<[link_url](https://code-kathan.vercel.app/)>)
+
+#### Light Theme
 
 ## Credentials
 

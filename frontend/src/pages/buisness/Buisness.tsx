@@ -46,11 +46,15 @@ export const Buisness = () => {
         <br />
         <Divider backgroundColor={"black"} height={"2px"} />
         <br />
+
+        <Box flexDirection={["column", "row"]} display={"flex"} gap={"2rem"}>
+
         <Box
           flexDirection={["column", "row", "row"]}
           display={"flex"}
           gap={"2rem"}
         >
+
           <Card5b />
           <Card1 data={data[0]} />
         </Box>
@@ -62,28 +66,35 @@ export const Buisness = () => {
           marginX="auto"
         >
           <Box>
-            <Card1 />
+            <Card1 data={data[1]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[2]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[3]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[4]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[5]}/>
           </Box>
         </Grid>
 
+      <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20} mt={20} >
+        <Card3a data={data[0]}/>
+        <Card3a data={data[1]}/>
+        <Card3a data={data[2]}/>
+      </Grid>
+    </Box>
         <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20}>
-          <Card3a />
-          <Card3a />
-          <Card3a />
+          <Card3a data={data[3]}/>
+          <Card3a data={data[4]}/>
+          <Card3a data={data[5]}/>
         </Grid>
       </Box>
+
 
       <Carousel />
 
@@ -127,28 +138,28 @@ export const Buisness = () => {
           mt={10}
         >
           <Box>
-            <Card1 />
+            <Card1 data={data[13]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[14]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[15]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[16]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[17]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[18]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[19]}/>
           </Box>
           <Box>
-            <Card1 />
+            <Card1 data={data[20]} />
           </Box>
         </Grid>
       </Box>
