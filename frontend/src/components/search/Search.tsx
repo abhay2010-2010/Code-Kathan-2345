@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
-export const Search = () => 
+export const Search = () => {
 
   return (
     <>
