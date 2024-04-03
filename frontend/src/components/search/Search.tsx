@@ -1,6 +1,6 @@
-import { Button} from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useState } from "react";
-import { Input,InputRightElement,InputGroup} from "@chakra-ui/react";
+import { Input, InputGroup } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
