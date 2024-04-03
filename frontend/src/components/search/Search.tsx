@@ -1,4 +1,4 @@
-import { Input} from "@chakra-ui/react";
+import { Input,InputRightElement,InputGroup} from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 
 export const Search = () => {
