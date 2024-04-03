@@ -9,8 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import { Post } from "../../utils/types";
 import postData from "../../../../backend/db.json";
 import { ArrowUpIcon } from "@chakra-ui/icons";
-import { Card3a } from "../../components/Card3a/Card3a";
-import { Card3b } from "../../components/Card3b/Card3b";
+
 
 export const Culture = () => {
   const [isLoaded, setIsloading] = useState(false);

@@ -19,6 +19,7 @@ import Trending from "../pages/Trending/Trending";
 import Category from "../pages/Category/Category";
 import Article from "../pages/Article/Article";
 import Settings from "../pages/Settings/Settings";
+import SearchbarPage from "../pages/SearchBarPage/SearchbarPage";
 
 export const layout: LayoutRoute[] = [
   { id: 1, name: "Home", path: "/", isVisible: true, element: <Home /> },
@@ -43,6 +44,14 @@ export const layout: LayoutRoute[] = [
     path: "/innovation",
     isVisible: true,
     element: <Innovation />,
+  },
+  {
+    id:14,
+    name:"SearchBarPage",
+    path:"/searchbarpage",
+    isVisible:false,
+    element:<SearchbarPage/>
+
   },
   {
     id: 6,
