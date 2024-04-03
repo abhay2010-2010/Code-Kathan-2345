@@ -1,4 +1,4 @@
-import { Button, Input, InputGroup } from "@chakra-ui/react";
+import { Button} from "@chakra-ui/react";
 import { useState } from "react";
 import { Input,InputRightElement,InputGroup} from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
@@ -29,13 +29,5 @@ export const Search = () => {
         {<CiSearch size={"2rem"} color="white" />}
       </Button>
     </InputGroup>
-    <>
-      <InputGroup>
-        <InputRightElement pointerEvents="none">
-          <CiSearch size={"2rem"} />
-        </InputRightElement>
-        <Input type="text" placeholder="Search" />
-      </InputGroup>
-    </>
   );
 };
