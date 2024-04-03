@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Buisness } from "../pages/buisness/Buisness";
 import { Culture } from "../pages/culture/Culture";
 import { Earth } from "../pages/earth/Earth";
@@ -20,6 +20,7 @@ import Category from "../pages/Category/Category";
 import Article from "../pages/Article/Article";
 import Settings from "../pages/Settings/Settings";
 import { Profile } from "../pages/profile/profile";
+import { AnimatePresence } from "framer-motion";
 
 export const layout: LayoutRoute[] = [
   { id: 1, name: "Home", path: "/", isVisible: true, element: <Home /> },
@@ -175,11 +176,14 @@ export const layout: LayoutRoute[] = [
 ];
 
 export const Allroutes = () => {
+  const location = useLocation();
   return (
-    <Routes>
-      {layout.map((item) => (
-        <Route key={item.id} path={item.path} element={item.element} />
-      ))}
-    </Routes>
+    <AnimatePresence>
+      <Routes location={location} key={location.pathname}>
+        {layout.map((item) => (
+          <Route key={item.id} path={item.path} element={item.element} />
+        ))}
+      </Routes>
+    </AnimatePresence>
   );
 };
