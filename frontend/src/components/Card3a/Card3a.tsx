@@ -40,8 +40,8 @@ export const Card3a = ({ data }: Props) => {
       history = [...history, data];
       const patchObj: IUserPatch = { id, history };
       await patchUser(patchObj);
-      window.open(data.articleLink, "_blank");
     }
+    window.open(data.articleLink, "_blank");
   };
 
   return (

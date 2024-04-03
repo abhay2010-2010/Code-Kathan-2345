@@ -35,8 +35,8 @@ const Card1 = ({ data }: Props) => {
       history = [...history, data];
       const patchObj: IUserPatch = { id, history };
       await patchUser(patchObj);
-      window.open(data.articleLink, "_blank");
     }
+    window.open(data.articleLink, "_blank");
   };
 
   !data &&
@@ -61,10 +61,11 @@ const Card1 = ({ data }: Props) => {
   return (
     <Stack
       height={"full"}
-      as="a"
-      href={data.articleLink}
-      target="_blank"
-      _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
+      _hover={{
+        filter: "brightness(130%)",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
       onClick={handleClick}
     >
       <VStack className="pt-serif-regular" align={"start"} height={"full"}>
