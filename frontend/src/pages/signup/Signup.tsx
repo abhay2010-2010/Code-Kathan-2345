@@ -89,10 +89,15 @@ export function Signup() {
     <>
       <Navbar />
       <motion.div>
-        <Stack minH={"80vh"} direction={{ base: "column", md: "row" }}>
-          <Flex p={8} flex={1} align={"center"} justify={"center"}>
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          px={[2, 4, 6, 8]}
+          py={6}
+          gap={10}
+        >
+          <Flex flex={1} align={"center"} justify={"center"}>
             <Stack spacing={4} w={"full"} maxW={"md"}>
-              <Heading fontSize={"3xl"} mb={15} textAlign="center">
+              <Heading fontSize={"3xl"} textAlign="center">
                 Sign Up
               </Heading>
               <FormControl id="name">
@@ -150,8 +155,6 @@ export function Signup() {
               alt={"Login Image"}
               objectFit={"cover"}
               width="600px"
-              h=" 450px"
-              mt="100px"
               border={30}
               src={
                 "https://www.atoallinks.com/wp-content/uploads/2023/06/5030900_2636676-1200x675.jpg"
