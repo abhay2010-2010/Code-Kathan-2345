@@ -9,7 +9,7 @@ export interface IArticle {
   image2: string;
   category: string;
   clicks: number;
-  test: number;
+  test?: number;
 }
 export interface IPatchArticle {
   id: number;
