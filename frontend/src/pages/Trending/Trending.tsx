@@ -1,26 +1,19 @@
-import { Box } from "@chakra-ui/react";
-import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
-import "./Trending.css";
+import { Box, Heading } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { Chart } from "react-google-charts";
+import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
+import { useAuth } from "../../utils/authContext/authContext";
+import { useData } from "../../utils/dataContext/dataContext";
+import "./Trending.css";
 
-export const data = [
-  ["Country", "Popularity"],
-  ["Germany", 200],
-  ["United States", 300],
-  ["Brazil", 400],
-  ["Canada", 500],
-  ["France", 600],
-  ["RU", 700],
-];
-
-export const data1 = [
-  ["City", "2010 Population", "2000 Population"],
-  ["New York City, NY", 8175000, 8008000],
-  ["Los Angeles, CA", 3792000, 3694000],
-  ["Chicago, IL", 2695000, 2896000],
-  ["Houston, TX", 2099000, 1953000],
-  ["Philadelphia, PA", 1526000, 1517000],
-];
+// export const data1 = [
+//   ["City", "2010 Population", "2000 Population"],
+//   ["New York City, NY", 8175000, 8008000],
+//   ["Los Angeles, CA", 3792000, 3694000],
+//   ["Chicago, IL", 2695000, 2896000],
+//   ["Houston, TX", 2099000, 1953000],
+//   ["Philadelphia, PA", 1526000, 1517000],
+// ];
 
 const options = {
   title: "Population of Largest U.S. Cities",
@@ -37,13 +30,60 @@ const options = {
 };
 
 const Trending = () => {
+  const countryMap: Map<string, number> = new Map();
+
+  const { users, getUsers } = useAuth();
+  const { posts, getPosts } = useData();
+
+  useEffect(() => {
+    getUsers();
+    getPosts();
+  }, []);
+
+  users.forEach((user) => {
+    // console.log(user.address.country);
+    const country = user?.address?.country;
+    const count = countryMap.get(country) || 0;
+    countryMap.set(country, count + 1);
+  });
+
+  // console.log(countryMap);
+
+  const data: [string, number | string][] = [["Country", "Popularity"]];
+  countryMap.forEach((count, country) => {
+    data.push([country, count]);
+  });
+
+  const sortedPosts = posts.sort((a, b) => b.clicks - a.clicks);
+
+  // Take the top 10 items
+  const top10 = sortedPosts.slice(0, 10);
+
+  // Create an array in the desired format
+  const data1: (string | number)[][] = [
+    ["Title", "Most Viewed", "Trending Article"],
+  ];
+  top10.forEach((post) => {
+    data1.push([post.title, post.clicks, post.clicks]);
+  });
+
   return (
-    <div>
+    <Box>
       <SidebarWithHeader />
-      <Box h={"100vh"} ml={{ base: 0, md: 60 }} p="4">
-        <div id="charts">
-          <div>
-            <h2>Total Users</h2>
+      <Box mt={"12vh"} minH={"88vh"} ml={{ base: 0, md: 60 }} p="4">
+        <Box>
+          <Heading textAlign={"center"}>Top 10 Trending Article</Heading>
+          <Chart
+            chartType="ComboChart"
+            width="100%"
+            height="400px"
+            data={data1}
+            options={options}
+          />
+        </Box>
+        <Box id="charts">
+          <Box>
+            <Heading>Total Users</Heading>
             <Chart
               chartEvents={[
                 {
@@ -62,21 +102,10 @@ const Trending = () => {
               height="400px"
               data={data}
             />
-          </div>
-
-          <div>
-            <h2>Top 10 Trending Article</h2>
-            <Chart
-              chartType="ComboChart"
-              width="100%"
-              height="400px"
-              data={data1}
-              options={options}
-            />
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
 

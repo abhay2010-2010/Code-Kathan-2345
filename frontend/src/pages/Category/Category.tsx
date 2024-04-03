@@ -38,7 +38,13 @@ export default function Category() {
   return (
     <>
       <SidebarWithHeader />
-      <Box h={"100vh"} ml={{ base: 0, md: 60 }} p="4" textAlign={"center"}>
+      <Box
+        mt={"6vh"}
+        minH={"88vh"}
+        ml={{ base: 0, md: 60 }}
+        p="4"
+        textAlign={"center"}
+      >
         <chakra.h1
           textAlign={"center"}
           fontSize={"4xl"}
