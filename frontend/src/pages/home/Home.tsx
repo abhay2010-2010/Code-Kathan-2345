@@ -29,7 +29,7 @@ export const Home = () => {
   const { posts, getPosts } = useData();
 
   let min = useMemo(() => {
-    return useRandomNumber(0, 40);
+    return useRandomNumber(30, 40);
   }, []);
 
   let data: IArticle[] = posts;
@@ -53,6 +53,7 @@ export const Home = () => {
       behavior: "smooth",
     });
   };
+  console.log(min)
   useEffect(() => {
     getPosts();
     const toggleVisibility = () => {
@@ -71,7 +72,7 @@ export const Home = () => {
     <>
       <Navbar />
       <motion.div
-        initial={{ opacity: 0,}}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
         exit={{ opacity: 0, transition: { duration: 0.2 } }}
       >

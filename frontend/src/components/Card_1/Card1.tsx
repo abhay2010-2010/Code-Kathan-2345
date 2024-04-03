@@ -9,6 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
 import { useData } from "../../utils/dataContext/dataContext";
@@ -24,6 +25,8 @@ const Card1 = ({ data }: Props) => {
     patchUser,
     authState: { user },
   } = useAuth();
+
+  const [imgLoaded, setImgLoaded] = useState(false);
   const { dataLoading } = useData();
   const handleClick = async () => {
     if (user) {
@@ -53,6 +56,8 @@ const Card1 = ({ data }: Props) => {
       clicks: 283,
     });
 
+  useEffect(() => {}, []);
+
   return (
     <Stack
       height={"full"}
@@ -65,7 +70,7 @@ const Card1 = ({ data }: Props) => {
       <VStack className="pt-serif-regular" align={"start"} height={"full"}>
         <Skeleton
           width="full"
-          isLoaded={!dataLoading}
+          isLoaded={!dataLoading && imgLoaded}
           fadeDuration={globalVariables.skeletionFade}
           minH="220px"
         >
@@ -75,6 +80,7 @@ const Card1 = ({ data }: Props) => {
             alt="Image"
             objectFit={"contain"}
             objectPosition={"center"}
+            onLoad={() => setImgLoaded(true)}
           />
         </Skeleton>
         <SkeletonText
