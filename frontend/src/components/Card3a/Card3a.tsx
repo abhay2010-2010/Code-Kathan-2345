@@ -4,6 +4,7 @@ import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
 import { Post } from "../../utils/types";
 import { useData } from "../../utils/dataContext/dataContext";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface Props {
   data: Post;
@@ -38,7 +39,6 @@ export const Card3a = ({ data }: Props) => {
       const id = user.id;
       history = [...history, data];
       const patchObj: IUserPatch = { id, history };
-      console.log(patchObj);
       await patchUser(patchObj);
       window.open(data.articleLink, "_blank");
     }
@@ -57,18 +57,33 @@ export const Card3a = ({ data }: Props) => {
       }}
       onClick={handleClick}
     >
-      <SkeletonText isLoaded={!dataLoading} skeletonHeight="7" noOfLines={2}>
+      <SkeletonText
+        isLoaded={!dataLoading}
+        skeletonHeight="7"
+        noOfLines={2}
+        fadeDuration={globalVariables.skeletionFade}
+      >
         <Heading size="md" fontWeight="700" noOfLines={2}>
           {data.title}
         </Heading>
       </SkeletonText>
-      <SkeletonText isLoaded={!dataLoading} skeletonHeight="3" noOfLines={4}>
+      <SkeletonText
+        isLoaded={!dataLoading}
+        skeletonHeight="4"
+        noOfLines={3}
+        fadeDuration={globalVariables.skeletionFade}
+      >
         <Text fontSize="15px" noOfLines={3}>
           {data.Description}
         </Text>
       </SkeletonText>
       <Flex>
-        <SkeletonText isLoaded={!dataLoading} skeletonHeight="2" noOfLines={1}>
+        <SkeletonText
+          isLoaded={!dataLoading}
+          skeletonHeight="3"
+          noOfLines={1}
+          fadeDuration={globalVariables.skeletionFade}
+        >
           <Text display="flex" gap={2} fontSize="12px">
             {data.time} hrs ago | {data.source}
           </Text>
