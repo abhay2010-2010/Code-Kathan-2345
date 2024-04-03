@@ -20,7 +20,7 @@ export const News = () => {
     .filter((post) => post.category === "world")
     .slice(1, 30);
 
-  let crousalData: Post[] = data.slice(10, 30);
+  let crousalData: Post[] = data.slice(1, 30);
 
   data.sort((a, b) => b.clicks - a.clicks);
 
@@ -54,9 +54,9 @@ export const News = () => {
         animate={{ opacity: 1, transition: { duration: 0.0 } }}
         exit={{ opacity: 0, transition: { duration: 0.0 } }}
       >
-        <Box p={5}>
-          <Heading color={"#cd2626"} fontSize={"4rem"} lineHeight={1}>
-            NEWS
+        <Box px={[2, 4, 6, 8]}>
+          <Heading bg={"yellow"}>
+            News
           </Heading>
           <br />
           <Divider backgroundColor={"black"} height={"2px"} />
@@ -178,15 +178,15 @@ export const News = () => {
           <Heading fontSize={"20px"} mt={5} mb={5}>
             More in Buisness
           </Heading>
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
+          <SearchCard data={data[21]}/>
+          <SearchCard data={data[22]}/>
+          <SearchCard data={data[23]}/>
+          <SearchCard data={data[24]}/>
+          <SearchCard data={data[25]}/>
+          <SearchCard data={data[26]}/>
+          <SearchCard data={data[27]}/>
+          <SearchCard data={data[28]}/>
+          <SearchCard data={data[29]}/>
         </Box>
         {isVisible && (
           <Box
