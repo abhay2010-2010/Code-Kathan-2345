@@ -1,5 +1,6 @@
-import { Button, Input, InputGroup } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useState } from "react";
+import { Input, InputGroup } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +15,7 @@ export const Search = () => {
     navigate(`/searchbarpage?query=${text}`);
     setText("");
   };
+
   return (
     <InputGroup>
       <Input

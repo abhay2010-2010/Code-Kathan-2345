@@ -1,9 +1,9 @@
-import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
+import Dashboard from "../Dashboard/DashBoard";
 
 export const Admin = () => {
   return (
     <>
-      <SidebarWithHeader />
+      <Dashboard />
     </>
   );
 };

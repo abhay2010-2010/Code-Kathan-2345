@@ -16,7 +16,7 @@ import { Post } from "../../utils/types";
 
 export const Sports = () => {
   let data: Post[] = postData.posts.filter(
-    (post) => post.category === "sports"
+    (post) => post.category === "sports",
   );
 
   let crousalData: Post[] = data.slice(1, 50);
