@@ -5,10 +5,12 @@ import App from "./App.tsx";
 import { AuthProvider } from "./utils/authContext/authContext.tsx";
 import { DataContextProvider } from "./utils/dataContext/dataContext.tsx";
 import "./index.css";
+import "@fontsource/domine/700.css";
+
 const theme = extendTheme({
   fonts: {
-    heading: "body",
-    p: "body",
+    heading: `Domine`,
+    body: "Domine",
   },
 });
 ReactDOM.createRoot(document.getElementById("root")!).render(
