@@ -1,7 +1,5 @@
-import { Route, Routes } from "react-router-dom";
 import { Admin } from "../pages/Admin/Admin";
 import Article from "../pages/Article/Article";
-import Category from "../pages/Category/Category";
 import Dashboard from "../pages/Dashboard/DashBoard";
 import { Login } from "../pages/Login/Login";
 import Trending from "../pages/Trending/Trending";
@@ -21,9 +19,7 @@ import { Travel } from "../pages/travel/Travel";
 import { Video } from "../pages/video/Video";
 import { LayoutRoute } from "../utils/layoutRoute";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-import { SearchPage } from "../pages/searchPage/SearchPage";
 import Category from "../pages/Category/Category";
-import { Profile } from "../pages/profile/profile";
 import SearchbarPage from "../pages/SearchBarPage/SearchbarPage";
 import { AnimatePresence } from "framer-motion";
 
