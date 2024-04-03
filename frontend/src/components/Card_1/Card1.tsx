@@ -97,9 +97,14 @@ const Card1 = ({ data }: Props) => {
         <Text mt={1} noOfLines={3} fontWeight="400" fontSize="15px">
           {data.Description}
         </Text>
-        <Flex mt={"auto"}>
-          <Text fontWeight="400" fontSize="12px" display="flex" gap={2} mt={4}>
-            {data.time} hrs ago <Text fontWeight="600">| {data.source} |</Text>{" "}
+        <Flex mt={"auto"} alignItems={"center"} gap={2}>
+          <Text fontWeight="400" fontSize="12px">
+            {data.time} hrs ago
+          </Text>
+          <Text fontWeight="500" whiteSpace={"nowrap"}>
+            | {data.source} |
+          </Text>
+          <Text fontWeight="400" fontSize="12px">
             {data.category.toLocaleUpperCase()}
           </Text>
         </Flex>

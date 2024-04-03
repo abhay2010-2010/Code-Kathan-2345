@@ -10,7 +10,7 @@ export const ProtectedRoutes = ({ children }: ProtectedRoutesProps) => {
   const isAuth = true; //Change this logic for auth
   useEffect(() => {
     if (!isAuth) {
-      navigate("/login");
+      return navigate("/login");
     }
   }, []);
   return <>{children}</>;
