@@ -20,6 +20,7 @@ import Category from "../pages/Category/Category";
 import Article from "../pages/Article/Article";
 import Settings from "../pages/Settings/Settings";
 import { Profile } from "../pages/profile/profile";
+import SearchbarPage from "../pages/SearchBarPage/SearchbarPage";
 
 export const layout: LayoutRoute[] = [
   { id: 1, name: "Home", path: "/", isVisible: true, element: <Home /> },

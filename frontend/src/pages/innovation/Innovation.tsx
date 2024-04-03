@@ -132,7 +132,7 @@ export const Innovation = () => {
           </Box>
         </Grid>
         <Box>
-          <Card1 />
+          <Card1  data={data[49]} />
         </Box>
       </Box>
       <Carousel />

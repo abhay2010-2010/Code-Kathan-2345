@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Image, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Post } from '../../utils/types';
 
@@ -76,12 +76,13 @@ function SearchCard({ data }: Props) {
                         <Image
                             objectFit='cover'
 
-                            src={data.image1}
+                            src={data.image2}
                             alt='Caffe Latte'
                         />
                     </Skeleton>
                 </Box>
             </Box>
+           
 
         </div>
     )

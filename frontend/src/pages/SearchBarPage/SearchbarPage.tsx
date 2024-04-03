@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  CircularProgress,
+  Flex,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import { Navbar } from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import { GoSearch } from "react-icons/go";
@@ -6,34 +14,48 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchCard from "../../components/Search Card/SearchCard";
+import { baseUrl } from "../../utils/baseUrl";
 const SearchbarPage = () => {
-  const [text, setText] = useState<string>("");
+  const [loading, isLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
   const [queryParams] = useSearchParams();
-  const [data, setData] = useState([]);
-  console.log(data);
+  const [text, setText] = useState<string>(queryParams.get("query") || "");
+  const [data, setData] = useState<[]>([]);
+  const[totalPage,setTotalPage]=useState<number>(1);
+  console.log(data.length)
+  
+  
+
   const handleChange = (e: any) => {
     setText(e.target.value);
   };
+  console.log(baseUrl);
 
-  const getData = (text: string) => {
+  const getData = (text: string,) => {
+    isLoading(false);
     axios
-      .get(`https://code-kathan-api.vercel.app/posts?q=${text}`)
+      .get(`${baseUrl}/posts?q=${text}&_limit=5&_page=${page}`)
       .then((res) => {
         setData(res.data);
+        const { "x-total-count": total } = res.headers;
+        setTotalPage(Math.ceil(total/5));
+        isLoading(true);
       })
       .catch((err) => {
         console.log(err);
+        isLoading(false);
       });
   };
   const handleClick = (e: any) => {
     e.preventDefault();
     console.log(text);
     getData(text);
+    setPage(1);
   };
 
   useEffect(() => {
-    getData(queryParams.get("query"));
-  }, []);
+    getData(queryParams.get("query") || "");
+  }, [page]);
 
   return (
     <div>
@@ -58,9 +80,22 @@ const SearchbarPage = () => {
           </Button>
         </Flex>
 
-        <SearchCard data={data} />
+        {!loading ? (
+          <Center>
+            {" "}
+            <CircularProgress isIndeterminate color="green.300" />
+          </Center>
+        ) : (
+          data.map((el,index) => {
+            return <SearchCard data={el} key={index} />;
+          })
+        )}
       </Box>
-
+      <Center>
+        <Button bg={'black'} color={'white'} onClick={()=>setPage(prev=>prev-1)} isDisabled={page===1} >Prev</Button>
+             <Text fontWeight={'800'}>{page}</Text>
+        <Button bg={'black'} color={'white'} onClick={()=>setPage(prev=>prev+1)} isDisabled={page===totalPage}>Next</Button>{" "}
+      </Center>
       <Footer />
     </div>
   );
