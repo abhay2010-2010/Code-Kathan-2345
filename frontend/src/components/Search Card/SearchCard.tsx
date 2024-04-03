@@ -76,12 +76,13 @@ function SearchCard({ data }: Props) {
                         <Image
                             objectFit='cover'
 
-                            src={data.image1}
+                            src={data.image2}
                             alt='Caffe Latte'
                         />
                     </Skeleton>
                 </Box>
             </Box>
+           
 
         </div>
     )

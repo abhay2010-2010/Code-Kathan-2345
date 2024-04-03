@@ -65,16 +65,14 @@ function Card5b({ data }: Props) {
               <Text py="2" mt={3}>
                 {data.Description}
               </Text>
-              <Flex>
-                <Text
-                  fontWeight="400"
-                  fontSize="14px"
-                  display="flex"
-                  gap={2}
-                  mt={4}
-                >
+              <Flex mt={"auto"} alignItems={"center"} gap={2}>
+                <Text fontWeight="400" fontSize="12px">
                   {data.time} hrs ago
-                  <Text fontWeight="600">| {data.source} |</Text>
+                </Text>
+                <Text fontWeight="500" whiteSpace={"nowrap"}>
+                  | {data.source} |
+                </Text>
+                <Text fontWeight="400" fontSize="12px">
                   {data.category.toLocaleUpperCase()}
                 </Text>
               </Flex>

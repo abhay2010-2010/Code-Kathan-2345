@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard/DashBoard";
 import { Login } from "../pages/Login/Login";
 import Trending from "../pages/Trending/Trending";
 import Users from "../pages/Users/users";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Buisness } from "../pages/buisness/Buisness";
 import { Culture } from "../pages/culture/Culture";
 import { Earth } from "../pages/earth/Earth";
@@ -20,6 +21,11 @@ import { Travel } from "../pages/travel/Travel";
 import { Video } from "../pages/video/Video";
 import { LayoutRoute } from "../utils/layoutRoute";
 import { ProtectedRoutes } from "./ProtectedRoutes";
+import { SearchPage } from "../pages/searchPage/SearchPage";
+import Category from "../pages/Category/Category";
+import { Profile } from "../pages/profile/profile";
+import SearchbarPage from "../pages/SearchBarPage/SearchbarPage";
+import { AnimatePresence } from "framer-motion";
 
 export const layout: LayoutRoute[] = [
   { id: 1, name: "Home", path: "/", isVisible: true, element: <Home /> },
@@ -44,6 +50,14 @@ export const layout: LayoutRoute[] = [
     path: "/innovation",
     isVisible: true,
     element: <Innovation />,
+  },
+  {
+    id:14,
+    name:"SearchBarPage",
+    path:"/searchbarpage",
+    isVisible:false,
+    element:<SearchbarPage/>
+
   },
   {
     id: 6,
@@ -93,14 +107,14 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 14,
+    id: 13,
     name: "Home",
     path: "search/:id",
     isVisible: false,
     element: <SearchPage />,
   },
   {
-    id: 16,
+    id: 14,
     name: "DashBoard",
     path: "/admin/dashboard/",
     isVisible: false,
@@ -111,7 +125,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 17,
+    id: 15,
     name: "Trending",
     path: "/admin/trending/",
     isVisible: false,
@@ -122,7 +136,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 17,
+    id: 16,
     name: "Category",
     path: "/admin/category/",
     isVisible: false,
@@ -144,7 +158,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 17,
+    id: 18,
     name: "Setting",
     path: "/admin/users/",
     isVisible: false,
@@ -155,7 +169,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 15,
+    id: 19,
     name: "Profile",
     path: "/profile",
     isVisible: false,
@@ -166,7 +180,7 @@ export const layout: LayoutRoute[] = [
     ),
   },
   {
-    id: 16,
+    id: 20,
     name: "Default",
     path: "*",
     isVisible: false,
@@ -175,11 +189,14 @@ export const layout: LayoutRoute[] = [
 ];
 
 export const Allroutes = () => {
+  const location = useLocation();
   return (
-    <Routes>
-      {layout.map((item) => (
-        <Route key={item.id} path={item.path} element={item.element} />
-      ))}
-    </Routes>
+    <AnimatePresence>
+      <Routes location={location} key={location.pathname}>
+        {layout.map((item) => (
+          <Route key={item.id} path={item.path} element={item.element} />
+        ))}
+      </Routes>
+    </AnimatePresence>
   );
 };

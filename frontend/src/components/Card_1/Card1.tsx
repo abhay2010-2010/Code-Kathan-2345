@@ -1,7 +1,5 @@
 // Card1.tsx
 import {
-  Box,
-  Button,
   Flex,
   Heading,
   Image,
@@ -11,10 +9,12 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
+import { useData } from "../../utils/dataContext/dataContext";
 import { IArticle } from "../../utils/dataContext/types";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface Props {
   data: IArticle;
@@ -26,19 +26,19 @@ const Card1 = ({ data }: Props) => {
     authState: { user },
   } = useAuth();
 
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { dataLoading } = useData();
   const handleClick = async () => {
     if (user) {
       let history = user.history?.filter((item) => item.id !== data.id) || [];
       const id = user.id;
       history = [...history, data];
       const patchObj: IUserPatch = { id, history };
-      console.log(patchObj);
       await patchUser(patchObj);
       window.open(data.articleLink, "_blank");
     }
   };
 
-  const [isLoaded, setIsLoaded] = useState(false);
   !data &&
     (data = {
       id: 1,
@@ -56,23 +56,9 @@ const Card1 = ({ data }: Props) => {
       clicks: 283,
     });
 
-  return isLoaded ? (
-    <>
-      <Box padding="6" boxShadow="lg">
-        <Skeleton height="150px" width="300px" />
-        <SkeletonText
-          mt="4"
-          noOfLines={3}
-          spacing="1"
-          skeletonHeight="4"
-          width="300px"
-        />
-        <Box textAlign="center">
-          <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
-        </Box>
-      </Box>
-    </>
-  ) : (
+  useEffect(() => {}, []);
+
+  return (
     <Stack
       height={"full"}
       as="a"
@@ -82,27 +68,59 @@ const Card1 = ({ data }: Props) => {
       onClick={handleClick}
     >
       <VStack className="pt-serif-regular" align={"start"} height={"full"}>
-        <Skeleton width="full" isLoaded={!isLoaded}>
+        <Skeleton
+          width="full"
+          isLoaded={!dataLoading && imgLoaded}
+          fadeDuration={globalVariables.skeletionFade}
+          minH="220px"
+        >
           <Image
             width="full"
             src={data.image2}
             alt="Image"
             objectFit={"contain"}
-            objectPosition={"left"}
+            objectPosition={"center"}
+            onLoad={() => setImgLoaded(true)}
           />
         </Skeleton>
-        <Heading mt={1} noOfLines={1} size="md" fontWeight="700">
-          {data.title}
-        </Heading>
-        <Text mt={1} noOfLines={3} fontWeight="400" fontSize="15px">
-          {data.Description}
-        </Text>
-        <Flex mt={"auto"}>
-          <Text fontWeight="400" fontSize="12px" display="flex" gap={2} mt={4}>
-            {data.time} hrs ago <Text fontWeight="600">| {data.source} |</Text>{" "}
-            {data.category.toLocaleUpperCase()}
+        <SkeletonText
+          isLoaded={!dataLoading}
+          skeletonHeight="9"
+          noOfLines={1}
+          fadeDuration={globalVariables.skeletionFade}
+        >
+          <Heading mt={1} noOfLines={1} size="md" fontWeight="700">
+            {data.title}
+          </Heading>
+        </SkeletonText>
+        <SkeletonText
+          isLoaded={!dataLoading}
+          skeletonHeight="4"
+          noOfLines={3}
+          fadeDuration={globalVariables.skeletionFade}
+        >
+          <Text mt={1} noOfLines={3} fontWeight="400" fontSize="15px">
+            {data.Description}
           </Text>
-        </Flex>
+        </SkeletonText>
+        <SkeletonText
+          isLoaded={!dataLoading}
+          skeletonHeight="3"
+          noOfLines={1}
+          fadeDuration={globalVariables.skeletionFade}
+        >
+          <Flex mt={"auto"} alignItems={"center"} gap={2} whiteSpace={"nowrap"}>
+            <Text fontWeight="400" fontSize="12px">
+              {data.time} hrs ago
+            </Text>
+            <Text fontWeight="500" whiteSpace={"nowrap"}>
+              | {data.source} |
+            </Text>
+            <Text fontWeight="400" fontSize="12px">
+              {data.category.toLocaleUpperCase()}
+            </Text>
+          </Flex>
+        </SkeletonText>
       </VStack>
     </Stack>
   );
