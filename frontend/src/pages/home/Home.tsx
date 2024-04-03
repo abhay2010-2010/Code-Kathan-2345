@@ -53,7 +53,7 @@ export const Home = () => {
       behavior: "smooth",
     });
   };
-  console.log(min)
+
   useEffect(() => {
     getPosts();
     const toggleVisibility = () => {
