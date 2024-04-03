@@ -12,6 +12,7 @@ import {
   Th,
   Thead,
   Tr,
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -21,14 +22,14 @@ import ProfileCard1 from "../../components/profileCard1/ProfileCard1";
 import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
 import { IArticle } from "../../utils/dataContext/types";
-
+import { motion } from "framer-motion";
 
 export const Profile = () => {
   const {
     patchUser,
     authState: { loginLoading, user },
   } = useAuth();
-
+  const toast = useToast();
   let history: IArticle[] = user?.history || [];
 
   const handleClick = async (itemId: number) => {
@@ -36,7 +37,24 @@ export const Profile = () => {
       let cur = history.filter((item) => item.id !== itemId) || [];
       const id = user.id;
       const patchObj: IUserPatch = { id, history: cur };
-      patchUser(patchObj);
+      let examplePromise = patchUser(patchObj);
+      toast.promise(examplePromise, {
+        success: {
+          title: "Deleted Successfully",
+          description: "Deleted",
+          duration: 3000,
+        },
+        error: {
+          title: "Failed to Delete",
+          description: "Something's wrong",
+          duration: 3000,
+        },
+        loading: {
+          title: "Deleting",
+          description: "Please wait",
+          duration: 3000,
+        },
+      });
     }
   };
   const scrollToTop = () => {
@@ -49,12 +67,16 @@ export const Profile = () => {
     scrollToTop();
   }, []);
 
-  useEffect(() => {
-    console.log("history", user?.history);
-  }, [loginLoading]);
+  // useEffect(() => {
+  //   console.log("history", user?.history);
+  // }, [loginLoading]);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Navbar />
       <Box px={[2, 4, 6, 8]}>
         <Grid
@@ -113,6 +135,6 @@ export const Profile = () => {
         </Grid>
       </Box>
       <Footer />
-    </>
+    </motion.div>
   );
 };
