@@ -53,16 +53,17 @@ export default function Card2a({ data, isDefault }: Props) {
       history = [...history, data];
       const patchObj: IUserPatch = { id, history };
       await patchUser(patchObj);
-      window.open(data.articleLink, "_blank");
     }
+    window.open(data.articleLink, "_blank");
   };
 
   return (
     <Center
-      as="a"
-      href={data.articleLink}
-      target="_black"
-      _hover={{ filter: "brightness(120%)", textDecoration: "underline" }}
+      _hover={{
+        filter: "brightness(120%)",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
       onClick={handleClick}
     >
       <Box role={"group"} w={"full"}>

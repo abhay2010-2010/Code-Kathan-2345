@@ -23,8 +23,8 @@ export const Card3b = ({ data }: Props) => {
       history = [...history, data];
       const patchObj: IUserPatch = { id, history };
       await patchUser(patchObj);
-      window.open(data.articleLink, "_blank");
     }
+    window.open(data.articleLink, "_blank");
   };
   !data &&
     (data = {
@@ -47,10 +47,11 @@ export const Card3b = ({ data }: Props) => {
       gap={1}
       direction={"column"}
       justify={"space-evenly"}
-      as="a"
-      href={data.articleLink}
-      target="_black"
-      _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
+      _hover={{
+        filter: "brightness(130%)",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
       onClick={handleClick}
     >
       <SkeletonText

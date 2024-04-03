@@ -22,6 +22,7 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
@@ -39,9 +40,30 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const {
-    authState: { user, isAuth },
+    authState: { user, isAuth, loginLoading },
+    logoutUser,
   } = useAuth();
-
+  const toast = useToast();
+  const handleLogout = () => {
+    let examplePromise = logoutUser();
+    toast.promise(examplePromise, {
+      success: {
+        title: "Logout Successfully",
+        description: `Ciao`,
+        duration: 3000,
+      },
+      error: {
+        title: "Failed to Logout",
+        description: "Something's wrong",
+        duration: 3000,
+      },
+      loading: {
+        title: "Logging Out",
+        description: "Please wait",
+        duration: 3000,
+      },
+    });
+  };
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -194,8 +216,8 @@ export const Navbar = () => {
         <ButtonGroup ml={"auto"} display={{ base: "none", md: "unset" }}>
           {!isAuth && (
             <>
-              <Button onClick={() => navigate("./signup")}>Register</Button>
-              <Button onClick={() => navigate("./login")}>Sign In</Button>
+              <Button onClick={() => navigate("/signup")}>Register</Button>
+              <Button onClick={() => navigate("/login")}>Sign In</Button>
             </>
           )}
 
@@ -253,7 +275,13 @@ export const Navbar = () => {
                     >
                       Profile
                     </Button>
-                    <Button flex={1} fontSize={"sm"} rounded={"full"}>
+                    <Button
+                      flex={1}
+                      fontSize={"sm"}
+                      rounded={"full"}
+                      onClick={handleLogout}
+                      isLoading={loginLoading}
+                    >
                       Logout
                     </Button>
                   </Stack>

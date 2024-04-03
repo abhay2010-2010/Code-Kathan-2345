@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }: Props) => {
             user: res.data.user,
             accessToken: res.data.accessToken,
             loginError: false,
+            isAuth: true,
           }));
           writeLocalStorage(res.data.user, res.data.accessToken);
           resolve(`Welcome ${res.data.user.name}`);
@@ -120,6 +121,7 @@ export const AuthProvider = ({ children }: Props) => {
             user: res.data.user,
             accessToken: res.data.accessToken,
             loginError: false,
+            isAuth: true,
           }));
           writeLocalStorage(res.data.user, res.data.accessToken);
           resolve(`Welcome ${res.data.user.name}`);
