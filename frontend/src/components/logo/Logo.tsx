@@ -1,10 +1,14 @@
 import { Icon } from "@chakra-ui/react";
 
-export const Logo = () => (
+interface Props {
+  size?: string;
+}
+
+export const Logo = ({ size }: Props) => (
   <Icon
     viewBox="0 0 2000 1247"
     preserveAspectRatio="xMidYMid meet"
-    width="7rem"
+    width={size || "7rem"}
     height="auto"
   >
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg">
