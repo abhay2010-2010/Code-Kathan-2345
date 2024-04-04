@@ -1,10 +1,10 @@
 import { Box, Button, Divider, Text } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import CardCrousal from "./CardCrousal";
 import { Post } from "../../utils/types";
+import CardCrousal from "./CardCrousal";
 
 interface Props {
   data?: Post[];
@@ -178,7 +178,6 @@ function Carousel({ data }: Props) {
         clicks: 290,
       },
     ]);
-  const [isLoaded] = useState(true);
   let sliderRef = useRef<any>(null);
   const next = () => {
     sliderRef.current.slickNext();
@@ -251,7 +250,7 @@ function Carousel({ data }: Props) {
           {...settings}
         >
           {data.map((item, idx) => (
-            <CardCrousal isLoaded={isLoaded} data={item} key={idx} />
+            <CardCrousal  data={item} key={idx} />
           ))}
         </Slider>
       </Box>

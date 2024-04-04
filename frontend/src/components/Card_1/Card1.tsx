@@ -95,9 +95,9 @@ const Card1 = ({ data }: Props) => {
           </Heading>
         </SkeletonText>
         <SkeletonText
-          isLoaded={!dataLoading}
-          skeletonHeight="4"
-          noOfLines={3}
+        isLoaded={!dataLoading}
+          skeletonHeight="9"
+          noOfLines={1}
           fadeDuration={globalVariables.skeletionFade}
         >
           <Text mt={1} noOfLines={3} fontWeight="400" fontSize="15px">

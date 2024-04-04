@@ -1,7 +1,18 @@
-import { Box, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Skeleton,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
 import { Post } from "../../utils/types";
+import { useState } from "react";
+import { useData } from "../../utils/dataContext/dataContext";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface Props {
   data: Post;
@@ -24,6 +35,8 @@ export default function Card2b({ data }: Props) {
       category: "world",
       clicks: 283,
     });
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { dataLoading } = useData();
   const {
     patchUser,
     authState: { user },
@@ -49,14 +62,22 @@ export default function Card2b({ data }: Props) {
       onClick={handleClick}
     >
       <Flex w={"full"} h={"full"} direction="column">
-        <Image
-          width={"100%"}
-          objectFit={"contain"}
-          objectPosition={"center"}
-          src={data.image2}
-          alt="#"
-          flex={1}
-        />
+        <Skeleton
+          width="full"
+          isLoaded={!dataLoading && imgLoaded}
+          fadeDuration={globalVariables.skeletionFade}
+          minH="350px"
+        >
+          <Image
+            width={"100%"}
+            objectFit={"contain"}
+            objectPosition={"center"}
+            src={data.image2}
+            alt="#"
+            flex={1}
+            onLoad={() => setImgLoaded(true)}
+          />
+        </Skeleton>
         <Stack textAlign={"start"} flex={1}>
           <Heading fontSize={"2xl"} fontWeight={600} mt={4}>
             {data.title}
