@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchCard from "../../components/Search Card/SearchCard";
 import { baseUrl } from "../../utils/baseUrl";
+import { Post } from "../../utils/types";
 const SearchbarPage = () => {
   const [loading, isLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -22,7 +23,7 @@ const SearchbarPage = () => {
   const [text, setText] = useState<string>(queryParams.get("query") || "");
   console.log(text);
   
-  const [data, setData] = useState<[]>([]);
+  const [data, setData] = useState<Post[]>([]);
   const[totalPage,setTotalPage]=useState<number>(1);
  
   
