@@ -10,13 +10,17 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useAuth } from "../../utils/authContext/authContext";
+import { IUserPatch } from "../../utils/authContext/types";
+import { useData } from "../../utils/dataContext/dataContext";
 import { Post } from "../../utils/types";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface Props {
-  data?: Post;
+  data: Post;
 }
 function Card5({ data }: Props) {
-  const loading = false;
   !data &&
     (data = {
       id: 1,
@@ -33,6 +37,22 @@ function Card5({ data }: Props) {
       category: "world",
       clicks: 283,
     });
+  const {
+    patchUser,
+    authState: { user },
+  } = useAuth();
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { dataLoading } = useData();
+  const handleClick = async () => {
+    if (user) {
+      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      const id = user.id;
+      history = [...history, data];
+      const patchObj: IUserPatch = { id, history };
+      await patchUser(patchObj);
+    }
+    window.open(data.articleLink, "_blank");
+  };
   return (
     <Box>
       <Card
@@ -40,26 +60,31 @@ function Card5({ data }: Props) {
         overflow="hidden"
         variant="outline"
         mb={10}
-        as="a"
-        href={data.articleLink}
-        target="_blank"
         _hover={{
           filter: "brightness(130%)",
           textDecoration: "underline",
+          cursor: "pointer",
         }}
+        onClick={handleClick}
       >
-        <Skeleton width={"fit-content"} isLoaded={!loading}>
+        <Skeleton
+          width="full"
+          isLoaded={!dataLoading && imgLoaded}
+          fadeDuration={globalVariables.skeletionFade}
+          h="100%"
+        >
           <Image
             objectFit="contain"
             w={"100%"}
             height={"400px"}
             src={data.image2}
             alt="Caffe Latte"
+            onLoad={() => setImgLoaded(true)}
           />
         </Skeleton>
         <Stack>
           <CardBody>
-            <Skeleton width={"fit-content"} isLoaded={!loading}>
+            <Skeleton width={"fit-content"} isLoaded={!dataLoading}>
               <Heading size="md" mt={20}>
                 {data.title}
               </Heading>
@@ -70,7 +95,7 @@ function Card5({ data }: Props) {
               noOfLines={4}
               spacing="4"
               skeletonHeight="2"
-              isLoaded={!loading}
+              isLoaded={!dataLoading}
             >
               <Text py="2" mt={3}>
                 {data.Description}

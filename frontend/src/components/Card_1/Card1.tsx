@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
 import { useData } from "../../utils/dataContext/dataContext";
@@ -56,7 +56,7 @@ const Card1 = ({ data }: Props) => {
       clicks: 283,
     });
 
-  useEffect(() => {}, []);
+
 
   return (
     <Stack
