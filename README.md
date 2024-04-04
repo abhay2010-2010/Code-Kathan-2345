@@ -140,9 +140,11 @@ Solution: We've integrated a sleek theming system that allows users to effortles
 Detailed instructions on how to install, configure, and get the project running. For BE/FS projects, guide the reviewer how to check mongodb schema etc.
 
 ```bash
-npm install my-project
-cd my-project
-npm start
+clone the repo
+cd into Code-kathan-2345
+npm run install
+npm run start_be to start the backend
+npm run start_de to start the frontend
 ```
 
 
@@ -169,17 +171,31 @@ npm run start_be
 
 ## Credentials
 
-Provide user credentials for autheticated pages
+Admin Credentials
 
-## APIs Used
+```bash
+email- admin@mail.com
+password- admin
+```
 
-If your application relies on external APIs, document them and include any necessary links or references.
+User Credential
+
+```Bash
+email- user@mail.com
+password- password
+```
+
 
 ## API Endpoints
 
-In case of Backend Applications provide a list of your API endpoints, methods, brief descriptions, and examples of request/response.
-GET /api/items - retrieve all items
-POST /api/items - create a new item
+GET /posts - retrieve all items
+POST /posts - create a new item
+PATCH /posts/:id - Patch an item 
+DELETE /posts/:id  - Delete an item
+POST /sign - sign in a user
+POST /register - create a user account
+PATCH /users/id - Patch a user
+DELERE /users/id - Delete a user
 
 ## Technology Stack
 
