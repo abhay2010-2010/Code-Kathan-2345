@@ -94,7 +94,7 @@ export const layout: LayoutRoute[] = [
     id: 13,
     name: "Admin",
     path: "/admin",
-    isVisible: true,
+    isVisible: false,
     element: (
       <ProtectedRoutes>
         <Admin />
