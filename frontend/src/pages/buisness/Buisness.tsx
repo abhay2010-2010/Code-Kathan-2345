@@ -40,49 +40,61 @@ export const Buisness = () => {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <Box p={5}>
         <Heading>Buisness</Heading>
         <br />
         <Divider backgroundColor={"black"} height={"2px"} />
         <br />
-        <Box flexDirection={["column", "row","row"]} display={"flex"} gap={"2rem"}>
+
+        <Box flexDirection={["column", "row"]} display={"flex"} gap={"2rem"}>
+
+        <Box
+          flexDirection={["column", "row", "row"]}
+          display={"flex"}
+          gap={"2rem"}
+        >
+
           <Card5b />
           <Card1 data={data[0]} />
         </Box>
 
-      <Grid
+        <Grid
+          justifyItems={"center"}
+          templateColumns={["repeat(1,1fr)", "repeat(3,1fr)", "repeat(5,1fr)"]}
+          alignContent={"center"}
+          marginX="auto"
+        >
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+        </Grid>
 
-
-        justifyItems={"center"}
-        templateColumns={["repeat(1,1fr)", "repeat(3,1fr)", "repeat(5,1fr)"]}
-        alignContent={"center"}
-        marginX="auto"
-
-      >
-        <Box >
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-      </Grid>
-
-      <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20} >
+      <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20} mt={20} >
         <Card3a />
         <Card3a />
         <Card3a />
       </Grid>
     </Box>
+        <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20}>
+          <Card3a />
+          <Card3a />
+          <Card3a />
+        </Grid>
+      </Box>
+
 
       <Carousel />
 
@@ -108,66 +120,69 @@ export const Buisness = () => {
         <TwoCards />
       </Box>
 
-    <Box p={5}>
-      <Divider backgroundColor={"black"} height={"2px"} />
-      <Heading fontSize={"20px"} mt={5} mb={5} >Executive</Heading>
-      <Card5 />
-      <Divider backgroundColor={"black"} height={"2px"} mt={5} />
-      <Heading  fontSize={"20px"} mt={5} mb={5} >More news and features</Heading>
-      <Grid
-
-
-        justifyItems={"center"}
-        templateColumns={["repeat(1,1fr)", "repeat(3,1fr)", "repeat(4,1fr)"]}
-        alignContent={"center"}
-        marginX="auto"
-        mt={10}
-      >
-
-        <Box >
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box >
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-        <Box>
-          <Card1 />
-        </Box>
-      </Grid>
-    </Box>
+      <Box p={5}>
+        <Divider backgroundColor={"black"} height={"2px"} />
+        <Heading fontSize={"20px"} mt={5} mb={5}>
+          Executive
+        </Heading>
+        <Card5 />
+        <Divider backgroundColor={"black"} height={"2px"} mt={5} />
+        <Heading fontSize={"20px"} mt={5} mb={5}>
+          More news and features
+        </Heading>
+        <Grid
+          justifyItems={"center"}
+          templateColumns={["repeat(1,1fr)", "repeat(3,1fr)", "repeat(4,1fr)"]}
+          alignContent={"center"}
+          marginX="auto"
+          mt={10}
+        >
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+          <Box>
+            <Card1 />
+          </Box>
+        </Grid>
+      </Box>
 
       <Carousel />
 
-    <Box p={10}>
-    <Divider backgroundColor={"black"} height={"2px"} />
-      <Heading  fontSize={"20px"} mt={5} mb={5} >More in Buisness</Heading>
-      <SearchCard />
-      <SearchCard />
-      <SearchCard />
-      <SearchCard />
-      <SearchCard />
-      <SearchCard />
-      <SearchCard />
-      <SearchCard />
-      <SearchCard />
-    </Box>
+      <Box p={10}>
+        <Divider backgroundColor={"black"} height={"2px"} />
+        <Heading fontSize={"20px"} mt={5} mb={5}>
+          More in Buisness
+        </Heading>
+        <SearchCard />
+        <SearchCard />
+        <SearchCard />
+        <SearchCard />
+        <SearchCard />
+        <SearchCard />
+        <SearchCard />
+        <SearchCard />
+        <SearchCard />
+      </Box>
 
-    {isVisible && (
+      {isVisible && (
         <Box
           onClick={scrollToTop}
           position="fixed"
@@ -187,8 +202,7 @@ export const Buisness = () => {
           </Button>
         </Box>
       )}
-      <Footer/>
-  </>
-  )
-}
-
+      <Footer />
+    </>
+  );
+};

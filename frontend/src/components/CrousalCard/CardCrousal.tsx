@@ -11,7 +11,7 @@ import { FaPlay } from "react-icons/fa";
 import { Post } from "../../utils/types";
 
 interface Props {
-  data?: Post;
+  data: Post;
   isLoaded: boolean;
 }
 
@@ -33,7 +33,6 @@ const CardCrousal = ({ data, isLoaded }: Props) => {
           src={data?.image2}
           alt={data?.title}
           height={"160px"}
-
         />
         <FaPlay
           style={{
