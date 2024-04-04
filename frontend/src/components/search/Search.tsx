@@ -6,13 +6,16 @@ import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
   const [text, setText] = useState<string>("");
+
   const navigate = useNavigate();
   const handleChange = (e: any) => {
     setText(e.target.value);
   };
   const handleClick = (e: any) => {
     e.preventDefault();
+   
     navigate(`/searchbarpage?query=${text}`);
+    
     setText("");
   };
 
