@@ -17,7 +17,7 @@ import { Post } from "../../utils/types";
 
 export const News = () => {
   const { posts, getPosts } = useData();
-  let data = posts.filter((post) => post.category === "world").slice(1, 100);
+  let data = posts.filter((post) => post.category === "world");
 
   let crousalData: Post[] = data.slice(1, 30);
 
@@ -106,7 +106,7 @@ export const News = () => {
             <Card3a data={data[9]} />
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(41, 51)} />
+        <Carousel data={crousalData.slice(10, 20)} />
         <Box p={5} mt={8}>
           <br />
           <Divider backgroundColor={"black"} height={"2px"} />
@@ -176,7 +176,7 @@ export const News = () => {
             </Box>
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(52, 63)} />
+        <Carousel data={crousalData.slice(32, 40)} />
         <Box p={10}>
           <Divider backgroundColor={"black"} height={"2px"} />
           <Heading fontSize={"20px"} mt={5} mb={5}>
