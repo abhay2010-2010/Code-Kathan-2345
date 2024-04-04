@@ -13,13 +13,10 @@ import TwoCards from "../../components/TwoCards/TwoCards";
 import Card2b from "../../components/card2b/Card2b";
 import { Navbar } from "../../components/navbar/Navbar";
 import { useData } from "../../utils/dataContext/dataContext";
-import { Post } from "../../utils/types";
 
 export const News = () => {
   const { posts, getPosts } = useData();
   let data = posts.filter((post) => post.category === "world");
-
-  let crousalData: Post[] = data.slice(1, 30);
 
   data.sort((a, b) => b.clicks - a.clicks);
 
@@ -106,7 +103,7 @@ export const News = () => {
             <Card3a data={data[9]} />
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(10, 20)} />
+        <Carousel data={data.slice(10, 20)} />
         <Box p={5} mt={8}>
           <br />
           <Divider backgroundColor={"black"} height={"2px"} />
@@ -176,21 +173,21 @@ export const News = () => {
             </Box>
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(32, 40)} />
+        <Carousel data={data.slice(32, 40)} />
         <Box p={10}>
           <Divider backgroundColor={"black"} height={"2px"} />
           <Heading fontSize={"20px"} mt={5} mb={5}>
             More in Buisness
           </Heading>
-          <SearchCard data={data[32]} />
-          <SearchCard data={data[33]} />
-          <SearchCard data={data[34]} />
-          <SearchCard data={data[35]} />
-          <SearchCard data={data[36]} />
-          <SearchCard data={data[37]} />
-          <SearchCard data={data[38]} />
-          <SearchCard data={data[39]} />
-          <SearchCard data={data[40]} />
+          <SearchCard data={data[41]} />
+          <SearchCard data={data[42]} />
+          <SearchCard data={data[43]} />
+          <SearchCard data={data[44]} />
+          <SearchCard data={data[45]} />
+          <SearchCard data={data[46]} />
+          <SearchCard data={data[47]} />
+          <SearchCard data={data[48]} />
+          <SearchCard data={data[49]} />
         </Box>
         {isVisible && (
           <Box
