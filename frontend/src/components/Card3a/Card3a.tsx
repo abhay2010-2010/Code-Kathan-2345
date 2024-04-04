@@ -1,18 +1,13 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Skeleton,
-  SkeletonText,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Heading, SkeletonText, Text } from "@chakra-ui/react";
 
-import { useState } from "react";
+import { useAuth } from "../../utils/authContext/authContext";
+import { IUserPatch } from "../../utils/authContext/types";
 import { Post } from "../../utils/types";
+import { useData } from "../../utils/dataContext/dataContext";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface Props {
-  data?: Post;
+  data: Post;
 }
 export const Card3a = ({ data }: Props) => {
   !data &&
@@ -31,45 +26,68 @@ export const Card3a = ({ data }: Props) => {
       category: "world",
       clicks: 283,
     });
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  return isLoaded ? (
-    <>
-      <Box>
-        <Skeleton height="30px" width="100px" />
-        <SkeletonText
-          mt="4"
-          noOfLines={4}
-          spacing="4"
-          skeletonHeight="2"
-          height="30px"
-        />
-      </Box>
-      <Box textAlign="center">
-        <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
-      </Box>
-    </>
-  ) : (
+  const {
+    patchUser,
+    authState: { user },
+  } = useAuth();
+
+  const { dataLoading } = useData();
+  const handleClick = async () => {
+    if (user) {
+      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      const id = user.id;
+      history = [...history, data];
+      const patchObj: IUserPatch = { id, history };
+      await patchUser(patchObj);
+    }
+    window.open(data.articleLink, "_blank");
+  };
+
+  return (
     <Flex
       gap={2}
       height={"full"}
       direction={"column"}
       justify={"space-between"}
-      as="a"
-      href={data.articleLink}
-      target="_blank"
-      _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
+      _hover={{
+        filter: "brightness(130%)",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
+      onClick={handleClick}
     >
-      <Heading size="md" fontWeight="700" noOfLines={2}>
-        {data.title}
-      </Heading>
-      <Text fontSize="15px" noOfLines={3}>
-        {data.Description}
-      </Text>
-      <Flex>
-        <Text display="flex" gap={2} fontSize="12px">
-          {data.time} hrs ago | {data.source}
+      <SkeletonText
+        isLoaded={!dataLoading}
+        skeletonHeight="7"
+        noOfLines={2}
+        fadeDuration={globalVariables.skeletionFade}
+      >
+        <Heading size="md" fontWeight="700" noOfLines={2}>
+          {data.title}
+        </Heading>
+      </SkeletonText>
+      <SkeletonText
+        isLoaded={!dataLoading}
+        skeletonHeight="4"
+        noOfLines={3}
+        fadeDuration={globalVariables.skeletionFade}
+      >
+        <Text fontSize="15px" noOfLines={3}>
+          {data.Description}
         </Text>
+      </SkeletonText>
+      <Flex>
+        <SkeletonText
+          isLoaded={!dataLoading}
+          skeletonHeight="3"
+          noOfLines={1}
+          fadeDuration={globalVariables.skeletionFade}
+        >
+          <Text display="flex" gap={2} fontSize="12px">
+            {data.time} hrs ago | {data.source}
+          </Text>
+        </SkeletonText>
       </Flex>
     </Flex>
   );

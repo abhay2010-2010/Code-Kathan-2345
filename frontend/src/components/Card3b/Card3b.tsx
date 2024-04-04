@@ -1,23 +1,31 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Skeleton,
-  SkeletonText,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
+import { Flex, Heading, SkeletonText, Stack, Text } from "@chakra-ui/react";
 import { FaPlay } from "react-icons/fa";
+import { useAuth } from "../../utils/authContext/authContext";
+import { IUserPatch } from "../../utils/authContext/types";
+import { useData } from "../../utils/dataContext/dataContext";
 import { Post } from "../../utils/types";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface Props {
-  data?: Post;
+  data: Post;
 }
 
 export const Card3b = ({ data }: Props) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const {
+    patchUser,
+    authState: { user },
+  } = useAuth();
+  const { dataLoading } = useData();
+  const handleClick = async () => {
+    if (user) {
+      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      const id = user.id;
+      history = [...history, data];
+      const patchObj: IUserPatch = { id, history };
+      await patchUser(patchObj);
+    }
+    window.open(data.articleLink, "_blank");
+  };
   !data &&
     (data = {
       id: 1,
@@ -34,49 +42,63 @@ export const Card3b = ({ data }: Props) => {
       category: "world",
       clicks: 283,
     });
-  return isLoaded ? (
-    <>
-      <Box>
-        <Skeleton height="30px" width="100px" />
-        <SkeletonText
-          mt="4"
-          noOfLines={4}
-          spacing="4"
-          skeletonHeight="2"
-          height="30px"
-        />
-      </Box>
-      <Box textAlign="center">
-        <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
-      </Box>
-    </>
-  ) : (
+  return (
     <Flex
       gap={1}
       direction={"column"}
       justify={"space-evenly"}
-      as="a"
-      href={data.articleLink}
-      target="_black"
-      _hover={{ filter: "brightness(130%)", textDecoration: "underline" }}
+      _hover={{
+        filter: "brightness(130%)",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
+      onClick={handleClick}
     >
-      <Flex gap={2} alignItems={"center"}>
-        <FaPlay />
-        <Heading fontWeight="700" size={"md"}>
-          WATCH
+      <SkeletonText
+        isLoaded={!dataLoading}
+        skeletonHeight="7"
+        noOfLines={1}
+        fadeDuration={globalVariables.skeletionFade}
+      >
+        <Flex gap={2} alignItems={"center"}>
+          <FaPlay />
+          <Heading fontWeight="700" size={"md"}>
+            WATCH
+          </Heading>
+        </Flex>
+      </SkeletonText>
+      <SkeletonText
+        isLoaded={!dataLoading}
+        skeletonHeight="7"
+        noOfLines={2}
+        fadeDuration={globalVariables.skeletionFade}
+      >
+        <Heading size="md" fontWeight="700" noOfLines={2}>
+          {data.title}
         </Heading>
-      </Flex>
-      <Heading size="md" fontWeight="700" noOfLines={2}>
-        {data.title}
-      </Heading>
+      </SkeletonText>
       <Stack>
-        <Text fontWeight="400" fontSize="15px" noOfLines={3}>
-          {data.Description}
-        </Text>
-        <Flex>
-          <Text fontWeight="400" fontSize="12px" display="flex" gap={2}>
-            {data.time} hrs ago | {data.source}
+        <SkeletonText
+          isLoaded={!dataLoading}
+          skeletonHeight="4"
+          noOfLines={3}
+          fadeDuration={globalVariables.skeletionFade}
+        >
+          <Text fontSize="15px" noOfLines={3}>
+            {data.Description}
           </Text>
+        </SkeletonText>
+        <Flex>
+          <SkeletonText
+            isLoaded={!dataLoading}
+            skeletonHeight="3"
+            noOfLines={1}
+            fadeDuration={globalVariables.skeletionFade}
+          >
+            <Text display="flex" gap={2} fontSize="12px">
+              {data.time} hrs ago | {data.source}
+            </Text>
+          </SkeletonText>
         </Flex>
       </Stack>
     </Flex>

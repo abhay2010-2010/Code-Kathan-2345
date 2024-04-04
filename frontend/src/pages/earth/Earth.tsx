@@ -1,25 +1,27 @@
+import { ArrowUpIcon } from "@chakra-ui/icons";
 import { Box, Button, Divider, Flex, Grid, Heading } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import postData from "../../../../backend/db.json";
 import { Card3a } from "../../components/Card3a/Card3a";
+import Card5 from "../../components/Card5/Card5";
+import Card5b from "../../components/Card5b/Card5b";
 import Card6 from "../../components/Card6/Card6";
 import Card6a from "../../components/Card6a/Card6a";
-import { useEffect, useState } from "react";
-import { Navbar } from "../../components/navbar/Navbar";
-import { ArrowUpIcon } from "@chakra-ui/icons";
-import Footer from "../../components/Footer/Footer";
-import Card2b from "../../components/card2b/Card2b";
-import Card5b from "../../components/Card5b/Card5b";
 import Carousel from "../../components/CrousalCard/Crousal";
-import Card5 from "../../components/Card5/Card5";
+import Footer from "../../components/Footer/Footer";
 import SearchCard from "../../components/Search Card/SearchCard";
+import Card2b from "../../components/card2b/Card2b";
+import { Navbar } from "../../components/navbar/Navbar";
 import { Post } from "../../utils/types";
-import postData from "../../../../backend/db.json";
-import { useLocation } from "react-router-dom";
 
 export const Earth = () => {
   const [isVisible, setIsVisible] = useState(false);
-  let data: Post[] = postData.posts.slice(41, 80);
+  let data: Post[] = postData.posts
+    .filter((post) => post.category === "earth")
+    .slice(1, 30)
 
-  console.log(data[41]);
+
 
   const { pathname } = useLocation();
   const scrollToTop = () => {
@@ -46,60 +48,68 @@ export const Earth = () => {
     <>
       <Navbar />
       {/* 1st l1 */}
-      <Box p={{ base: 5, md: 10 }} display={{ base: "block", md: "flex" }}>
-        <Card6 data={data[41]} />
-        <Box
-          display="flex"
-          flexDirection={{ base: "row", md: "column" }}
-          w={{ base: "100%", md: "40%" }}
-        >
-          <Card6a data={data[42]} />
-          <Card6a data={data[43]} />
-          <Card6a data={data[44]} />
+      <Box px={[2, 4, 6, 8]}>
+      <Heading bg={"yellow"}>Earth</Heading>
+        <br />
+        <Divider backgroundColor={"black"} height={"2px"} />
+        <br />
+      </Box>
+
+        <Box px={[2, 4, 6, 8]} display={{ base: "block", md: "flex" }}>
+          <Card6 data={data[41]} />
+          <Box
+            display="flex"
+            flexDirection={{ base: "row", md: "column" }}
+            w={{ base: "100%", md: "40%" }}
+          >
+            <Card6a data={data[42]} />
+            <Card6a data={data[43]} />
+            <Card6a data={data[44]} />
+          </Box>
         </Box>
-      </Box>
-      {/* 2nd l */}
+        {/* 2nd l */}
 
-      <Box p={{ base: 5, md: 10 }} display={{ base: "grid" }}>
-        <Grid
-          gap={4}
-          templateColumns={["1fr", "1fr 1fr", "1fr 1fr", "1fr 1fr 1fr"]}
-        >
-          <Card3a data={data[45]} />
-          <Card3a data={data[46]} />
-          <Card3a data={data[47]} />
-          <Card3a data={data[48]} />
-          <Card3a data={data[49]} />
-        </Grid>
-      </Box>
+        <Box p={{ base: 5, md: 10 }} display={{ base: "grid" }}>
+          <Grid
+            gap={4}
+            templateColumns={["1fr", "1fr 1fr", "1fr 1fr", "1fr 1fr 1fr"]}
+          >
+            <Card3a data={data[45]} />
+            <Card3a data={data[46]} />
+            <Card3a data={data[47]} />
+            <Card3a data={data[48]} />
+            <Card3a data={data[49]} />
+          </Grid>
+        </Box>
 
-      {/* 3rd l */}
+        {/* 3rd l */}
 
-      <Box p={{ base: 5, md: 10 }}>
-        <Divider backgroundColor={"black"} height={"2px"} mt={5} />
-        <Heading fontSize={"20px"} mt={5} mb={5}>
-          Future Planet
-        </Heading>
+        <Box p={{ base: 5, md: 10 }}>
+          <Divider backgroundColor={"black"} height={"2px"} mt={5} />
+          <Heading fontSize={"20px"} mt={5} mb={5}>
+            Future Planet
+          </Heading>
 
-        <Flex
-          p={{ base: 5, md: 10 }}
-          display={{ base: "block", md: "flex", sm: "block" }}
-          gap={3}
-        >
-          <Card2b data={data[50]} />
-          <Card2b data={data[51]} />
-        </Flex>
-      </Box>
+          <Flex
+            p={{ base: 5, md: 10 }}
+            display={{ base: "block", md: "flex", sm: "block" }}
+            gap={3}
+          >
+            <Card2b data={data[50]} />
+            <Card2b data={data[51]} />
+          </Flex>
+        </Box>
 
-      {/* 4th l */}
+        {/* 4th l */}
 
-      <Box p={{ base: 5, md: 10 }}>
-        <Divider backgroundColor={"black"} height={"2px"} mt={5} />
-        <Heading fontSize={"20px"} mt={5} mb={5}>
-          World of wonder
-        </Heading>
-        <Card5b data={data[52]} />
-      </Box>
+        <Box p={{ base: 5, md: 10 }}>
+          <Divider backgroundColor={"black"} height={"2px"} mt={5} />
+          <Heading fontSize={"20px"} mt={5} mb={5}>
+            World of wonder
+          </Heading>
+          <Card5b data={data[52]} />
+        </Box>
+     
 
       {/* 5th l */}
 

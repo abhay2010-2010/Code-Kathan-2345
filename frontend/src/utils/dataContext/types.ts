@@ -9,7 +9,7 @@ export interface IArticle {
   image2: string;
   category: string;
   clicks: number;
-  test: number;
+  test?: number;
 }
 export interface IPatchArticle {
   id: number;
@@ -25,7 +25,7 @@ export interface IPatchArticle {
   test?: number;
 }
 export interface IAddArticle {
-  id: number;
+  id?: number;
   title?: string;
   Description?: string;
   source?: string;

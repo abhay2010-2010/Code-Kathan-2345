@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { baseUrl } from "../baseUrl";
 import {
   IAuth,
@@ -10,7 +10,6 @@ import {
   authContextInitial,
   initalState,
 } from "./types";
-import { produce } from "immer";
 type Props = {
   children: React.ReactNode;
 };
@@ -79,6 +78,7 @@ export const AuthProvider = ({ children }: Props) => {
             user: res.data.user,
             accessToken: res.data.accessToken,
             loginError: false,
+            isAuth: true,
           }));
           writeLocalStorage(res.data.user, res.data.accessToken);
           resolve(`Welcome ${res.data.user.name}`);
@@ -121,6 +121,7 @@ export const AuthProvider = ({ children }: Props) => {
             user: res.data.user,
             accessToken: res.data.accessToken,
             loginError: false,
+            isAuth: true,
           }));
           writeLocalStorage(res.data.user, res.data.accessToken);
           resolve(`Welcome ${res.data.user.name}`);
@@ -139,27 +140,33 @@ export const AuthProvider = ({ children }: Props) => {
 
   const patchUser = (credentials: IUserPatch) => {
     setAuthState((prev) => {
-      return produce(prev, (draft) => {
-        draft.loginLoading = true;
-        draft.loginError = false;
-      });
+      return {
+        ...prev,
+        loginLoading: true,
+        loginError: false,
+      };
     });
+    // console.log(credentials);
     return new Promise<string>((resolve, reject) => {
       axios
-        .put(baseUrl + `/users/${credentials.id}`, credentials)
-        .then((res) => {
+        .patch(baseUrl + `/users/${credentials.id}`, credentials)
+        .then(async (res) => {
+          await getUsers();
           setAuthState((prev) => {
-            return produce(prev, (draft) => {
-              draft.loginLoading = false;
-              draft.loginError = false;
-              draft.user = res.data.user;
-            });
+            return {
+              ...prev,
+              loginLoading: false,
+              loginError: false,
+              user: res.data,
+            };
           });
           localStorage.setItem("user", JSON.stringify(res.data));
+          // console.log(res.data);
           resolve("Success");
         })
-        .catch(() => {
+        .catch((error) => {
           setAuthState((prev) => ({ ...prev, loginLoading: false }));
+          console.log(error);
           reject("Failed");
         });
     });
@@ -177,6 +184,38 @@ export const AuthProvider = ({ children }: Props) => {
         setAuthState(initalState);
         resolve("Logged Out");
       }, 1000);
+    });
+  };
+
+  const deleteUser = (id: number) => {
+    setAuthState((prev) => ({
+      ...prev,
+      loginLoading: true,
+    }));
+    return new Promise<string>((resolve, reject) => {
+      axios
+        .delete(baseUrl + `/users/${id}`)
+        .then(async () => {
+          await getUsers();
+          setAuthState((prev) => {
+            return {
+              ...prev,
+              loginLoading: false,
+              loginError: false,
+            };
+          });
+          resolve("success");
+        })
+        .catch(() => {
+          setAuthState((prev) => {
+            return {
+              ...prev,
+              loginLoading: false,
+              loginError: true,
+            };
+          });
+          reject("fail");
+        });
     });
   };
 
@@ -203,6 +242,7 @@ export const AuthProvider = ({ children }: Props) => {
         logoutUser,
         patchUser,
         getUsers,
+        deleteUser,
       }}
     >
       {children}
