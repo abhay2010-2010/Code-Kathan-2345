@@ -69,7 +69,6 @@ export default function Dashboard() {
   };
   useEffect(() => {
     countCategories(posts);
-    console.log(totalUsers);
   }, [posts, totalUsers]);
 
   // console.log(posts);
@@ -104,7 +103,7 @@ export default function Dashboard() {
           />
           <StatsCard
             title={"We Broadcast the news in total"}
-            stat={uniqueCategories} // Pass the count of unique categories
+            stat={`${uniqueCategories} Category`}
           />
         </SimpleGrid>
       </Box>

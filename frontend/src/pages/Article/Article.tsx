@@ -24,6 +24,10 @@ import {
   TableContainer,
   TableCaption,
   Heading,
+  FormControl,
+  FormLabel,
+  Textarea,
+  Spinner,
 } from "@chakra-ui/react";
 import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
 import { useSearchParams } from "react-router-dom";
@@ -44,24 +48,27 @@ let data: IPatchArticle = {
   clicks: 0,
 };
 let data2: IAddArticle = {
-  title:
-    "Ukraine and India, a historical ally of Russia, hold talks to strengthen ties",
-  Description:
-    "NEW DELHI (AP) � India's foreign minister held talks Friday with his Ukrainian counterpart, who was visiting to strengthen bilateral ties and cooperation ...",
-  source: "The Associated Press",
+  title: "",
+  Description: "",
+  source: "",
   time: 0,
-  articleLink:
-    "https://apnews.com/article/india-ukraine-jaishankar-kuleba-3826b19229331d5bf17d4f09252af709",
-  image1:
-    "https://i.zedtranslate.com/newsimage/CC8iK0NnNXljQzA0UmxwM1JtRjVWR3R4VFJEVkFSakFBaWdLTWdhbFJZanNuUWs",
+  articleLink: "",
+  image1: "",
   image2: "",
-  category: "world",
+  category: "",
   clicks: 0,
 };
 
 const Article: React.FC = () => {
-  const { posts, getPosts, totalPosts, patchPost, deletePost, addPost } =
-    useData();
+  const {
+    posts,
+    getPosts,
+    totalPosts,
+    patchPost,
+    deletePost,
+    addPost,
+    dataLoading,
+  } = useData();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [params, setParams] = useSearchParams();
   const [selectedItem, setSelectedItem] = useState<IPatchArticle>(data);
@@ -92,9 +99,7 @@ const Article: React.FC = () => {
   useEffect(() => {
     setpages(Math.ceil(totalPosts || 0) / Number(limit));
     setUrl();
-    setTimeout(() => {
-      getPosts(), 500;
-    });
+    getPosts();
   }, [page, limit]);
 
   const handleDelete = (id: number) => {
@@ -115,7 +120,7 @@ const Article: React.FC = () => {
   };
 
   const handleUpdate = () => {
-    console.log(updateItem);
+    // console.log(updateItem);
     let examplePromise = patchPost(updateItem);
     toast.promise(examplePromise, {
       success: { title: "Update Successfull", description: "News Updated" },
@@ -144,7 +149,7 @@ const Article: React.FC = () => {
     setAddedNews({ ...addedNews, [name]: value });
   };
   const handleAddNews = () => {
-    console.log(addedNews);
+    // console.log(addedNews);
     setAddedNews(data2);
     let examplePromise = addPost(addedNews);
     toast.promise(examplePromise, {
@@ -155,6 +160,7 @@ const Article: React.FC = () => {
     setPage(1);
     handleAddNewsClose();
   };
+  // console.log(dataLoading);
 
   return (
     <>
@@ -202,6 +208,7 @@ const Article: React.FC = () => {
                       <Button
                         colorScheme="blue"
                         onClick={() => handleOpenUpdate(item)}
+                        isLoading={dataLoading}
                       >
                         Update
                       </Button>
@@ -211,6 +218,7 @@ const Article: React.FC = () => {
                         colorScheme="red"
                         ml={2}
                         onClick={() => handleDelete(item.id)}
+                        isLoading={dataLoading}
                       >
                         Delete
                       </Button>
@@ -277,7 +285,12 @@ const Article: React.FC = () => {
               />
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={handleUpdate}>
+              <Button
+                colorScheme="blue"
+                mr={3}
+                onClick={handleUpdate}
+                isLoading={dataLoading}
+              >
                 Update
               </Button>
               <Button onClick={handleCloseModal}>Cancel</Button>
@@ -292,65 +305,95 @@ const Article: React.FC = () => {
             <ModalHeader>Add News</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Input
-                type="text"
-                placeholder="Title"
-                name="title"
-                value={addedNews?.title}
-                onChange={handleAddChange}
-              />
-              <Input
-                type="text"
-                placeholder="Description"
-                name="Description"
-                value={addedNews?.Description}
-                onChange={handleAddChange}
-              />
-              <Input
-                type="text"
-                placeholder="Source"
-                name="source"
-                value={addedNews?.source}
-                onChange={handleAddChange}
-              />
-              <Input
-                type="text"
-                placeholder="Time"
-                name="time"
-                value={addedNews?.time}
-                onChange={handleAddChange}
-              />
-              <Input
-                type="text"
-                placeholder="Article Link"
-                name="articleLink"
-                value={addedNews?.articleLink}
-                onChange={handleAddChange}
-              />
-              <Input
-                type="text"
-                placeholder="Image Link 1"
-                name="image1"
-                value={addedNews?.image1}
-                onChange={handleAddChange}
-              />
-              <Input
-                type="text"
-                placeholder="Image Link 2"
-                name="image2"
-                value={addedNews?.image2}
-                onChange={handleAddChange}
-              />
-              <Input
-                type="text"
-                placeholder="Category"
-                name="category"
-                value={addedNews?.category}
-                onChange={handleAddChange}
-              />
+              <FormControl>
+                <FormLabel>News Title</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Title"
+                  name="title"
+                  value={addedNews?.title}
+                  onChange={handleAddChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>News Description</FormLabel>
+                <Textarea
+                  placeholder="Description"
+                  name="Description"
+                  value={addedNews?.Description}
+                  onChange={(e) => {
+                    setAddedNews({ ...addedNews, Description: e.target.value });
+                  }}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>News Source</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Source"
+                  name="source"
+                  value={addedNews?.source}
+                  onChange={handleAddChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Time</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Time"
+                  name="time"
+                  value={addedNews?.time}
+                  onChange={handleAddChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Article Link</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Article Link"
+                  name="articleLink"
+                  value={addedNews?.articleLink}
+                  onChange={handleAddChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Article Image1 Link</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Image Link 1"
+                  name="image1"
+                  value={addedNews?.image1}
+                  onChange={handleAddChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Article Image2 Link</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Image Link 2"
+                  name="image2"
+                  value={addedNews?.image2}
+                  onChange={handleAddChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>News Category</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Category"
+                  name="category"
+                  value={addedNews?.category}
+                  onChange={handleAddChange}
+                />
+              </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={handleAddNews}>
+              <Button
+                colorScheme="blue"
+                mr={3}
+                onClick={handleAddNews}
+                isLoading={dataLoading}
+              >
                 Add News
               </Button>
               <Button onClick={handleAddNewsClose}>Cancel</Button>
