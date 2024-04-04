@@ -36,7 +36,7 @@ const InnovationCard2: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
       clicks: 283,
     });
   return (
-    <Card>
+    <Card p={4}>
       {" "}
       <Link fontSize={"20"} fontWeight={"800"}>
         <Skeleton
@@ -49,12 +49,13 @@ const InnovationCard2: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
           <Image src={data.image2} onLoad={() => setImgLoaded(true)} />{" "}
         </Skeleton>
         <SkeletonText isLoaded={!isLoaded} width={"fit-content"}>
-          {data.title}{" "}
+          {" "}
+          <Text noOfLines={2}>{data.title}</Text>
         </SkeletonText>
       </Link>{" "}
       <SkeletonText isLoaded={!isLoaded}>
         {" "}
-        <Text>{data.Description}</Text>{" "}
+        <Text noOfLines={3}>{data.Description}</Text>{" "}
       </SkeletonText>
       <br />
       <SkeletonText isLoaded={!isLoaded}>

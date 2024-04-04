@@ -36,8 +36,7 @@ const InnovationCard: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
     });
 
   return (
-    <Card>
-      {" "}
+    <Card p={4} >
       <Link fontSize={"20"} fontWeight={"800"}>
         <Skeleton
           width="full"
@@ -53,8 +52,7 @@ const InnovationCard: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
           noOfLines={1}
           fadeDuration={globalVariables.skeletionFade}
         >
-          {" "}
-          {data.title}{" "}
+          <Text noOfLines={3}>{data.title}</Text>
         </SkeletonText>
       </Link>{" "}
       <SkeletonText
@@ -63,12 +61,10 @@ const InnovationCard: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
         noOfLines={3}
         fadeDuration={globalVariables.skeletionFade}
       >
-        {" "}
-        <Text>{data.Description}</Text>{" "}
+        <Text noOfLines={4}>{data.Description}</Text>{" "}
       </SkeletonText>
       <br />
       <SkeletonText isLoaded={!isLoaded}>
-        {" "}
         <Text>
           {data.time} hrs ago | <span style={{ fontWeight: "bold" }}>NEWS</span>{" "}
           England
