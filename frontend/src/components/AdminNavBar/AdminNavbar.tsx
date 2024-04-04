@@ -16,14 +16,13 @@ import {
   IconButton,
   Menu,
   MenuButton,
-  MenuDivider,
-  MenuItem,
   MenuList,
   Text,
   VStack,
   useColorMode,
   useColorModeValue,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { CiBoxList } from "react-icons/ci";
@@ -36,6 +35,7 @@ import {
 import { GrArticle } from "react-icons/gr";
 import { MdOutlineDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../utils/authContext/authContext";
 import { Logo } from "../logo/Logo";
 
 interface LinkItemProps {
@@ -147,6 +147,32 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   // if (!isAuth) {
   //   navigate("/");
   // }
+  const toast = useToast();
+  const {
+    logoutUser,
+    authState: { loginLoading },
+  } = useAuth();
+
+  const handleLogout = () => {
+    let examplePromise = logoutUser();
+    toast.promise(examplePromise, {
+      success: {
+        title: "Logout Successfully",
+        description: `Ciao`,
+        duration: 3000,
+      },
+      error: {
+        title: "Failed to Logout",
+        description: "Something's wrong",
+        duration: 3000,
+      },
+      loading: {
+        title: "Logging Out",
+        description: "Please wait",
+        duration: 3000,
+      },
+    });
+  };
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -226,11 +252,12 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
-              <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <Flex justify={"center"}>
+                <Button isLoading={loginLoading} onClick={handleLogout}>
+                  Sign out
+                </Button>
+              </Flex>
+
               <Button
                 onClick={toggleColorMode}
                 display={{ base: "flex", md: "none" }}
