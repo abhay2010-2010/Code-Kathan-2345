@@ -15,14 +15,17 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchCard from "../../components/Search Card/SearchCard";
 import { baseUrl } from "../../utils/baseUrl";
+import { Post } from "../../utils/types";
 const SearchbarPage = () => {
   const [loading, isLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [queryParams] = useSearchParams();
   const [text, setText] = useState<string>(queryParams.get("query") || "");
-  const [data, setData] = useState<[]>([]);
+  console.log(text);
+  
+  const [data, setData] = useState<Post[]>([]);
   const[totalPage,setTotalPage]=useState<number>(1);
-  console.log(data.length)
+ 
   
   
 
@@ -31,7 +34,7 @@ const SearchbarPage = () => {
   };
   console.log(baseUrl);
 
-  const getData = (text: string,) => {
+ const getData = (text: string) => {
     isLoading(false);
     axios
       .get(`${baseUrl}/posts?q=${text}&_limit=5&_page=${page}`)
@@ -51,6 +54,7 @@ const SearchbarPage = () => {
     console.log(text);
     getData(text);
     setPage(1);
+    
   };
 
   useEffect(() => {
@@ -86,8 +90,8 @@ const SearchbarPage = () => {
             <CircularProgress isIndeterminate color="green.300" />
           </Center>
         ) : (
-          data.map((el,index) => {
-            return <SearchCard data={el} key={index} />;
+          data.map((el) => {
+            return <SearchCard data={el} key={el.id} />;
           })
         )}
       </Box>

@@ -16,14 +16,14 @@ import "./Trending.css";
 // ];
 
 const options = {
-  title: "Population of Largest U.S. Cities",
+  title: "Trending News of the Day",
   chartArea: { width: "50%" },
   hAxis: {
-    title: "Total Population",
+    title: "Top 10 Article",
     minValue: 0,
   },
   vAxis: {
-    title: "City",
+    title: "Title",
   },
   seriesType: "bars",
   series: { 0: { type: "line" } },
@@ -41,7 +41,6 @@ const Trending = () => {
   }, []);
 
   users.forEach((user) => {
-    // console.log(user.address.country);
     const country = user?.address?.country;
     const count = countryMap.get(country) || 0;
     countryMap.set(country, count + 1);
@@ -56,10 +55,8 @@ const Trending = () => {
 
   const sortedPosts = posts.sort((a, b) => b.clicks - a.clicks);
 
-  // Take the top 10 items
   const top10 = sortedPosts.slice(0, 10);
 
-  // Create an array in the desired format
   const data1: (string | number)[][] = [
     ["Title", "Most Viewed", "Trending Article"],
   ];

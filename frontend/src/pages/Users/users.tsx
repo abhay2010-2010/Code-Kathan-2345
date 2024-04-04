@@ -53,7 +53,14 @@ const Users: React.FC = () => {
   // const { posts, getUsers, totalPosts, patchPost, deletePost, addPost } =
   // useData();
 
-  const { users, getUsers, totalUsers, patchUser, deleteUser } = useAuth();
+  const {
+    users,
+    getUsers,
+    totalUsers,
+    patchUser,
+    deleteUser,
+    authState: { loginLoading },
+  } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [params, setParams] = useSearchParams();
   const [selectedUser, setSelectedUser] = useState<IUserPatch>(data);
@@ -146,8 +153,8 @@ const Users: React.FC = () => {
                 <Th>Username</Th>
                 <Th>Email</Th>
                 <Th>Phone</Th>
-                <Th>City</Th>
-                <Th colSpan={2}>Actions Button</Th>
+                <Th>Update</Th>
+                <Th colSpan={2}>Delete</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -161,6 +168,7 @@ const Users: React.FC = () => {
                       <Button
                         colorScheme="blue"
                         onClick={() => handleOpenUpdate(item)}
+                        isLoading={loginLoading}
                       >
                         Update
                       </Button>
@@ -170,6 +178,7 @@ const Users: React.FC = () => {
                         colorScheme="red"
                         ml={2}
                         onClick={() => handleDelete(item?.id || 1)}
+                        isLoading={loginLoading}
                       >
                         Delete
                       </Button>
@@ -249,7 +258,12 @@ const Users: React.FC = () => {
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={handleUpdate}>
+              <Button
+                colorScheme="blue"
+                mr={3}
+                onClick={handleUpdate}
+                isLoading={loginLoading}
+              >
                 Update
               </Button>
               <Button onClick={handleCloseModal}>Cancel</Button>
