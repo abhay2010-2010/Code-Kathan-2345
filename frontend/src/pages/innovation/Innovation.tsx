@@ -10,6 +10,7 @@ import { ArrowUpIcon } from "@chakra-ui/icons";
 import postData from "../../../../backend/db.json";
 import { Post } from "../../utils/types";
 import Card1 from "../../components/Card_1/Card1";
+import { motion } from "framer-motion";
 
 export const Innovation = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -44,8 +45,14 @@ export const Innovation = () => {
   return (
     <>
       <Navbar />
-      <Box px={[2, 4, 6, 8]}>
-        <Heading bg={"yellow"}>Innovation</Heading>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.5 } }}
+        exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      >
+      <Box w={"84%"} marginX="auto">
+        <Heading>Innovation</Heading>
+
         <br />
         <Divider height={"2px"} backgroundColor={"black"} />
         <br />
@@ -159,6 +166,7 @@ export const Innovation = () => {
           </Button>
         </Box>
       )}
+         </motion.div>
       <Footer />
     </>
   );

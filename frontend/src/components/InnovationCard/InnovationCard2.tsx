@@ -7,7 +7,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Post } from "../../utils/types";
-import React from "react";
+import React, { useState } from "react";
+import { useData } from "../../utils/dataContext/dataContext";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface InnovationCardProps {
   isLoaded: boolean;
@@ -15,6 +17,8 @@ interface InnovationCardProps {
 }
 
 const InnovationCard2: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { dataLoading } = useData();
   !data &&
     (data = {
       id: 1,
@@ -35,9 +39,14 @@ const InnovationCard2: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
     <Card>
       {" "}
       <Link fontSize={"20"} fontWeight={"800"}>
-        <Skeleton isLoaded={!isLoaded}>
+        <Skeleton
+          width="full"
+          isLoaded={!dataLoading && imgLoaded}
+          fadeDuration={globalVariables.skeletionFade}
+          minH="220px"
+        >
           {" "}
-          <Image src={data.image2} />{" "}
+          <Image src={data.image2} onLoad={() => setImgLoaded(true)} />{" "}
         </Skeleton>
         <SkeletonText isLoaded={!isLoaded} width={"fit-content"}>
           {data.title}{" "}
@@ -45,9 +54,7 @@ const InnovationCard2: React.FC<InnovationCardProps> = ({ isLoaded, data }) => {
       </Link>{" "}
       <SkeletonText isLoaded={!isLoaded}>
         {" "}
-        <Text>
-         {data.Description}
-        </Text>{" "}
+        <Text>{data.Description}</Text>{" "}
       </SkeletonText>
       <br />
       <SkeletonText isLoaded={!isLoaded}>
