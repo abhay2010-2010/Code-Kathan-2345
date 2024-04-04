@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from "react";
 import {
-  Flex,
-  useToast,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Input,
-  ButtonGroup,
-  Text,
   Box,
-  useDisclosure,
-  TableContainer,
-  TableCaption,
-  Heading,
+  Button,
+  ButtonGroup,
+  Flex,
   FormControl,
   FormLabel,
+  Heading,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Table,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
   Textarea,
-  Spinner,
+  Th,
+  Thead,
+  Tr,
+  useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
-import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import SidebarWithHeader from "../../components/AdminNavBar/AdminNavbar";
+import { AdminSearch } from "../../components/AdminSearchBar/AdminSearchbar";
 import { useData } from "../../utils/dataContext/dataContext";
 import { IAddArticle, IPatchArticle } from "../../utils/dataContext/types";
-import { AdminSearch } from "../../components/AdminSearchBar/AdminSearchbar";
 
 let data: IPatchArticle = {
   id: 1,
