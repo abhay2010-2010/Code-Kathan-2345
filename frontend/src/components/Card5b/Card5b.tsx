@@ -17,7 +17,7 @@ import { IUserPatch } from "../../utils/authContext/types";
 import { useAuth } from "../../utils/authContext/authContext";
 import { globalVariables } from "../../utils/globalVariables";
 interface Props {
-  data: Post;
+  data?: Post;
 }
 function Card5b({ data }: Props) {
   !data &&
@@ -44,13 +44,16 @@ function Card5b({ data }: Props) {
   const { dataLoading } = useData();
   const handleClick = async () => {
     if (user) {
-      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      let history = user.history?.filter((item) => item.id !== data?.id) || [];
       const id = user.id;
-      history = [...history, data];
+      if (history && data) {
+        history = [...history, data];
+      }
+
       const patchObj: IUserPatch = { id, history };
       await patchUser(patchObj);
     }
-    window.open(data.articleLink, "_blank");
+    window.open(data?.articleLink, "_blank");
   };
   return (
     <Box>

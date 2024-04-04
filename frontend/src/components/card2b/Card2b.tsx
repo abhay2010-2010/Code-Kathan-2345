@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import { useAuth } from "../../utils/authContext/authContext";
 import { IUserPatch } from "../../utils/authContext/types";
