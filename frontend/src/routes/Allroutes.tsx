@@ -1,10 +1,13 @@
+import { AnimatePresence } from "framer-motion";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Admin } from "../pages/Admin/Admin";
 import Article from "../pages/Article/Article";
+import Category from "../pages/Category/Category";
 import Dashboard from "../pages/Dashboard/DashBoard";
 import { Login } from "../pages/Login/Login";
+import SearchbarPage from "../pages/SearchBarPage/SearchbarPage";
 import Trending from "../pages/Trending/Trending";
 import Users from "../pages/Users/users";
-import { Route, Routes, useLocation } from "react-router-dom";
 import { Buisness } from "../pages/buisness/Buisness";
 import { Culture } from "../pages/culture/Culture";
 import { Earth } from "../pages/earth/Earth";
@@ -19,9 +22,6 @@ import { Travel } from "../pages/travel/Travel";
 import { Video } from "../pages/video/Video";
 import { LayoutRoute } from "../utils/layoutRoute";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-import Category from "../pages/Category/Category";
-import SearchbarPage from "../pages/SearchBarPage/SearchbarPage";
-import { AnimatePresence } from "framer-motion";
 
 export const layout: LayoutRoute[] = [
   { id: 1, name: "Home", path: "/", isVisible: true, element: <Home /> },
