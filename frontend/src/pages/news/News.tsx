@@ -1,7 +1,7 @@
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import { Box, Button, Divider, Grid, Heading, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card3a } from "../../components/Card3a/Card3a";
 import Card5 from "../../components/Card5/Card5";
 import Card5b from "../../components/Card5b/Card5b";
@@ -13,17 +13,16 @@ import TwoCards from "../../components/TwoCards/TwoCards";
 import Card2b from "../../components/card2b/Card2b";
 import { Navbar } from "../../components/navbar/Navbar";
 import { useData } from "../../utils/dataContext/dataContext";
-import { Post } from "../../utils/types";
+import { useRandomNumber } from "../../utils/hooks/useRandomNumber";
 
 export const News = () => {
   const { posts, getPosts } = useData();
-  let data = posts.filter((post) => post.category === "world").slice(1, 100);
-
-  let crousalData: Post[] = data.slice(1, 30);
-
-  data.sort((a, b) => b.clicks - a.clicks);
-
+  let min = useMemo(() => {
+    return useRandomNumber(0, 14);
+  }, []);
   const [isVisible, setIsVisible] = useState(false);
+
+  let data = posts.filter((post) => post.category === "world").slice(min);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -106,7 +105,7 @@ export const News = () => {
             <Card3a data={data[9]} />
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(41, 51)} />
+        <Carousel data={data.slice(10, 19)} />
         <Box p={5} mt={8}>
           <br />
           <Divider backgroundColor={"black"} height={"2px"} />
@@ -115,9 +114,9 @@ export const News = () => {
           <TwoCards />
           <Divider backgroundColor={"black"} height={"2px"} mb={5} />
           <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} gap={2}>
+            <Card2b data={data[20]} />
             <Card2b data={data[21]} />
             <Card2b data={data[22]} />
-            <Card2b data={data[23]} />
           </Grid>
         </Box>
         <Box mt={10} p={5}>
@@ -151,6 +150,9 @@ export const News = () => {
             gap={2}
           >
             <Box>
+              <Card1 data={data[23]} />
+            </Box>
+            <Box>
               <Card1 data={data[24]} />
             </Box>
             <Box>
@@ -171,26 +173,23 @@ export const News = () => {
             <Box>
               <Card1 data={data[30]} />
             </Box>
-            <Box>
-              <Card1 data={data[31]} />
-            </Box>
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(52, 63)} />
+        <Carousel data={data.slice(31, 40)} />
         <Box p={10}>
           <Divider backgroundColor={"black"} height={"2px"} />
           <Heading fontSize={"20px"} mt={5} mb={5}>
             More in Buisness
           </Heading>
-          <SearchCard data={data[32]} />
-          <SearchCard data={data[33]} />
-          <SearchCard data={data[34]} />
-          <SearchCard data={data[35]} />
-          <SearchCard data={data[36]} />
-          <SearchCard data={data[37]} />
-          <SearchCard data={data[38]} />
-          <SearchCard data={data[39]} />
-          <SearchCard data={data[40]} />
+          <SearchCard data={data[41]} />
+          <SearchCard data={data[42]} />
+          <SearchCard data={data[43]} />
+          <SearchCard data={data[44]} />
+          <SearchCard data={data[45]} />
+          <SearchCard data={data[46]} />
+          <SearchCard data={data[47]} />
+          <SearchCard data={data[48]} />
+          <SearchCard data={data[49]} />
         </Box>
         {isVisible && (
           <Box

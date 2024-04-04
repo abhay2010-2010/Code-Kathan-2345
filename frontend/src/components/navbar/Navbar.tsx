@@ -117,7 +117,7 @@ export const Navbar = () => {
                           <>
                             <Button
                               onClick={() => {
-                                navigate("./signup");
+                                navigate("/signup");
                                 onClose();
                               }}
                             >
@@ -125,7 +125,7 @@ export const Navbar = () => {
                             </Button>
                             <Button
                               onClick={() => {
-                                navigate("./login");
+                                navigate("/login");
                                 onClose();
                               }}
                             >

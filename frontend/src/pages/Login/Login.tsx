@@ -85,67 +85,69 @@ export function Login() {
 
   return (
     <>
-      <Navbar />
-      <motion.div>
-        <Stack
-          direction={{ base: "column", lg: "row" }}
-          px={[2, 4, 6, 8]}
-          gap={10}
-        >
-          <Flex flex={1} align={"center"} justify={"center"}>
-            <Stack spacing={4} w={"full"} maxW={"md"}>
-              <Heading fontSize={"4xl"} mb={2} textAlign="center">
-                Login
-              </Heading>
-              <FormControl>
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  id="email"
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  value={input.email}
-                  autoComplete="given-name"
-                />
-                {error.email && <Box color="red">{error.email}</Box>}
-              </FormControl>
-              <FormControl>
-                <FormLabel>Password</FormLabel>
-                <Input
-                  id="password"
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  value={input.password}
-                  autoComplete="given-name"
-                />
-                {error.password && <Box color="red">{error.password}</Box>}
-              </FormControl>
-              <Stack spacing={6}>
-                <Button
-                  colorScheme={"gray"}
-                  variant={"solid"}
-                  onClick={handleSubmit}
-                  isLoading={loginLoading}
-                >
-                  Log in
-                </Button>
+      <Stack justify={"space-between"} minH={"100vh"}>
+        <Navbar />
+        <motion.div>
+          <Stack
+            direction={{ base: "column", lg: "row" }}
+            px={[2, 4, 6, 8]}
+            gap={10}
+          >
+            <Flex flex={1} align={"center"} justify={"center"}>
+              <Stack spacing={4} w={"full"} maxW={"md"}>
+                <Heading fontSize={"4xl"} mb={2} textAlign="center">
+                  Login
+                </Heading>
+                <FormControl>
+                  <FormLabel>Email address</FormLabel>
+                  <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    value={input.email}
+                    autoComplete="given-name"
+                  />
+                  {error.email && <Box color="red">{error.email}</Box>}
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Password</FormLabel>
+                  <Input
+                    id="password"
+                    type="password"
+                    name="password"
+                    onChange={handleChange}
+                    value={input.password}
+                    autoComplete="given-name"
+                  />
+                  {error.password && <Box color="red">{error.password}</Box>}
+                </FormControl>
+                <Stack spacing={6}>
+                  <Button
+                    colorScheme={"gray"}
+                    variant={"solid"}
+                    onClick={handleSubmit}
+                    isLoading={loginLoading}
+                  >
+                    Log in
+                  </Button>
+                </Stack>
               </Stack>
-            </Stack>
-          </Flex>
-          <Flex flex={1}>
-            <Image
-              alt={"Login Image"}
-              objectFit={"contain"}
-              width={"100%"}
-              src={
-                "https://www.atoallinks.com/wp-content/uploads/2023/06/5030900_2636676-1200x675.jpg"
-              }
-            />
-          </Flex>
-        </Stack>
-      </motion.div>
-      <Footer />
+            </Flex>
+            <Flex flex={1} justify={"center"}>
+              <Image
+                alt={"Login Image"}
+                objectFit={"contain"}
+                width={"600px"}
+                src={
+                  "https://www.atoallinks.com/wp-content/uploads/2023/06/5030900_2636676-1200x675.jpg"
+                }
+              />
+            </Flex>
+          </Stack>
+        </motion.div>
+        <Footer />
+      </Stack>
     </>
   );
 }
