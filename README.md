@@ -127,7 +127,13 @@ Attach a very short video walkthough of codebase [ 1 - 5 minutes ]
 
 ## design decisions or assumptions
 
-List your design desissions & assumptions
+At Kathan News, we're committed to delivering an exceptional user experience that seamlessly combines aesthetic appeal with functionality. To achieve this goal, we've implemented two key features: an attractive user interface with toggling theme and interactive toast functionality.
+
+Intuitive Theming for Enhanced Visual Experience
+
+Design Goal: Our primary objective is to offer users a visually engaging experience that aligns with their preferences and surroundings.
+
+Solution: We've integrated a sleek theming system that allows users to effortlessly switch between light and dark modes. Whether users prefer a brighter interface for daytime browsing or a darker one for nighttime reading, they can easily toggle between the two options with a simple click.
 
 ## Installation & Getting started
 
