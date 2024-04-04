@@ -1,8 +1,13 @@
-import { Box, Button, Divider, Grid, Heading, SimpleGrid } from "@chakra-ui/react";
-import postData from "../../../../backend/db.json";
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  Heading,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import Card2a from "../../components/Card2a/Card2a";
 import { Card1a } from "../../components/card_1a/Card_1a";
-import { Post } from "../../utils/types";
 
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
@@ -12,20 +17,21 @@ import Card1 from "../../components/Card_1/Card1";
 import Carousel from "../../components/CrousalCard/Crousal";
 import Footer from "../../components/Footer/Footer";
 import { Navbar } from "../../components/navbar/Navbar";
+import { useData } from "../../utils/dataContext/dataContext";
 
 export const Travel = () => {
   const [isVisible, setIsVisible] = useState(false);
-  let data: Post[] = postData.posts
-    .filter((post) => post.category === "Travell")
-    .slice(1, 30);
-
+  const { posts, getPosts } = useData();
+  let data = posts.filter((post) => post.category === "travel").slice(1, 30);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+  
   useEffect(() => {
+    getPosts();
     const toggleVisibility = () => {
       if (window.pageYOffset > 100) {
         setIsVisible(true);
@@ -41,13 +47,9 @@ export const Travel = () => {
   return (
     <>
       <Navbar />
-      <Box
-        px={[2, 4, 6, 8]}
-      >
+      <Box px={[2, 4, 6, 8]}>
         {/* 1st */}
-        <Heading bg={"yellow"}>
-          Travel
-        </Heading>
+        <Heading bg={"yellow"}>Travel</Heading>
         <br />
         <Divider backgroundColor={"black"} h="2px" />
         <br />
@@ -85,7 +87,6 @@ export const Travel = () => {
         <br /> <br />
         <Divider backgroundColor={"black"} h="2px" />
         <br />
-
         {/* 4th */}
         <Box>
           <Heading fontSize="24px" fontWeight="600">
@@ -96,8 +97,7 @@ export const Travel = () => {
             templateColumns={[
               "repeat(1, 1fr)",
               "repeat(2, 1fr)",
-              "repeat(3, 1fr)"
-
+              "repeat(3, 1fr)",
             ]}
             gap={10}
           >
@@ -115,13 +115,14 @@ export const Travel = () => {
         <Box>
           <Heading fontSize="24px" fontWeight="600">
             In Picture
-          </Heading> <br />
+          </Heading>{" "}
+          <br />
           <Card1a data={data[15]} />
         </Box>
-        <br /><br />
+        <br />
+        <br />
         <Divider backgroundColor={"black"} h="2px" />
         <br />
-
         {/* 5th */}
         <Box>
           <Heading fontSize="24px" fontWeight="600">
@@ -134,7 +135,6 @@ export const Travel = () => {
               "repeat(2, 1fr)",
               "repeat(3, 1fr)",
               "repeat(4, 1fr)",
-
             ]}
             gap={10}
           >
@@ -148,14 +148,15 @@ export const Travel = () => {
             <Card1 data={data[23]} />
           </Grid>
         </Box>
-        <br /><br />
+        <br />
+        <br />
         {/* 6th */}
         <Box>
           <Carousel />
         </Box>
-
         {/* 7 */}
-        <br /><br />
+        <br />
+        <br />
         <Divider backgroundColor={"black"} h="2px" />
         <br />
         <Box>
@@ -163,24 +164,16 @@ export const Travel = () => {
             Green Gateways
           </Heading>
           <br />
-          <Grid
-            templateColumns={[
-              "repeat(1, 1fr)",
-              "repeat(2, 1fr)",
-
-
-            ]}
-            gap={10}
-          >
+          <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={10}>
             <Card1 data={data[24]} />
             <Card1 data={data[25]} />
             <Card1 data={data[26]} />
             <Card1 data={data[27]} />
-
           </Grid>
         </Box>
         {/* 8 */}
-        <br /><br />
+        <br />
+        <br />
         <Divider backgroundColor={"black"} h="2px" />
         <br />
         <Box>
@@ -194,7 +187,6 @@ export const Travel = () => {
               "repeat(2, 1fr)",
               "repeat(3, 1fr)",
               "repeat(4, 1fr)",
-
             ]}
             gap={10}
           >
@@ -202,16 +194,18 @@ export const Travel = () => {
             <Card1 data={data[28]} />
             <Card1 data={data[29]} />
             <Card1 data={data[30]} />
-
           </Grid>
         </Box>
-        <br /><br />
+        <br />
+        <br />
         <Divider backgroundColor={"black"} h="2px" />
         <br />
-
         {/* 9 */}
         <Box>
-          <Heading fontSize="24px" fontWeight="600">More on Travel</Heading> <br />
+          <Heading fontSize="24px" fontWeight="600">
+            More on Travel
+          </Heading>{" "}
+          <br />
           <Card5b data={data[31]} />
           <Card5b data={data[32]} />
           <Card5b data={data[33]} />

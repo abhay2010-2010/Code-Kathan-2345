@@ -1,26 +1,25 @@
+import { ArrowUpIcon } from "@chakra-ui/icons";
 import { Box, Button, Divider, Grid, Heading, Text } from "@chakra-ui/react";
-import postData from "../../../../backend/db.json";
+import { useEffect, useState } from "react";
 import { Card3a } from "../../components/Card3a/Card3a";
 import Card5 from "../../components/Card5/Card5";
 import Card5b from "../../components/Card5b/Card5b";
 import Card1 from "../../components/Card_1/Card1";
 import Carousel from "../../components/CrousalCard/Crousal";
+import Footer from "../../components/Footer/Footer";
 import SearchCard from "../../components/Search Card/SearchCard";
 import TwoCards from "../../components/TwoCards/TwoCards";
 import Card2b from "../../components/card2b/Card2b";
-import { Post } from "../../utils/types";
-import Footer from "../../components/Footer/Footer";
 import { Navbar } from "../../components/navbar/Navbar";
-import { useEffect, useState } from "react";
-import { ArrowUpIcon } from "@chakra-ui/icons";
+import { useData } from "../../utils/dataContext/dataContext";
+import { Post } from "../../utils/types";
 
 export const Buisness = () => {
-
   const [isVisible, setIsVisible] = useState(false);
-
-  let data: Post[] = postData.posts
-    .filter((post) => post.category === "Bussiness")
-    .slice(1, 35);
+  const { posts, getPosts } = useData();
+  let data: Post[] = posts
+    .filter((post) => post.category === "buissness")
+    .slice(1, 50);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -29,6 +28,7 @@ export const Buisness = () => {
     });
   };
   useEffect(() => {
+    getPosts();
     const toggleVisibility = () => {
       if (window.pageYOffset > 100) {
         setIsVisible(true);
@@ -52,20 +52,22 @@ export const Buisness = () => {
         <br />
 
         <Box flexDirection={["column", "column"]} display={"flex"} gap={"2rem"}>
-
           <Box
             flexDirection={["column", "column", "row"]}
             display={"flex"}
             gap={"2rem"}
           >
-
-            <Card5b data={data[1]}/>
+            <Card5b data={data[1]} />
             <Card1 data={data[2]} />
           </Box>
 
           <Grid
             justifyItems={"center"}
-            templateColumns={["repeat(1,1fr)", "repeat(3,1fr)", "repeat(5,1fr)"]}
+            templateColumns={[
+              "repeat(1,1fr)",
+              "repeat(3,1fr)",
+              "repeat(5,1fr)",
+            ]}
             alignContent={"center"}
             marginX="auto"
             gap={3}
@@ -87,7 +89,11 @@ export const Buisness = () => {
             </Box>
           </Grid>
 
-          <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} mb={20} mt={20} >
+          <Grid
+            templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }}
+            mb={20}
+            mt={20}
+          >
             <Card3a data={data[8]} />
             <Card3a data={data[9]} />
             <Card3a data={data[10]} />
@@ -99,7 +105,6 @@ export const Buisness = () => {
           <Card3a data={data[13]} />
         </Grid>
       </Box>
-
 
       <Carousel />
 
@@ -130,7 +135,7 @@ export const Buisness = () => {
         <Heading fontSize={"20px"} mt={5} mb={5}>
           Executive
         </Heading>
-        <Card5 data={data[17]}/>
+        <Card5 data={data[17]} />
         <Divider backgroundColor={"black"} height={"2px"} mt={5} />
         <Heading fontSize={"20px"} mt={5} mb={5}>
           More news and features
@@ -177,15 +182,15 @@ export const Buisness = () => {
         <Heading fontSize={"20px"} mt={5} mb={5}>
           More in Buisness
         </Heading>
-        <SearchCard data={data[26]}/>
-        <SearchCard data={data[27]}/>
-        <SearchCard data={data[28]}/>
-        <SearchCard data={data[29]}/>
-        <SearchCard data={data[30]}/>
-        <SearchCard data={data[31]}/>
-        <SearchCard data={data[32]}/>
-        <SearchCard data={data[33]}/>
-        <SearchCard data={data[34]}/>
+        <SearchCard data={data[26]} />
+        <SearchCard data={data[27]} />
+        <SearchCard data={data[28]} />
+        <SearchCard data={data[29]} />
+        <SearchCard data={data[30]} />
+        <SearchCard data={data[31]} />
+        <SearchCard data={data[32]} />
+        <SearchCard data={data[33]} />
+        <SearchCard data={data[34]} />
       </Box>
 
       {isVisible && (
