@@ -17,6 +17,7 @@ import Footer from "../../components/Footer/Footer";
 import { Navbar } from "../../components/navbar/Navbar";
 import { useAuth } from "../../utils/authContext/authContext";
 
+
 interface InputState {
   email: string;
   password: string;
@@ -25,6 +26,7 @@ export function Login() {
   const init: InputState = { email: "", password: "" };
   const [input, setInput] = useState<InputState>(init);
   const [error, setError] = useState<{ [key: string]: string }>({});
+
   const navigate = useNavigate();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,7 +39,6 @@ export function Login() {
   const toast = useToast();
   const handleSubmit = () => {
     console.log(input);
-
     const validationError: { [key: string]: string } = {};
 
     if (!input.email.trim()) {
@@ -72,6 +73,8 @@ export function Login() {
       });
       setInput(init);
     }
+    
+   
   };
 
   useEffect(() => {

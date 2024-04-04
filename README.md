@@ -4,7 +4,7 @@ KATHAN_NEWS
 
 ## Introduction
 
-A brief introduction of your project goes here. You may want to cover the purpose of your project, its core functionality, and what problems it solves.
+"Introducing Kathan News,built for masai construct week block 34 . an innovative online news application offering seamless access to the latest headlines. With user-friendly features including robust registration and authentication, responsive design, and intuitive search capabilities, Kathan News provides an immersive news browsing experience for users worldwide."
 
 ## Project Type
 
@@ -12,7 +12,7 @@ Frontend
 
 ## Deplolyed App
 
-Frontend: https://code-kathan.vercel.app <br>
+Frontend: https://kathan-news.netlify.app/ <br>
 Backend: https://code-kathan-api.vercel.app
 
 ## Directory Structure
@@ -117,11 +117,13 @@ Attach a very short video walkthough of codebase [ 1 - 5 minutes ]
 
 ## Features
 
-List out the key features of your application.
-
-- Feature 1
-- Feature 2
-- Feature 3
+- User and admin registration and authentication functionality
+- Responsive design for seamless user experience across devices
+- User profile creation and management
+- Search functionality to easily find desired news articles
+- Scroll-to-top feature for convenient navigation 
+- admin dashboard displays metrics of user distribution across the globe , total clicks reseived on the website and other key information
+- ability for the admin to perform crud on news articles and users 
 
 ## design decisions or assumptions
 
@@ -137,13 +139,16 @@ cd my-project
 npm start
 ```
 
+
+
 ## Usage
 
 Provide instructions and examples on how to use your project.
 
 ```bash
-# Example
-
+npm install
+npm run start_fe
+npm run start_be
 ```
 
 #### Light Mode
@@ -174,7 +179,10 @@ POST /api/items - create a new item
 
 List and provide a brief overview of the technologies used in the project.
 
-- Node.js
-- Express.js
-- MongoDB
-- Other libraries/modules
+- HTML
+- CSS
+- React
+- Redux
+- TypeScript
+- Chakra UI
+- JSON server
