@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }: Props) => {
             user: res.data.user,
             accessToken: res.data.accessToken,
             loginError: false,
+            isAuth: true,
           }));
           writeLocalStorage(res.data.user, res.data.accessToken);
           resolve(`Welcome ${res.data.user.name}`);
@@ -120,6 +121,7 @@ export const AuthProvider = ({ children }: Props) => {
             user: res.data.user,
             accessToken: res.data.accessToken,
             loginError: false,
+            isAuth: true,
           }));
           writeLocalStorage(res.data.user, res.data.accessToken);
           resolve(`Welcome ${res.data.user.name}`);
@@ -148,7 +150,8 @@ export const AuthProvider = ({ children }: Props) => {
     return new Promise<string>((resolve, reject) => {
       axios
         .patch(baseUrl + `/users/${credentials.id}`, credentials)
-        .then((res) => {
+        .then(async (res) => {
+          await getUsers();
           setAuthState((prev) => {
             return {
               ...prev,
@@ -184,6 +187,38 @@ export const AuthProvider = ({ children }: Props) => {
     });
   };
 
+  const deleteUser = (id: number) => {
+    setAuthState((prev) => ({
+      ...prev,
+      loginLoading: true,
+    }));
+    return new Promise<string>((resolve, reject) => {
+      axios
+        .delete(baseUrl + `/users/${id}`)
+        .then(async () => {
+          await getUsers();
+          setAuthState((prev) => {
+            return {
+              ...prev,
+              loginLoading: false,
+              loginError: false,
+            };
+          });
+          resolve("success");
+        })
+        .catch(() => {
+          setAuthState((prev) => {
+            return {
+              ...prev,
+              loginLoading: false,
+              loginError: true,
+            };
+          });
+          reject("fail");
+        });
+    });
+  };
+
   useEffect(() => {
     let data = getLocalStorage();
     if (data?.accessToken && data?.user.name) {
@@ -207,6 +242,7 @@ export const AuthProvider = ({ children }: Props) => {
         logoutUser,
         patchUser,
         getUsers,
+        deleteUser,
       }}
     >
       {children}

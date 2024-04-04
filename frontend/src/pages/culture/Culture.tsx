@@ -15,6 +15,10 @@ export const Culture = () => {
   const [isLoaded, setIsloading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  let data: Post[] = postData.posts
+  .filter((post) => post.category === "culture")
+  .slice(1, 30);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -34,8 +38,7 @@ export const Culture = () => {
 
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
-  let data: Post[] = postData.posts;
-  console.log(data);
+
   const handleToggle = () => {
     setIsloading(!isLoaded);
   };
@@ -43,8 +46,8 @@ export const Culture = () => {
   return (
     <>
       <Navbar />
-      <Box w={"84%"} marginX="auto">
-        <Heading>Culture</Heading>
+      <Box px={[2, 4, 6, 8]}>
+        <Heading bg={"yellow"}>Culture</Heading>
         <br />
         <Divider height={"2px"} backgroundColor={"black"} />
         <br />
@@ -104,7 +107,7 @@ export const Culture = () => {
         <Divider height={"2px"} backgroundColor={"black"} />
         <Heading fontSize={"25"}>Features</Heading>
         <br />
-        <Card5 />
+        <Card5 data={data[9]}/>
         <br />
 
         <Grid
@@ -114,9 +117,6 @@ export const Culture = () => {
           alignContent={"center"}
           marginX="auto"
         >
-          <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[9]} />
-          </Box>
           <Box>
             <InnovationCard isLoaded={isLoaded} data={data[10]} />
           </Box>
@@ -137,6 +137,9 @@ export const Culture = () => {
           </Box>
           <Box>
             <InnovationCard isLoaded={isLoaded} data={data[16]} />
+          </Box>
+          <Box>
+            <InnovationCard isLoaded={isLoaded} data={data[17]} />
           </Box>
         </Grid>
       </Box>

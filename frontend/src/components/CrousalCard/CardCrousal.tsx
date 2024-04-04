@@ -7,32 +7,61 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { FaPlay } from "react-icons/fa";
+import { useAuth } from "../../utils/authContext/authContext";
+import { IUserPatch } from "../../utils/authContext/types";
+import { useData } from "../../utils/dataContext/dataContext";
+import { globalVariables } from "../../utils/globalVariables";
 import { Post } from "../../utils/types";
 
 interface Props {
   data: Post;
-  isLoaded: boolean;
 }
 
-const CardCrousal = ({ data, isLoaded }: Props) => {
+const CardCrousal = ({ data }: Props) => {
+  const {
+    patchUser,
+    authState: { user },
+  } = useAuth();
+
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { dataLoading } = useData();
+  const handleClick = async () => {
+    if (user) {
+      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      const id = user.id;
+      history = [...history, data];
+      const patchObj: IUserPatch = { id, history };
+      await patchUser(patchObj);
+    }
+    window.open(data.articleLink, "_blank");
+  };
   return (
     <Card
       maxW="sm"
       m={1}
       backgroundColor={"#141618"}
-      _hover={{ textDecoration: "underline" }}
+      _hover={{
+        filter: "brightness(130%)",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
+      onClick={handleClick}
       color={"white"}
-      as={"a"}
-      href={data?.articleLink}
-      target="_blank"
     >
-      <Skeleton isLoaded={isLoaded}>
+      <Skeleton
+        width="full"
+        isLoaded={!dataLoading && imgLoaded}
+        fadeDuration={globalVariables.skeletionFade}
+        minH="160px"
+      >
         <Image
           objectFit="contain"
           src={data?.image2}
           alt={data?.title}
           height={"160px"}
+          onLoad={() => setImgLoaded(true)}
         />
         <FaPlay
           style={{
@@ -44,22 +73,21 @@ const CardCrousal = ({ data, isLoaded }: Props) => {
         />
       </Skeleton>
       <Stack mt="6" spacing="3" m={1}>
-        <Skeleton
-          width={"fit-content"}
-          height={"30px"}
-          mt={"2"}
-          isLoaded={isLoaded}
+        <SkeletonText
+          isLoaded={!dataLoading}
+          skeletonHeight="9"
+          noOfLines={1}
+          fadeDuration={globalVariables.skeletionFade}
         >
           <Text size="md" fontWeight={"500"} fontSize={"24px"} noOfLines={1}>
             {data?.title}
           </Text>
-        </Skeleton>
+        </SkeletonText>
         <SkeletonText
-          mt={2}
-          noOfLines={4}
-          spacing="4"
-          skeletonHeight="2"
-          isLoaded={isLoaded}
+          isLoaded={!dataLoading}
+          skeletonHeight="4"
+          noOfLines={3}
+          fadeDuration={globalVariables.skeletionFade}
         >
           <Text noOfLines={3}>{data?.Description}</Text>
         </SkeletonText>
@@ -67,8 +95,9 @@ const CardCrousal = ({ data, isLoaded }: Props) => {
           mt={2}
           noOfLines={1}
           spacing="3"
-          skeletonHeight="3"
-          isLoaded={isLoaded}
+          isLoaded={!dataLoading}
+          skeletonHeight="4"
+          fadeDuration={globalVariables.skeletionFade}
         >
           <Text>
             {data?.time} hrs ago | {data?.category}

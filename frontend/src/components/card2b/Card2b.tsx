@@ -1,10 +1,21 @@
-"use client";
-
-import { Box, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Skeleton,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import { useAuth } from "../../utils/authContext/authContext";
+import { IUserPatch } from "../../utils/authContext/types";
 import { Post } from "../../utils/types";
+import { useState } from "react";
+import { useData } from "../../utils/dataContext/dataContext";
+import { globalVariables } from "../../utils/globalVariables";
 
 interface Props {
-  data?: Post;
+  data: Post;
 }
 
 export default function Card2b({ data }: Props) {
@@ -24,22 +35,49 @@ export default function Card2b({ data }: Props) {
       category: "world",
       clicks: 283,
     });
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { dataLoading } = useData();
+  const {
+    patchUser,
+    authState: { user },
+  } = useAuth();
+
+  const handleClick = async () => {
+    if (user) {
+      let history = user.history?.filter((item) => item.id !== data.id) || [];
+      const id = user.id;
+      history = [...history, data];
+      const patchObj: IUserPatch = { id, history };
+      await patchUser(patchObj);
+    }
+    window.open(data.articleLink, "_blank");
+  };
   return (
     <Box
-      as="a"
-      href={data.articleLink}
-      target="_blank"
-      _hover={{ filter: "brightness(110%)", textDecoration: "underline" }}
+      _hover={{
+        filter: "brightness(120%)",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
+      onClick={handleClick}
     >
       <Flex w={"full"} h={"full"} direction="column">
-        <Image
-          width={"100%"}
-          objectFit={"contain"}
-          objectPosition={"center"}
-          src={data.image2}
-          alt="#"
-          flex={1}
-        />
+        <Skeleton
+          width="full"
+          isLoaded={!dataLoading && imgLoaded}
+          fadeDuration={globalVariables.skeletionFade}
+          minH="350px"
+        >
+          <Image
+            width={"100%"}
+            objectFit={"contain"}
+            objectPosition={"center"}
+            src={data.image2}
+            alt="#"
+            flex={1}
+            onLoad={() => setImgLoaded(true)}
+          />
+        </Skeleton>
         <Stack textAlign={"start"} flex={1}>
           <Heading fontSize={"2xl"} fontWeight={600} mt={4}>
             {data.title}

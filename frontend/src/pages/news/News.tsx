@@ -1,26 +1,25 @@
+import { ArrowUpIcon } from "@chakra-ui/icons";
 import { Box, Button, Divider, Grid, Heading, Text } from "@chakra-ui/react";
-import postData from "../../../../backend/db.json";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Card3a } from "../../components/Card3a/Card3a";
 import Card5 from "../../components/Card5/Card5";
 import Card5b from "../../components/Card5b/Card5b";
 import Card1 from "../../components/Card_1/Card1";
 import Carousel from "../../components/CrousalCard/Crousal";
+import Footer from "../../components/Footer/Footer";
 import SearchCard from "../../components/Search Card/SearchCard";
 import TwoCards from "../../components/TwoCards/TwoCards";
 import Card2b from "../../components/card2b/Card2b";
-import { Post } from "../../utils/types";
-import { Card3a } from "../../components/Card3a/Card3a";
-import Footer from "../../components/Footer/Footer";
-import { ArrowUpIcon } from "@chakra-ui/icons";
 import { Navbar } from "../../components/navbar/Navbar";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useData } from "../../utils/dataContext/dataContext";
+import { Post } from "../../utils/types";
 
 export const News = () => {
-  let data: Post[] = postData.posts
-    .filter((post) => post.category === "world")
-    .slice(1, 30);
+  const { posts, getPosts } = useData();
+  let data = posts.filter((post) => post.category === "world");
 
-  let crousalData: Post[] = data.slice(10, 30);
+  let crousalData: Post[] = data.slice(1, 30);
 
   data.sort((a, b) => b.clicks - a.clicks);
 
@@ -33,6 +32,7 @@ export const News = () => {
     });
   };
   useEffect(() => {
+    getPosts();
     const toggleVisibility = () => {
       if (window.pageYOffset > 100) {
         setIsVisible(true);
@@ -54,30 +54,33 @@ export const News = () => {
         animate={{ opacity: 1, transition: { duration: 0.0 } }}
         exit={{ opacity: 0, transition: { duration: 0.0 } }}
       >
-        <Box p={5}>
-          <Heading color={"#cd2626"} fontSize={"4rem"} lineHeight={1}>
-            NEWS
-          </Heading>
+        <Box px={[2, 4, 6, 8]}>
+          <Heading bg={"yellow"}>News</Heading>
           <br />
           <Divider backgroundColor={"black"} height={"2px"} />
           <br />
-          <Box flexDirection={["column", "row"]} display={"flex"} gap={"2rem"}>
-            <Card5b data={data[29]} />
-            <Card1 data={data[0]} />
+          <Box
+            flexDirection={["column", "column", "column", "row"]}
+            display={"flex"}
+            gap={"2rem"}
+          >
+            <Card5b data={data[0]} />
+            <Card1 data={data[1]} />
           </Box>
           <Grid
             justifyItems={"center"}
             templateColumns={[
               "repeat(1,1fr)",
+              "repeat(1,1fr)",
+              "repeat(2,1fr)",
               "repeat(3,1fr)",
-              "repeat(5,1fr)",
             ]}
             alignContent={"center"}
             marginX="auto"
             gap={2}
           >
             <Box>
-              <Card1 data={data[1]} />
+              <Card1 data={data[2]} />
             </Box>
             <Box>
               <Card1 data={data[3]} />
@@ -103,7 +106,7 @@ export const News = () => {
             <Card3a data={data[9]} />
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(11, 20)} />
+        <Carousel data={crousalData.slice(10, 20)} />
         <Box p={5} mt={8}>
           <br />
           <Divider backgroundColor={"black"} height={"2px"} />
@@ -112,9 +115,9 @@ export const News = () => {
           <TwoCards />
           <Divider backgroundColor={"black"} height={"2px"} mb={5} />
           <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} gap={2}>
-            <Card2b data={data[10]} />
-            <Card2b data={data[11]} />
-            <Card2b data={data[12]} />
+            <Card2b data={data[21]} />
+            <Card2b data={data[22]} />
+            <Card2b data={data[23]} />
           </Grid>
         </Box>
         <Box mt={10} p={5}>
@@ -138,7 +141,8 @@ export const News = () => {
             justifyItems={"center"}
             templateColumns={[
               "repeat(1,1fr)",
-              "repeat(3,1fr)",
+              "repeat(1,1fr)",
+              "repeat(2,1fr)",
               "repeat(4,1fr)",
             ]}
             alignContent={"center"}
@@ -147,46 +151,46 @@ export const News = () => {
             gap={2}
           >
             <Box>
-              <Card1 data={data[13]} />
+              <Card1 data={data[24]} />
             </Box>
             <Box>
-              <Card1 data={data[14]} />
+              <Card1 data={data[25]} />
             </Box>
             <Box>
-              <Card1 data={data[15]} />
+              <Card1 data={data[26]} />
             </Box>
             <Box>
-              <Card1 data={data[16]} />
+              <Card1 data={data[27]} />
             </Box>
             <Box>
-              <Card1 data={data[17]} />
+              <Card1 data={data[28]} />
             </Box>
             <Box>
-              <Card1 data={data[18]} />
+              <Card1 data={data[29]} />
             </Box>
             <Box>
-              <Card1 data={data[19]} />
+              <Card1 data={data[30]} />
             </Box>
             <Box>
-              <Card1 data={data[20]} />
+              <Card1 data={data[31]} />
             </Box>
           </Grid>
         </Box>
-        <Carousel data={crousalData.slice(0, 10)} />
+        <Carousel data={crousalData.slice(32, 40)} />
         <Box p={10}>
           <Divider backgroundColor={"black"} height={"2px"} />
           <Heading fontSize={"20px"} mt={5} mb={5}>
             More in Buisness
           </Heading>
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
+          <SearchCard data={data[32]} />
+          <SearchCard data={data[33]} />
+          <SearchCard data={data[34]} />
+          <SearchCard data={data[35]} />
+          <SearchCard data={data[36]} />
+          <SearchCard data={data[37]} />
+          <SearchCard data={data[38]} />
+          <SearchCard data={data[39]} />
+          <SearchCard data={data[40]} />
         </Box>
         {isVisible && (
           <Box

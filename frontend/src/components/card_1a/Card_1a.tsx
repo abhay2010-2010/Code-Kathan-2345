@@ -47,8 +47,8 @@ export const Card1a = ({ data }: Props) => {
       const patchObj: IUserPatch = { id, history };
       console.log(patchObj);
       await patchUser(patchObj);
-      window.open(data.articleLink, "_blank");
     }
+    window.open(data.articleLink, "_blank");
   };
   const [isLoaded, setIsLoaded] = useState(false);
 

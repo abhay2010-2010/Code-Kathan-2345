@@ -14,7 +14,10 @@ import { motion } from "framer-motion";
 
 export const Innovation = () => {
   const [isVisible, setIsVisible] = useState(false);
-  let data: Post[] = postData.posts;
+  let data: Post[] = postData.posts
+    .filter((post) => post.category === "innovation")
+    .slice(1, 30);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -47,10 +50,9 @@ export const Innovation = () => {
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
         exit={{ opacity: 0, transition: { duration: 0.2 } }}
       >
-
-   
       <Box w={"84%"} marginX="auto">
         <Heading>Innovation</Heading>
+
         <br />
         <Divider height={"2px"} backgroundColor={"black"} />
         <br />
@@ -63,16 +65,16 @@ export const Innovation = () => {
           marginX="auto"
         >
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[30]} />
+            <InnovationCard isLoaded={isLoaded} data={data[1]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[31]} />
+            <InnovationCard isLoaded={isLoaded} data={data[2]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[32]} />
+            <InnovationCard isLoaded={isLoaded} data={data[3]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[33]} />
+            <InnovationCard isLoaded={isLoaded} data={data[4]} />
           </Box>
         </Grid>
 
@@ -82,19 +84,19 @@ export const Innovation = () => {
         <br />
         <Grid templateColumns={{ sm: "1fr", md: "repeat(3, 1fr)" }} gap={"5"}>
           <Box>
-            <InnovationCard2 isLoaded={isLoaded} data={data[36]} />
+            <InnovationCard2 isLoaded={isLoaded} data={data[5]} />
           </Box>
           <Box>
-            <InnovationCard2 isLoaded={isLoaded} data={data[37]} />
+            <InnovationCard2 isLoaded={isLoaded} data={data[6]} />
           </Box>
           <Box>
-            <InnovationCard2 isLoaded={isLoaded} data={data[38]} />
+            <InnovationCard2 isLoaded={isLoaded} data={data[7]} />
           </Box>
           <Box>
-            <InnovationCard2 isLoaded={isLoaded} data={data[39]} />
+            <InnovationCard2 isLoaded={isLoaded} data={data[8]} />
           </Box>
           <Box>
-            <InnovationCard2 isLoaded={isLoaded} data={data[40]} />
+            <InnovationCard2 isLoaded={isLoaded} data={data[9]} />
           </Box>
         </Grid>
       </Box>
@@ -104,7 +106,7 @@ export const Innovation = () => {
         <Divider height={"2px"} backgroundColor={"black"} />
         <Heading fontSize={"25"}>Features</Heading>
         <br />
-        <Card5 />
+        <Card5 data={data[10]}/>
         <br />
 
         <Grid
@@ -115,32 +117,32 @@ export const Innovation = () => {
           marginX="auto"
         >
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[41]} />
+            <InnovationCard isLoaded={isLoaded} data={data[11]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[42]} />
+            <InnovationCard isLoaded={isLoaded} data={data[12]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[43]} />
+            <InnovationCard isLoaded={isLoaded} data={data[13]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[44]} />
+            <InnovationCard isLoaded={isLoaded} data={data[14]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[45]} />
+            <InnovationCard isLoaded={isLoaded} data={data[15]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[46]} />
+            <InnovationCard isLoaded={isLoaded} data={data[16]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[47]} />
+            <InnovationCard isLoaded={isLoaded} data={data[17]} />
           </Box>
           <Box>
-            <InnovationCard isLoaded={isLoaded} data={data[48]} />
+            <InnovationCard isLoaded={isLoaded} data={data[18]} />
           </Box>
         </Grid>
         <Box>
-          <Card1  data={data[49]} />
+          <Card1  data={data[19]} />
         </Box>
       </Box>
       <Carousel />

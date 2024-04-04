@@ -62,9 +62,10 @@ export interface IAuthContext {
   totalUsers: number | undefined;
   loginUser: (credential: ICredentials) => Promise<string>;
   signupUser: (credential: ICredentials) => Promise<string>;
-  logoutUser: (credential: ICredentials) => Promise<string>;
+  logoutUser: () => Promise<string>;
   patchUser: (credential: IUserPatch) => Promise<string>;
   getUsers: () => Promise<string>;
+  deleteUser: (id: number) => Promise<string>;
 }
 
 export const authContextInitial: IAuthContext = {
@@ -76,4 +77,5 @@ export const authContextInitial: IAuthContext = {
   logoutUser: () => new Promise<string>(() => {}),
   patchUser: () => new Promise<string>(() => {}),
   getUsers: () => new Promise<string>(() => {}),
+  deleteUser: () => new Promise<string>(() => {}),
 };

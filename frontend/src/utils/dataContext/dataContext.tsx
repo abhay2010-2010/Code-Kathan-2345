@@ -23,7 +23,8 @@ export const DataContextProvider = ({ children }: Props) => {
 
   const getPosts = () => {
     let params = window.location.href;
-    params = params.slice(params.indexOf("?"));
+    params = params.split("?")[1] || "";
+    params && (params = `?${params}`);
     let url = baseUrl + "/posts" + params;
     console.log(url);
     return new Promise<string>((resolve, reject) => {

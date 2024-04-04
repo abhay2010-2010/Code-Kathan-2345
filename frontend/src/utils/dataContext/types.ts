@@ -25,7 +25,7 @@ export interface IPatchArticle {
   test?: number;
 }
 export interface IAddArticle {
-  id: number;
+  id?: number;
   title?: string;
   Description?: string;
   source?: string;
