@@ -6,7 +6,7 @@ import { baseUrl } from "./utils/baseUrl";
 
 function App() {
   console.log(baseUrl);
-  const [view, setVeiw] = useState(true);
+  const [view, setVeiw] = useState(false);
   let id = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
