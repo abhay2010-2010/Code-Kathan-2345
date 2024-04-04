@@ -9,10 +9,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { useAuth } from "../../utils/authContext/authContext";
+import { IUserPatch } from "../../utils/authContext/types";
 import { useData } from "../../utils/dataContext/dataContext";
 import { IArticle } from "../../utils/dataContext/types";
-import { IUserPatch } from "../../utils/authContext/types";
 import { globalVariables } from "../../utils/globalVariables";
 
 const IMAGE =
@@ -45,6 +46,7 @@ export default function Card2a({ data, isDefault }: Props) {
     patchUser,
     authState: { user },
   } = useAuth();
+  const [imgLoaded, setImgLoaded] = useState(false);
   const { dataLoading } = useData();
   const handleClick = async () => {
     if (user) {
@@ -70,7 +72,7 @@ export default function Card2a({ data, isDefault }: Props) {
         <Box>
           <Skeleton
             width="full"
-            isLoaded={!dataLoading}
+            isLoaded={!dataLoading && imgLoaded}
             fadeDuration={globalVariables.skeletionFade}
             minH="220px"
           >
@@ -80,6 +82,7 @@ export default function Card2a({ data, isDefault }: Props) {
               objectFit={"cover"}
               src={isDefault ? IMAGE : data.image2}
               alt="#"
+              onLoad={() => setImgLoaded(true)}
             />
           </Skeleton>
         </Box>
