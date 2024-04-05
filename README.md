@@ -4,7 +4,7 @@ KATHAN_NEWS
 
 ## Introduction
 
-"Introducing Kathan News,built for masai construct week block 34 . an innovative online news application offering seamless access to the latest headlines. With user-friendly features including robust registration and authentication, responsive design, and intuitive search capabilities, Kathan News provides an immersive news browsing experience for users worldwide."
+Introducing Kathan News,built for masai construct week block 34 . An innovative online news application offering seamless access to the latest headlines. With user-friendly features including robust registration and authentication, responsive design, and intuitive search capabilities, Kathan News provides an immersive news browsing experience for users worldwide.
 
 ## Project Type
 
@@ -109,11 +109,7 @@ code-kathan-2345
 
 ## Video Walkthrough of the project
 
-Attach a very short video walkthough of all of the features [ 1 - 3 minutes ]
-
-## Video Walkthrough of the codebase
-
-Attach a very short video walkthough of codebase [ 1 - 5 minutes ]
+[Project Presentation Video](https://youtu.be/a-GFdCgTQms)
 
 ## Features
 
@@ -137,14 +133,12 @@ Solution: We've integrated a sleek theming system that allows users to effortles
 
 ## Installation & Getting started
 
-Detailed instructions on how to install, configure, and get the project running. For BE/FS projects, guide the reviewer how to check mongodb schema etc.
-
+Detailed instructions on how to install, configure, and get the project running.
 ```bash
 clone the repo
 cd into Code-kathan-2345
 npm run install
-npm run start_be to start the backend
-npm run start_de to start the frontend
+npm run start_fe to start the frontend
 ```
 
 
@@ -195,16 +189,13 @@ DELETE /posts/:id  - Delete an item
 POST /sign - sign in a user
 POST /register - create a user account
 PATCH /users/id - Patch a user
-DELERE /users/id - Delete a user
+DELETE /users/id - Delete a user
 
 ## Technology Stack
 
-List and provide a brief overview of the technologies used in the project.
-
-- HTML
-- CSS
 - React
-- Redux
 - TypeScript
 - Chakra UI
+- Axios
+- Google Charts
 - JSON server

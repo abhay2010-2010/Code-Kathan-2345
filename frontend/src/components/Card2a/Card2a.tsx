@@ -16,8 +16,10 @@ import { useData } from "../../utils/dataContext/dataContext";
 import { IArticle } from "../../utils/dataContext/types";
 import { globalVariables } from "../../utils/globalVariables";
 
+// const IMAGE =
+//   "https://ichef.bbci.co.uk/news/800/cpsprodpb/FDED/production/_133050056_2023-11-01t134749z_176733597_rc2n34al49of_rtrmadp_3_israel-palestinians-lebanon-village-1.jpg.webp";
 const IMAGE =
-  "https://ichef.bbci.co.uk/news/800/cpsprodpb/FDED/production/_133050056_2023-11-01t134749z_176733597_rc2n34al49of_rtrmadp_3_israel-palestinians-lebanon-village-1.jpg.webp";
+  "https://picsum.photos/250/130"
 
 interface Props {
   data: IArticle;
@@ -74,7 +76,7 @@ export default function Card2a({ data, isDefault }: Props) {
             width="full"
             isLoaded={!dataLoading && imgLoaded}
             fadeDuration={globalVariables.skeletionFade}
-            minH="220px"
+            h="500px"
           >
             <Image
               height={"100%"}
@@ -83,6 +85,7 @@ export default function Card2a({ data, isDefault }: Props) {
               src={isDefault ? IMAGE : data.image2}
               alt="#"
               onLoad={() => setImgLoaded(true)}
+              loading="lazy"
             />
           </Skeleton>
         </Box>
