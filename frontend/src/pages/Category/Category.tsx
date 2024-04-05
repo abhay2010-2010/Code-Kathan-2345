@@ -54,9 +54,12 @@ export default function Category() {
           Category
         </chakra.h1>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-          <StatsCard title={"We serve"} stat={"50,000 people"} />
-          <StatsCard title={"In"} stat={"30 different countries"} />
-          <StatsCard title={"Who speak"} stat={"100 different languages"} />
+          <StatsCard title={"We have News in Total"} stat={"7 category"} />
+          <StatsCard title={"1 Lakh+ news"} stat={"30 different countries"} />
+          <StatsCard
+            title={"Visited Categories are"}
+            stat={"more than 20000+"}
+          />
         </SimpleGrid>
       </Box>
     </>

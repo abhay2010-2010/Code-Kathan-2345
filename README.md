@@ -4,7 +4,7 @@ KATHAN_NEWS
 
 ## Introduction
 
-A brief introduction of your project goes here. You may want to cover the purpose of your project, its core functionality, and what problems it solves.
+Introducing Kathan News,built for masai construct week block 34 . An innovative online news application offering seamless access to the latest headlines. With user-friendly features including robust registration and authentication, responsive design, and intuitive search capabilities, Kathan News provides an immersive news browsing experience for users worldwide.
 
 ## Project Type
 
@@ -12,7 +12,7 @@ Frontend
 
 ## Deplolyed App
 
-Frontend: https://code-kathan.vercel.app <br>
+Frontend: https://kathan-news.netlify.app/ <br>
 Backend: https://code-kathan-api.vercel.app
 
 ## Directory Structure
@@ -109,41 +109,48 @@ code-kathan-2345
 
 ## Video Walkthrough of the project
 
-Attach a very short video walkthough of all of the features [ 1 - 3 minutes ]
-
-## Video Walkthrough of the codebase
-
-Attach a very short video walkthough of codebase [ 1 - 5 minutes ]
+[Project Presentation Video](https://youtu.be/a-GFdCgTQms)
 
 ## Features
 
-List out the key features of your application.
-
-- Feature 1
-- Feature 2
-- Feature 3
+- User and admin registration and authentication functionality
+- Responsive design for seamless user experience across devices
+- User profile creation and management
+- Search functionality to easily find desired news articles
+- Scroll-to-top feature for convenient navigation 
+- admin dashboard displays metrics of user distribution across the globe , total clicks reseived on the website and other key information
+- ability for the admin to perform crud on news articles and users 
 
 ## design decisions or assumptions
 
-List your design desissions & assumptions
+At Kathan News, we're committed to delivering an exceptional user experience that seamlessly combines aesthetic appeal with functionality. To achieve this goal, we've implemented two key features: an attractive user interface with toggling theme and interactive toast functionality.
+
+Intuitive Theming for Enhanced Visual Experience
+
+Design Goal: Our primary objective is to offer users a visually engaging experience that aligns with their preferences and surroundings.
+
+Solution: We've integrated a sleek theming system that allows users to effortlessly switch between light and dark modes. Whether users prefer a brighter interface for daytime browsing or a darker one for nighttime reading, they can easily toggle between the two options with a simple click.
 
 ## Installation & Getting started
 
-Detailed instructions on how to install, configure, and get the project running. For BE/FS projects, guide the reviewer how to check mongodb schema etc.
-
+Detailed instructions on how to install, configure, and get the project running.
 ```bash
-npm install my-project
-cd my-project
-npm start
+clone the repo
+cd into Code-kathan-2345
+npm run install
+npm run start_fe to start the frontend
 ```
+
+
 
 ## Usage
 
 Provide instructions and examples on how to use your project.
 
 ```bash
-# Example
-
+npm install
+npm run start_fe
+npm run start_be
 ```
 
 #### Light Mode
@@ -158,23 +165,37 @@ Provide instructions and examples on how to use your project.
 
 ## Credentials
 
-Provide user credentials for autheticated pages
+Admin Credentials
 
-## APIs Used
+```bash
+email- admin@mail.com
+password- admin
+```
 
-If your application relies on external APIs, document them and include any necessary links or references.
+User Credential
+
+```Bash
+email- user@mail.com
+password- password
+```
+
 
 ## API Endpoints
 
-In case of Backend Applications provide a list of your API endpoints, methods, brief descriptions, and examples of request/response.
-GET /api/items - retrieve all items
-POST /api/items - create a new item
+GET /posts - retrieve all items
+POST /posts - create a new item
+PATCH /posts/:id - Patch an item 
+DELETE /posts/:id  - Delete an item
+POST /sign - sign in a user
+POST /register - create a user account
+PATCH /users/id - Patch a user
+DELETE /users/id - Delete a user
 
 ## Technology Stack
 
-List and provide a brief overview of the technologies used in the project.
-
-- Node.js
-- Express.js
-- MongoDB
-- Other libraries/modules
+- React
+- TypeScript
+- Chakra UI
+- Axios
+- Google Charts
+- JSON server
