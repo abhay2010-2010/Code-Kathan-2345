@@ -59,7 +59,7 @@ export const initalState: IAuth = {
 export interface IAuthContext {
   authState: IAuth;
   users: IUser[];
-  totalUsers: number | undefined;
+  totalUsers: number;
   loginUser: (credential: ICredentials) => Promise<string>;
   signupUser: (credential: ICredentials) => Promise<string>;
   logoutUser: () => Promise<string>;
@@ -71,7 +71,7 @@ export interface IAuthContext {
 export const authContextInitial: IAuthContext = {
   authState: initalState,
   users: [],
-  totalUsers: undefined,
+  totalUsers: 0,
   loginUser: () => new Promise<string>(() => {}),
   signupUser: () => new Promise<string>(() => {}),
   logoutUser: () => new Promise<string>(() => {}),
