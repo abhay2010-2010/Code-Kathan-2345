@@ -47,7 +47,7 @@ export interface IDataContext {
   posts: IArticle[];
   dataLoading: boolean;
   dataError: boolean;
-  totalPosts: number | undefined;
+  totalPosts: number;
   getPosts: GetPosts;
   patchPost: PatchPost;
   addPost: AddPost;

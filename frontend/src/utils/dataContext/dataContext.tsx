@@ -26,7 +26,6 @@ export const DataContextProvider = ({ children }: Props) => {
     params = params.split("?")[1] || "";
     params && (params = `?${params}`);
     let url = baseUrl + "/posts" + params;
-    console.log(url);
     return new Promise<string>((resolve, reject) => {
       setDataLoading(true);
       axios
@@ -37,7 +36,7 @@ export const DataContextProvider = ({ children }: Props) => {
           setDataLoading(false);
           setDataError(false);
           resolve("success");
-          setTotalPosts(total);
+          setTotalPosts(total || res.data.length);
         })
         .catch(() => {
           setDataError(true);

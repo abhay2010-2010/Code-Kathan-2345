@@ -96,9 +96,11 @@ const Article: React.FC = () => {
   };
 
   useEffect(() => {
-    setpages(Math.ceil(totalPosts || 0) / Number(limit));
     setUrl();
     getPosts();
+    setpages(() => {
+      return Math.ceil(totalPosts / limit);
+    });
   }, [page, limit]);
 
   const handleDelete = (id: number) => {
@@ -235,7 +237,9 @@ const Article: React.FC = () => {
             >
               Previous
             </Button>
-            <Button isDisabled={true}>{page}</Button>
+            <Button isDisabled={true}>
+              {page}/{pages}
+            </Button>
             <Button
               isDisabled={page === pages}
               onClick={() => setPage((prev) => prev + 1)}

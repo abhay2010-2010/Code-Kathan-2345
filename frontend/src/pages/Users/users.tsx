@@ -90,7 +90,7 @@ const Users: React.FC = () => {
   useEffect(() => {
     setUrl();
     getUsers().then(() => {
-      setpages(() => Math.ceil(Number(totalUsers)) / Number(limit));
+      setpages(() => Math.ceil(totalUsers / limit));
     });
   }, [page, limit]);
 
@@ -196,7 +196,9 @@ const Users: React.FC = () => {
             >
               Previous
             </Button>
-            <Button isDisabled={true}>{page}</Button>
+            <Button isDisabled={true}>
+              {page}/{pages}
+            </Button>
             <Button
               isDisabled={page === pages}
               onClick={() => setPage((prev) => prev + 1)}

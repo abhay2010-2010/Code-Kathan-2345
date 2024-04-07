@@ -34,7 +34,7 @@ const writeLocalStorage = (user: IUser, accessToken: string) => {
 export const AuthProvider = ({ children }: Props) => {
   const [authState, setAuthState] = useState<IAuth>(initalState);
   const [users, setUsers] = useState<IUser[]>([]);
-  const [totalUsers, setTotalUsers] = useState<number | undefined>(undefined);
+  const [totalUsers, setTotalUsers] = useState<number>(0);
 
   const getUsers = () => {
     setAuthState((prev) => ({ ...prev, loginLoading: true }));
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }: Props) => {
         .then((res) => {
           setUsers(res.data);
           const { "x-total-count": total } = res.headers;
-          setTotalUsers(total);
+          setTotalUsers(total || res.data.length);
           setAuthState((prev) => ({
             ...prev,
             loginLoading: false,
